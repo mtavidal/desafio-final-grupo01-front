@@ -1,0 +1,52 @@
+.cabecalho {
+  background-color: var(--azulescuro);
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5% 4%;
+}
+
+.cabecalho nav {
+  display: flex;
+  align-items: center;
+  gap: 15%;
+}
+.cabecalho div {
+  display: flex;
+  gap: 15%;
+}
+
+.cabecalho img {
+  width: 120px;
+}
+
+.shoppingCartIcon {
+  color: var(--azulclaro);
+}
+.link {
+  text-decoration: none;
+  color: var(--azulclaro);
+}
+
+.link:hover {
+  color: var(--azulmedioescuro);
+}
+
+.shoppingCartIcon:hover {
+  color: var(--azulmedioescuro);
+}
+
+.iconeBotao:disabled {
+  opacity: 0.5;
+}
+
+@media only screen and (max-width: 500px) {
+  .cabecalho .carrinho {
+    flex-wrap: wrap;
+  }
+  .cabecalho div {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
