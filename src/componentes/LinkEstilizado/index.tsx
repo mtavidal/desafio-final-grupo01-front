@@ -5,11 +5,17 @@ interface LinksProps {
   url: string;
   children: ReactElement | string;
   style: string;
+  target?: string;
 }
 
-export default function CabecalhoLink({ url, children, style }: LinksProps) {
+export default function LinkEstilizado({
+  url,
+  children,
+  style,
+  target,
+}: LinksProps) {
   return (
-    <Link to={url} className={style}>
+    <Link to={url} className={style} target={target}>
       {children}
     </Link>
   );
