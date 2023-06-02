@@ -1,0 +1,23 @@
+.containerHome {
+  display: flex;
+  flex-direction: column;
+}
+
+.containerHome button {
+  width: 15%;
+  margin-bottom: 40px;
+  border: 2px solid var(--azulmedioescuro);
+  padding: 10px;
+  background: none;
+  color: var(--azulmedioescuro);
+  font-weight: bolder;
+  border-radius: 5px;
+  align-self: center;
+}
+
+.containerHome button:hover {
+  border: 2px solid var(--azulescuro);
+  background: var(--azulmedioclaro);
+  color: var(--azulescuro);
+  cursor: pointer;
+}

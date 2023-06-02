@@ -7,7 +7,7 @@
 }
 
 .rodape .logoImg {
-  width: 300px;
+  width: 250px;
 }
 
 .rodape .rodapeInfos {
@@ -20,7 +20,7 @@
 }
 
 .rodape .rodapeInfos div {
-  width: 250px;
+  width: 200px;
 }
 
 .rodape .rodapeInfos span {
@@ -28,11 +28,13 @@
   align-items: center;
   justify-content: center;
   margin-top: 8px;
+  font-size: 12px;
 }
 
 .rodape .rodapeInfos h3 {
   margin-bottom: 3px;
   margin-top: 30px;
+  font-size: 15px;
 }
 
 .rodape .rodapeInfos img {

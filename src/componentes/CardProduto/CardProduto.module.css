@@ -1,0 +1,31 @@
+.cardProduto {
+  width: 180px;
+  border: 2px solid var(--azulescuro);
+  background-color: var(--branco);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.cardProduto:hover {
+  box-shadow: inset 0 0 1em var(--azulmedioclaro), 0 0 1em var(--azulescuro);
+}
+
+.cardProduto img {
+  width: 150px;
+  height: 150px;
+  align-self: center;
+}
+
+.cardProduto h1 {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.cardProduto h2 {
+  font-size: 24px;
+  margin: 0px;
+}

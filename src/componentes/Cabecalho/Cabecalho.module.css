@@ -32,6 +32,10 @@
 .link:hover {
   color: var(--azulmedioescuro);
 }
+.active {
+  text-decoration: underline !important;
+  color: var(--azulmedioclaro) !important;
+}
 
 .shoppingCartIcon:hover {
   color: var(--azulmedioescuro);
@@ -48,5 +52,11 @@
   .cabecalho div {
     justify-content: center;
     flex-wrap: wrap;
+  }
+  .link {
+    margin-top: 5px;
+  }
+  .cabecalho nav {
+    justify-content: center;
   }
 }

@@ -2,6 +2,8 @@
   --fonte: "Montserrat", sans-serif;
   --branco: #ffffff;
   --preto: #000000;
+  --cinza: rgb(195, 196, 198);
+  --cinzaescuro: rgb(133, 133, 135);
   --azulescuro: #27374d;
   --azulmedioescuro: #526d82;
   --azulmedioclaro: #9db2bf;
@@ -19,4 +21,9 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.active {
+  text-decoration: underline !important;
+  color: var(--azulmedioclaro) !important;
 }

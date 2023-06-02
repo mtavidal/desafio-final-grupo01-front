@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ReactElement } from "react";
 
 interface LinksProps {
@@ -15,8 +15,8 @@ export default function LinkEstilizado({
   target,
 }: LinksProps) {
   return (
-    <Link to={url} className={style} target={target}>
+    <NavLink to={url} className={style} target={target}>
       {children}
-    </Link>
+    </NavLink>
   );
 }
