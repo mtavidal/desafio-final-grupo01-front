@@ -1,23 +1,8 @@
 import styles from "./ListarProdutos.module.css";
-
 import { useEffect, useState } from "react";
-
 import { CardProduto } from "componentes/CardProduto";
 import { api } from "lib/axios";
-
-interface Produto {
-  id: number;
-  // nome: string
-  // foto: string
-  // preco: number
-  // descricao: string
-  // categoria: string
-  title: string;
-  image: string;
-  price: number;
-  description: string;
-  category: string;
-}
+import { Produto } from "shared/interfaces/IProdutos";
 
 interface ListarProdutosProps {
   ehPaginaHome: boolean;

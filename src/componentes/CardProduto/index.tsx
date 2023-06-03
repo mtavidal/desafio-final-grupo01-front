@@ -1,12 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import styles from "./CardProduto.module.css";
 
 interface ProdutoProps {
   id: number;
-  // nome: string
-  // foto: string
-  // preco: number
-  // descricao: string
-  // categoria: string
   title: string;
   image: string;
   price: number;
@@ -22,8 +18,12 @@ export function CardProduto({
   description,
   category,
 }: ProdutoProps) {
+  const navigate = useNavigate();
+
   function detalhesProduto(produto: ProdutoProps) {
-    console.log("clicou", id);
+    navigate("/detalhes", {
+      state: produto,
+    });
   }
 
   return (

@@ -1,0 +1,54 @@
+.containerDetalhes {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardDetalhes {
+  display: flex;
+  flex-wrap: wrap;
+  width: 50%;
+  align-items: center;
+  justify-content: space-evenly;
+  align-self: center;
+  justify-self: center;
+  border: 2px solid var(--azulescuro);
+  background-color: var(--branco);
+  padding: 30px;
+  border-radius: 5px;
+  margin: 50px 0;
+}
+
+.cardDetalhes div {
+  width: 300px;
+  padding-left: 5%;
+}
+
+.cardDetalhes img {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+.cardDetalhes h1 {
+  font-size: 25px;
+}
+
+.cardDetalhes h4 {
+  font-size: 14px;
+}
+
+@media only screen and (max-width: 500px) {
+  .cardDetalhes {
+    width: 290px;
+  }
+  .cardDetalhes h1 {
+    font-size: 20px;
+  }
+  .cardDetalhes h3,
+  h4 {
+    font-size: 14px;
+  }
+  .cardDetalhes img {
+    max-width: 200px;
+    max-height: 200px;
+  }
+}

@@ -4,7 +4,7 @@
 }
 
 .containerHome button {
-  width: 15%;
+  width: 200px;
   margin-bottom: 40px;
   border: 2px solid var(--azulmedioescuro);
   padding: 10px;

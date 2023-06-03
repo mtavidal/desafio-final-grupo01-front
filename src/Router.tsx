@@ -4,6 +4,7 @@ import Carrinho from "paginas/Carrinho";
 import Home from "paginas/Home";
 import ListagemProdutos from "paginas/ListagemProdutos";
 import Login from "paginas/Login";
+import DetalhesProduto from "paginas/DetalhesProduto";
 
 export default function Router() {
   return (
@@ -12,6 +13,8 @@ export default function Router() {
       <Route path="/produtos" element={<ListagemProdutos />} />
       <Route path="/carrinho" element={<Carrinho />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/detalhes" element={<DetalhesProduto />} />
+
       {/* <Route path="/" element={<PaginaBase />}>
             <Route index element={<Inicio />} />
             <Route path="Favoritos" element={<Favoritos />} />

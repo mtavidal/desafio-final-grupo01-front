@@ -13,7 +13,7 @@
   justify-content: center;
 }
 .containerProdutos button {
-  width: 15%;
+  width: 200px;
   margin-top: 40px;
   border: 2px solid var(--azulmedioescuro);
   padding: 10px;
