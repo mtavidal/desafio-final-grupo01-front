@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { CardProduto } from "componentes/CardProduto";
 import { api } from "lib/axios";
 import { Produto } from "shared/interfaces/IProdutos";
+import Botao from "componentes/Botao";
 
 interface ListarProdutosProps {
   ehPaginaHome: boolean;
@@ -63,13 +64,13 @@ export function ListarProdutos({
         ))}
       </div>
       {!ehCarregamentoInicial && (
-        <button
+        <Botao
           disabled={estaCarregandoMais}
           hidden={ehPaginaHome}
           onClick={getMaisProdutos}
         >
           {estaCarregandoMais ? "Carregando" : "Carregar mais produtos"}
-        </button>
+        </Botao>
       )}
     </div>
   );

@@ -1,0 +1,33 @@
+.botao {
+  width: 200px;
+  border: 2px solid var(--azulmedioescuro);
+  padding: 10px;
+  background: none;
+  color: var(--azulmedioescuro);
+  font-weight: bolder;
+  border-radius: 5px;
+  align-self: center;
+}
+
+.botao:hover {
+  border: 2px solid var(--azulescuro);
+  background: var(--azulmedioclaro);
+  color: var(--azulescuro);
+  cursor: pointer;
+}
+.botao:disabled {
+  border: 2px solid var(--cinzaescuro);
+  background: var(--cinza);
+  color: var(--cinzaescuro);
+  cursor: pointer;
+}
+
+.secundario {
+  background: var(--azulmedioescuro);
+  color: var(--azulclaro);
+}
+
+.secundario:hover {
+  background: var(--azulescuro);
+  color: var(--azulclaro);
+}

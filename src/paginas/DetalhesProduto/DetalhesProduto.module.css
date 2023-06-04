@@ -1,6 +1,7 @@
 .containerDetalhes {
   display: flex;
   flex-direction: column;
+  padding: 40px;
 }
 
 .cardDetalhes {
@@ -20,7 +21,8 @@
 
 .cardDetalhes div {
   width: 300px;
-  padding-left: 5%;
+  display: flex;
+  flex-direction: column;
 }
 
 .cardDetalhes img {
@@ -30,10 +32,12 @@
 
 .cardDetalhes h1 {
   font-size: 25px;
+  margin: 0;
 }
 
 .cardDetalhes h4 {
   font-size: 14px;
+  margin: 0;
 }
 
 @media only screen and (max-width: 500px) {
