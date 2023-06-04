@@ -1,0 +1,23 @@
+.carrossel div {
+  display: flex;
+  justify-content: center;
+  width: 85%;
+}
+
+.carrossel img {
+  height: 500px;
+  width: 100%;
+  box-shadow: 0 0 10px var(--azulmedioclaro);
+  margin: 20px;
+}
+@media only screen and (max-width: 1270px) {
+  .carrossel img {
+    height: 300px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .carrossel img {
+    height: 130px;
+  }
+}

@@ -3,3 +3,37 @@
   flex-direction: column;
   padding: 40px;
 }
+
+.titulo {
+  text-align: center;
+  width: 90%;
+  align-self: center;
+  margin: 0px;
+  padding-bottom: 15px;
+  color: var(--azulescuro);
+  font-size: 50px;
+  line-height: 50px;
+  font-family: "K2D", sans-serif;
+}
+.containerMarcas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
+  align-self: center;
+  padding-top: 20px;
+}
+
+.containerMarcas img {
+  display: flex;
+  width: 150px;
+}
+
+@media only screen and (max-width: 500px) {
+  .titulo {
+    width: 100%;
+    font-size: 20px;
+    line-height: 20px;
+  }
+}

@@ -25,5 +25,5 @@ code {
 
 .active {
   text-decoration: underline !important;
-  color: var(--azulmedioclaro) !important;
+  color: var(--azulclaro) !important;
 }
