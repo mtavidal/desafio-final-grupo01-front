@@ -2,10 +2,12 @@
   display: flex;
   flex-direction: column;
   padding: 40px;
+  align-items: center;
 }
 
 .titulo {
   text-align: center;
+  text-shadow: var(--azulmedioclaro) 0.1em 0.1em 0.2em;
   width: 90%;
   align-self: center;
   margin: 0px;
@@ -13,7 +15,7 @@
   color: var(--azulescuro);
   font-size: 50px;
   line-height: 50px;
-  font-family: "K2D", sans-serif;
+  font-family: var(--fonte2);
 }
 .containerMarcas {
   display: flex;
@@ -28,6 +30,7 @@
 .containerMarcas img {
   display: flex;
   width: 150px;
+  margin: 20px;
 }
 
 @media only screen and (max-width: 500px) {

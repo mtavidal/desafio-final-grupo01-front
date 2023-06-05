@@ -54,7 +54,6 @@ export function ListarProdutos({
 
     getProdutos();
   }, [limitPaginas]);
-  console.log(produtos);
   return (
     <div className={styles.containerProdutos}>
       {ehCarregamentoInicial && <p>Carregando produtos</p>}

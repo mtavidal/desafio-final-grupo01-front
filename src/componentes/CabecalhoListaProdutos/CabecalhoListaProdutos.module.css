@@ -1,0 +1,48 @@
+.containerCabProdutos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 200px;
+  background-color: var(--azulmedioescuro);
+  padding-left: 9%;
+  padding-right: 9%;
+}
+
+.containerCabProdutos h1 {
+  margin: 0;
+  color: var(--azulclaro);
+  font-family: var(--fonte2);
+  font-size: 60px;
+}
+
+.containerCabProdutos h3 {
+  color: var(--azulmedioclaro);
+  font-size: 20px;
+  margin: 0;
+  padding-top: 15px;
+}
+
+@media only screen and (max-width: 1031px) {
+  .containerCabProdutos h1 {
+    font-size: 45px;
+    line-height: 45px;
+  }
+
+  .containerCabProdutos h3 {
+    font-size: 18px;
+    width: 95%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .containerCabProdutos h1 {
+    font-size: 35px;
+    text-align: center;
+    line-height: 35px;
+  }
+
+  .containerCabProdutos h3 {
+    font-size: 14px;
+    text-align: center;
+  }
+}

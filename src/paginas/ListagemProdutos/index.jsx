@@ -1,11 +1,21 @@
 import { ListarProdutos } from 'componentes/ListarProdutos'
 import styles from './ListagemProdutos.module.css'
+import FiltrarCategorias from 'componentes/FiltrarCategorias'
+import CabecalhoListaProdutos from 'componentes/CabecalhoListaProdutos'
 
 export default function ListagemProdutos() {
     return (
         <div className={styles.containerListagem}>
-            <h1>Pagina listagem de produtos</h1>
-            <ListarProdutos ehPaginaHome={false}  limitPaginas={10} />
+            <CabecalhoListaProdutos 
+            titulo="Os melhores óculos para você!" 
+            subtitulo="As melhores marcas e os melhores óculos de grau, de sol e infatis em um
+            só lugar!"
+            />
+            <div className={styles.catElistagem}>
+                <FiltrarCategorias />
+                <ListarProdutos ehPaginaHome={false}  limitPaginas={10} />
+            </div>
+            
         </div>
     )
 }
