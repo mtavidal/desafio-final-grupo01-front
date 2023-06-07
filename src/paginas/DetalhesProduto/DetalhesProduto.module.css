@@ -40,6 +40,10 @@
   margin: 0;
 }
 
+.inputNumerico {
+  margin-bottom: 20px;
+}
+
 @media only screen and (max-width: 500px) {
   .cardDetalhes {
     width: 290px;

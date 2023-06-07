@@ -1,0 +1,33 @@
+.produtosNoCarrinho {
+  width: 70%;
+  border: 2px solid var(--azulescuro);
+  background-color: var(--branco);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.itensProduto {
+  display: flex;
+}
+
+.produtosNoCarrinho h1 {
+  font-size: 20px;
+}
+
+.produtosNoCarrinho img {
+  max-width: 90px;
+  padding-right: 3%;
+}
+
+.produtosNoCarrinho h2 {
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 500px) {
+  .produtosNoCarrinho img {
+    display: none;
+  }
+}

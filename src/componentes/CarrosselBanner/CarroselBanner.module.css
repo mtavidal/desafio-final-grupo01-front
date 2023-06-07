@@ -19,5 +19,6 @@
 @media only screen and (max-width: 500px) {
   .carrossel img {
     height: 130px;
+    width: 70%;
   }
 }

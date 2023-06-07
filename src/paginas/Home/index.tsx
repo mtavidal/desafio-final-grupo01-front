@@ -29,7 +29,7 @@ export default function Home() {
         <img src={logoRayban} alt="logo rayban" />
         <img src={logoVogue} alt="logo vogue" />
       </div>
-      <ListarProdutos ehPaginaHome={true} limitPaginas={5} />
+      <ListarProdutos ehPaginaHome={true} limitPaginas={3} />
       <Botao onClick={irParaProdutos}>Ir para produtos</Botao>
     </div>
   );

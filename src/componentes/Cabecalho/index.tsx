@@ -5,10 +5,14 @@ import IconeCarrinho from "@mui/icons-material/ShoppingCart";
 import IconeBotao from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "hooks";
 
 export default function Cabecalho() {
+  const cartState = useAppSelector((state) => state.cartReducer);
+  const quantidadeProduto = cartState.cart.length;
+
   const navigate = useNavigate();
-  const quantidadeProduto = 2;
+
   return (
     <header className={styles.cabecalho}>
       <nav>
