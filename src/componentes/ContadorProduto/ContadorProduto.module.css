@@ -1,0 +1,35 @@
+.ContainerContadorProduto {
+  display: flex;
+  justify-content: center;
+}
+.ContadorProduto {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  background-color: var(--azulclaro);
+  border-radius: 7px;
+  margin-bottom: 20px;
+}
+
+.ContadorProduto button {
+  border: none;
+  background-color: var(--azulmedioescuro);
+  padding: 5px 8px;
+  border-radius: 4px;
+  color: var(--azulclaro);
+}
+.ContadorProduto button:hover {
+  background-color: var(--azulescuro);
+  cursor: pointer;
+}
+
+.ContadorProduto p {
+  width: 20px;
+  text-align: center;
+  background-color: var(--branco);
+  border-radius: 4px;
+  padding: 2px;
+  margin: 15px 5px;
+}

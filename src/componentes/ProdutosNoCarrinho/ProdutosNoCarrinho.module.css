@@ -26,6 +26,13 @@
   font-size: 20px;
 }
 
+.produtosNoCarrinho h2 span {
+  font-size: 20px;
+  background-color: var(--azulclaro);
+  padding: 6px;
+  border-radius: 7px;
+}
+
 @media only screen and (max-width: 500px) {
   .produtosNoCarrinho img {
     display: none;

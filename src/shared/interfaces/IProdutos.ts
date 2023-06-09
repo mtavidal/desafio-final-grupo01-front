@@ -11,3 +11,7 @@ export interface Produto {
   description: string;
   category: string;
 }
+
+export interface ProdutoNoCarrinho extends Produto {
+  quantidade: number;
+}

@@ -19,7 +19,7 @@
   margin: 50px 0;
 }
 
-.cardDetalhes div {
+.textosDetalhes {
   width: 300px;
   display: flex;
   flex-direction: column;

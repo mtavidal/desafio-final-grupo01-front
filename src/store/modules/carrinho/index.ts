@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { Produto } from "shared/interfaces/IProdutos";
+import { ProdutoNoCarrinho } from "shared/interfaces/IProdutos";
 
 interface CartState {
-  cart: Produto[];
+  cart: ProdutoNoCarrinho[];
 }
 
 const initialState: CartState = {
@@ -16,19 +16,14 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addProduto: (state, action: PayloadAction<Produto>) => {
-      const productInCart = state.cart.some(
-        (product) => product.id === action.payload.id
+    addProduto: (state, action: PayloadAction<ProdutoNoCarrinho>) => {
+      const newCart = state.cart.filter(
+        (product) => product.id !== action.payload.id
       );
-
-      if (productInCart) {
-        alert("Produto já está no carrinho!");
-        return;
-      }
-
+      state.cart = newCart;
       state.cart = [...state.cart, action.payload];
     },
-    removerProduto: (state, action: PayloadAction<Produto["id"]>) => {
+    removerProduto: (state, action: PayloadAction<ProdutoNoCarrinho["id"]>) => {
       const productId = action.payload;
       const newCart = state.cart.filter((product) => product.id !== productId);
       state.cart = newCart;

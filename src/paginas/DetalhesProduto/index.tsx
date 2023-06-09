@@ -1,38 +1,47 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./DetalhesProduto.module.css";
-import { Produto } from "shared/interfaces/IProdutos";
+import { ProdutoNoCarrinho } from "shared/interfaces/IProdutos";
 import Botao from "componentes/Botao";
 import { useAppDispatch } from "hooks";
 import { addProduto } from "store/modules/carrinho";
+import ContadorProduto from "componentes/ContadorProduto";
 
 export default function DetalhesProduto() {
   const dispatch = useAppDispatch();
 
-  const adicionarProdutoCarrinho = (produto: Produto) => {
+  const adicionarProdutoCarrinho = (produto: ProdutoNoCarrinho) => {
     dispatch(addProduto(produto));
   };
 
   const location = useLocation();
-  const produto = location.state as Produto;
+  const produtoNoCarrinho = location.state as ProdutoNoCarrinho;
   const navigate = useNavigate();
+  produtoNoCarrinho.quantidade = 1;
 
   function irParaProdutos() {
     navigate("/produtos");
   }
 
+  function handleQtd(valor: number) {
+    produtoNoCarrinho.quantidade = valor;
+  }
+
   return (
     <div className={styles.containerDetalhes}>
       <div className={styles.cardDetalhes}>
-        <img src={produto.image} alt={`produto ${produto.title}`} />
-        <div>
-          <h1>{produto.title}</h1>
-          <h3>Categoria: {produto.category}</h3>
-          <h4>Descrição: {produto.description}</h4>
-          <h2>R${produto.price}</h2>
-
+        <img
+          src={produtoNoCarrinho.image}
+          alt={`produto ${produtoNoCarrinho.title}`}
+        />
+        <div className={styles.textosDetalhes}>
+          <h1>{produtoNoCarrinho.title}</h1>
+          <h3>Categoria: {produtoNoCarrinho.category}</h3>
+          <h4>Descrição: {produtoNoCarrinho.description}</h4>
+          <h2>R${produtoNoCarrinho.price}</h2>
+          <ContadorProduto handleQtd={(valor) => handleQtd(valor)} />
           <Botao
             primario={false}
-            onClick={() => adicionarProdutoCarrinho(produto)}
+            onClick={() => adicionarProdutoCarrinho(produtoNoCarrinho)}
           >
             Adicionar no Carrinho
           </Botao>
