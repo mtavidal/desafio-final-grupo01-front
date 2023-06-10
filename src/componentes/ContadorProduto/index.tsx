@@ -3,17 +3,21 @@ import styles from "./ContadorProduto.module.css";
 
 interface ContadorProdutoProps {
   handleQtd: (valor: number) => void;
+  qtdInicial?: number;
 }
 
-export default function ContadorProduto({ handleQtd }: ContadorProdutoProps) {
-  const [qtdProduto, setQtdProduto] = useState(1);
+export default function ContadorProduto({
+  handleQtd,
+  qtdInicial = 1,
+}: ContadorProdutoProps) {
+  const [qtdProduto, setQtdProduto] = useState(qtdInicial);
 
   const incrementaContador = () => {
     setQtdProduto(qtdProduto + 1);
     handleQtd(qtdProduto + 1);
   };
   const decrementaContador = () => {
-    if (qtdProduto > 0) {
+    if (qtdProduto > 1) {
       setQtdProduto(qtdProduto - 1);
       handleQtd(qtdProduto - 1);
     }

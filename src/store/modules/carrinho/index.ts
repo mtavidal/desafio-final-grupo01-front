@@ -6,10 +6,12 @@ interface CartState {
   cart: ProdutoNoCarrinho[];
 }
 
+const carrinhoLocalStorage = JSON.parse(
+  localStorage.getItem("carrinho") || "[]"
+);
+
 const initialState: CartState = {
-  cart: [],
-  //localstorage verificar
-  //lembrar de limpar o carrinho
+  cart: carrinhoLocalStorage ? carrinhoLocalStorage : [],
 };
 
 export const cartSlice = createSlice({
@@ -22,14 +24,17 @@ export const cartSlice = createSlice({
       );
       state.cart = newCart;
       state.cart = [...state.cart, action.payload];
+      localStorage.setItem("carrinho", JSON.stringify(state.cart));
     },
     removerProduto: (state, action: PayloadAction<ProdutoNoCarrinho["id"]>) => {
       const productId = action.payload;
       const newCart = state.cart.filter((product) => product.id !== productId);
       state.cart = newCart;
+      localStorage.setItem("carrinho", JSON.stringify(state.cart));
     },
     esvaziarCarrinho: (state) => {
       state.cart = [];
+      localStorage.setItem("carrinho", JSON.stringify(state.cart));
     },
   },
 });

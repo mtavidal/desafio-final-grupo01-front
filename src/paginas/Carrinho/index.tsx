@@ -10,9 +10,15 @@ export default function Carrinho() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const produtos = cartState.cart.map((produto) => (
-    <ProdutosNoCarrinho key={produto.id} {...produto} />
-  ));
+  const produtos =
+    cartState.cart.length > 0
+      ? [...cartState.cart]
+          .sort((a, b) => a.id - b.id)
+          .map((produto) => (
+            <ProdutosNoCarrinho key={produto.id} {...produto} />
+          ))
+      : [];
+
   function irParaProdutos() {
     navigate("/produtos");
   }
@@ -29,6 +35,7 @@ export default function Carrinho() {
               Esvaziar carrinho
             </Botao>
             <Botao onClick={irParaProdutos}>Continuar comprando</Botao>
+            <Botao primario={false}>Finalizar Pedido</Botao>
           </div>
         </>
       )}

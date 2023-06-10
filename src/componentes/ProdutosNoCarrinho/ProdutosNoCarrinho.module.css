@@ -5,32 +5,42 @@
   padding: 20px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-radius: 5px;
   margin-bottom: 20px;
 }
 
 .itensProduto {
   display: flex;
+  width: 70%;
+  align-items: center;
 }
 
-.produtosNoCarrinho h1 {
-  font-size: 20px;
-}
-
-.produtosNoCarrinho img {
+.itensProduto img {
   max-width: 90px;
   padding-right: 3%;
 }
 
-.produtosNoCarrinho h2 {
+.itensProduto h1 {
   font-size: 20px;
 }
 
-.produtosNoCarrinho h2 span {
+.itensProduto h2 {
+  font-size: 20px;
+}
+
+/* .produtosNoCarrinho h2 span {
   font-size: 20px;
   background-color: var(--azulclaro);
   padding: 6px;
   border-radius: 7px;
+} */
+.contatorEbotao {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
 }
 
 @media only screen and (max-width: 500px) {

@@ -10,7 +10,7 @@
   width: 100px;
   background-color: var(--azulclaro);
   border-radius: 7px;
-  margin-bottom: 20px;
+  height: 43px;
 }
 
 .ContadorProduto button {

@@ -4,7 +4,6 @@ import { ProdutoNoCarrinho } from "shared/interfaces/IProdutos";
 import Botao from "componentes/Botao";
 import { useAppDispatch } from "hooks";
 import { addProduto } from "store/modules/carrinho";
-import ContadorProduto from "componentes/ContadorProduto";
 
 export default function DetalhesProduto() {
   const dispatch = useAppDispatch();
@@ -22,10 +21,6 @@ export default function DetalhesProduto() {
     navigate("/produtos");
   }
 
-  function handleQtd(valor: number) {
-    produtoNoCarrinho.quantidade = valor;
-  }
-
   return (
     <div className={styles.containerDetalhes}>
       <div className={styles.cardDetalhes}>
@@ -38,7 +33,6 @@ export default function DetalhesProduto() {
           <h3>Categoria: {produtoNoCarrinho.category}</h3>
           <h4>Descrição: {produtoNoCarrinho.description}</h4>
           <h2>R${produtoNoCarrinho.price}</h2>
-          <ContadorProduto handleQtd={(valor) => handleQtd(valor)} />
           <Botao
             primario={false}
             onClick={() => adicionarProdutoCarrinho(produtoNoCarrinho)}
