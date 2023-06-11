@@ -4,23 +4,32 @@ import { ProdutoNoCarrinho } from "shared/interfaces/IProdutos";
 import Botao from "componentes/Botao";
 import { useAppDispatch } from "hooks";
 import { addProduto } from "store/modules/carrinho";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function DetalhesProduto() {
   const dispatch = useAppDispatch();
 
   const adicionarProdutoCarrinho = (produto: ProdutoNoCarrinho) => {
-    dispatch(addProduto(produto));
+    const carrinhoLocalStorage: ProdutoNoCarrinho[] = JSON.parse(
+      localStorage.getItem("carrinho") || "[]"
+    );
+    if (carrinhoLocalStorage.filter((e) => e.id === produto.id).length > 0) {
+      alert("Produto já adicionado no carrinho.");
+    } else {
+      produto.quantidade = 1;
+      dispatch(addProduto(produto));
+      notify();
+    }
   };
 
   const location = useLocation();
   const produtoNoCarrinho = location.state as ProdutoNoCarrinho;
   const navigate = useNavigate();
-  produtoNoCarrinho.quantidade = 1;
 
   function irParaProdutos() {
     navigate("/produtos");
   }
-
+  const notify = () => toast.success("Item adicionado no carrinho.");
   return (
     <div className={styles.containerDetalhes}>
       <div className={styles.cardDetalhes}>
@@ -32,13 +41,14 @@ export default function DetalhesProduto() {
           <h1>{produtoNoCarrinho.title}</h1>
           <h3>Categoria: {produtoNoCarrinho.category}</h3>
           <h4>Descrição: {produtoNoCarrinho.description}</h4>
-          <h2>R${produtoNoCarrinho.price}</h2>
+          <h2>R$ {produtoNoCarrinho.price}</h2>
           <Botao
             primario={false}
             onClick={() => adicionarProdutoCarrinho(produtoNoCarrinho)}
           >
             Adicionar no Carrinho
           </Botao>
+          <Toaster toastOptions={{ duration: 1200 }} />
         </div>
       </div>
       <Botao onClick={irParaProdutos}>Continuar comprando</Botao>

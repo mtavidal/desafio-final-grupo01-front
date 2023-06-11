@@ -24,6 +24,10 @@
   background-color: var(--azulescuro);
   cursor: pointer;
 }
+.ContadorProduto button:disabled {
+  background-color: var(--cinza);
+  cursor: auto;
+}
 
 .ContadorProduto p {
   width: 20px;

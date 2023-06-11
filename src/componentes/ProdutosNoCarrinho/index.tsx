@@ -4,7 +4,7 @@ import { removerProduto, addProduto } from "store/modules/carrinho";
 import styles from "./ProdutosNoCarrinho.module.css";
 import Botao from "componentes/Botao";
 import ContadorProduto from "componentes/ContadorProduto";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function ProdutosNoCarrinho({
   id,
@@ -13,7 +13,7 @@ export default function ProdutosNoCarrinho({
   image,
   category,
   description,
-  quantidade,
+  quantidade = 1,
 }: ProdutoNoCarrinho) {
   const dispatch = useAppDispatch();
   const removerProdutoDoCarrinho = (id: number) => {
@@ -24,11 +24,8 @@ export default function ProdutosNoCarrinho({
     dispatch(addProduto(produto));
   };
 
-  const [mudaQuantidade, setMudaQuantidade] = useState(1);
-  console.log(id, quantidade);
   function handleQtd(valor: number) {
     quantidade = valor;
-    setMudaQuantidade(quantidade);
     adicionarProdutoCarrinho({
       id,
       title,
@@ -39,16 +36,35 @@ export default function ProdutosNoCarrinho({
       quantidade,
     });
   }
+  const navigate = useNavigate();
+  function irDetalhesProdutos(produto: ProdutoNoCarrinho) {
+    navigate("/detalhes", {
+      state: produto,
+    });
+  }
 
   return (
     <div className={styles.produtosNoCarrinho}>
       <div className={styles.itensProduto}>
-        <img src={image} alt={title} />
+        <img
+          src={image}
+          alt={title}
+          onClick={() =>
+            irDetalhesProdutos({
+              id,
+              title,
+              price,
+              image,
+              category,
+              description,
+              quantidade,
+            })
+          }
+        />
         <div>
-          <h1>
-            {title} | R$: {price}
-          </h1>
-          <h2>R$: {mudaQuantidade * price}</h2>
+          <h1>{title}</h1>
+          <h3>Preço unitário: {price}</h3>
+          <h2>R$ {(quantidade * price).toFixed(2)}</h2>
         </div>
       </div>
       <div className={styles.contatorEbotao}>

@@ -22,19 +22,19 @@
 }
 
 .itensProduto h1 {
+  margin: 5px 0;
   font-size: 20px;
 }
 
+.itensProduto h3 {
+  margin: 0;
+  font-size: 12px;
+}
 .itensProduto h2 {
+  margin: 10px 0;
   font-size: 20px;
 }
 
-/* .produtosNoCarrinho h2 span {
-  font-size: 20px;
-  background-color: var(--azulclaro);
-  padding: 6px;
-  border-radius: 7px;
-} */
 .contatorEbotao {
   display: flex;
   flex-direction: row;

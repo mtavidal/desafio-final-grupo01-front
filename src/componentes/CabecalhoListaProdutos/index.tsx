@@ -2,7 +2,7 @@ import styles from "./CabecalhoListaProdutos.module.css";
 
 interface CabecalhoListaProdutosProps {
   titulo: string;
-  subtitulo: string;
+  subtitulo?: string;
 }
 
 export default function CabecalhoListaProdutos({

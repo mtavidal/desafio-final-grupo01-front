@@ -6,8 +6,34 @@
 }
 
 .botoes {
+  width: 95%;
   display: flex;
-  gap: 20px;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
+}
+.botoes button {
+  margin: 10px 5px;
+}
+.total {
+  display: flex;
+  justify-content: space-around;
+  border-top: 2px solid var(--azulescuro);
+  width: 70%;
+  padding: 0 20px;
+  margin: 20px 0px;
+  background-color: var(--azulmedioclaro);
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+
+@media only screen and (max-width: 500px) {
+  .botoes {
+    justify-content: center;
+  }
+  .botoes button {
+    margin: 0 5px;
+  }
+  .total {
+    font-size: 13px;
+  }
 }

@@ -32,3 +32,10 @@
   background: var(--azulescuro);
   color: var(--azulclaro);
 }
+
+@media only screen and (max-width: 500px) {
+  .botao {
+    width: 100px;
+    padding: 5px;
+  }
+}

@@ -26,7 +26,12 @@ export default function ContadorProduto({
   return (
     <div className={styles.ContainerContadorProduto}>
       <div className={styles.ContadorProduto}>
-        <button onClick={decrementaContador}>-</button>
+        <button
+          disabled={qtdProduto === 1 ? true : false}
+          onClick={decrementaContador}
+        >
+          -
+        </button>
         <p>{qtdProduto}</p>
         <button onClick={incrementaContador}>+</button>
       </div>
