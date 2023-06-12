@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./CardProdutoEditar.module.css";
 import Botao from "componentes/Botao";
 import { api } from "lib/axios";
+import toast, { Toaster } from "react-hot-toast";
 
 interface ProdutoProps {
   id: number;
@@ -10,6 +11,7 @@ interface ProdutoProps {
   price: number;
   description: string;
   category: string;
+  atualizaLista?: (id: number) => void;
 }
 
 export function CardProdutoEditar({
@@ -19,20 +21,22 @@ export function CardProdutoEditar({
   price,
   description,
   category,
+  atualizaLista,
 }: ProdutoProps) {
   const navigate = useNavigate();
-
   function detalhesProduto(produto: ProdutoProps) {
     navigate("/detalhes", {
       state: produto,
     });
   }
+  const notifyDelete = (id: any) =>
+    toast.success(`Produto com id: ${id} deletado com sucesso!`);
 
   const deletarProduto = async (id: number) => {
-    console.log("passou");
     try {
       const response = await api.delete(`/products/${id}`);
-      console.log(response.data);
+      atualizaLista?.(id);
+      notifyDelete(response.data);
     } catch (error) {
       alert("Erro na requisição");
     }
@@ -46,7 +50,14 @@ export function CardProdutoEditar({
       <div className={styles.botoesEditar}>
         <Botao
           onClick={() =>
-            detalhesProduto({ id, title, image, price, description, category })
+            detalhesProduto({
+              id,
+              title,
+              image,
+              price,
+              description,
+              category,
+            })
           }
         >
           Editar
@@ -54,6 +65,7 @@ export function CardProdutoEditar({
         <Botao primario={false} onClick={() => deletarProduto(id)}>
           Deletar
         </Botao>
+        <Toaster toastOptions={{ duration: 1200 }} />
       </div>
     </div>
   );
