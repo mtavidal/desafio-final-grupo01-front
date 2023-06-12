@@ -6,6 +6,12 @@ import ListagemProdutos from "paginas/ListagemProdutos";
 import Login from "paginas/Login";
 import DetalhesProduto from "paginas/DetalhesProduto";
 import SucessoDoPedido from "paginas/SucessoDoPedido";
+import PainelAdminPedido from "paginas/PainelAdminPedido";
+import PainelAdminProduto from "paginas/PainelAdminProduto";
+import PainelAdminCliente from "paginas/PainelAdminCliente";
+import PainelAdminCategoria from "paginas/PainelAdminCategoria";
+import PainelClientePedidos from "paginas/PainelClientePedidos";
+import PainelClienteEditar from "paginas/PainelClienteEditar";
 
 export default function Router() {
   return (
@@ -16,6 +22,17 @@ export default function Router() {
       <Route path="/login" element={<Login />} />
       <Route path="/detalhes" element={<DetalhesProduto />} />
       <Route path="/sucesso" element={<SucessoDoPedido />} />
+      <Route path="/paineladmin" element={<PainelAdminPedido />} />
+      <Route path="/paineladmin/pedidos" element={<PainelAdminPedido />} />
+      <Route path="/paineladmin/produtos" element={<PainelAdminProduto />} />
+      <Route path="/paineladmin/clientes" element={<PainelAdminCliente />} />
+      <Route
+        path="/paineladmin/categorias"
+        element={<PainelAdminCategoria />}
+      />
+      <Route path="/painelcliente" element={<PainelClientePedidos />} />
+      <Route path="/painelcliente/pedidos" element={<PainelClientePedidos />} />
+      <Route path="/painelcliente/editar" element={<PainelClienteEditar />} />
       {/* <Route path="/" element={<PaginaBase />}>
             <Route index element={<Inicio />} />
             <Route path="Favoritos" element={<Favoritos />} />
