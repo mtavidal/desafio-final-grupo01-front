@@ -19,6 +19,10 @@
 .itensProduto img {
   max-width: 90px;
   padding-right: 3%;
+  cursor: pointer;
+}
+.itensProduto img:hover {
+  opacity: 0.8;
 }
 
 .itensProduto h1 {

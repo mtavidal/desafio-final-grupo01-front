@@ -5,11 +5,14 @@ import { esvaziarCarrinho } from "store/modules/carrinho";
 import Botao from "componentes/Botao";
 import { useNavigate } from "react-router-dom";
 import CabecalhoListaProdutos from "componentes/CabecalhoListaProdutos";
+import { api } from "lib/axios";
 
 export default function Carrinho() {
   const cartState = useAppSelector((store) => store.cartReducer);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const date = new Date();
+  // const [pedido, setPedido] = useState<Produto[]>([]);
 
   const produtos =
     cartState.cart.length > 0
@@ -32,12 +35,39 @@ export default function Carrinho() {
   function irParaProdutos() {
     navigate("/produtos");
   }
+
+  function enviarPedido() {
+    const enviarPedido = async () => {
+      try {
+        const itensPedido = cartState.cart.map((produto) => {
+          return { productId: produto.id, quantity: produto.quantidade };
+        });
+        const response = await api.post("/carts", {
+          userId: 1,
+          date: date.toLocaleDateString(),
+          products: itensPedido,
+        });
+        const pedidoIdeData = response.data;
+        navigate("/sucesso", {
+          state: pedidoIdeData,
+        });
+        dispatch(esvaziarCarrinho());
+      } catch (error) {
+        alert("Erro na requisição");
+      }
+    };
+    enviarPedido();
+  }
+
   return (
     <>
       <CabecalhoListaProdutos titulo="Carrinho" />
       <div className={styles.carrinho}>
         {cartState.cart.length === 0 ? (
-          <p>Não há produtos no carrinho.</p>
+          <>
+            <h2 style={{ paddingBottom: 30 }}>O carrinho está vazio. </h2>
+            <Botao onClick={irParaProdutos}>Continuar comprando</Botao>
+          </>
         ) : (
           <>
             {produtos}
@@ -52,7 +82,9 @@ export default function Carrinho() {
                 </Botao>
                 <Botao onClick={irParaProdutos}>Continuar comprando</Botao>
               </div>
-              <Botao primario={false}>Finalizar Pedido</Botao>
+              <Botao primario={false} onClick={enviarPedido}>
+                Finalizar Pedido
+              </Botao>
             </div>
           </>
         )}
