@@ -4,15 +4,18 @@ import { CardProduto } from "componentes/CardProduto";
 import { api } from "lib/axios";
 import { Produto } from "shared/interfaces/IProdutos";
 import Botao from "componentes/Botao";
+import { CardProdutoEditar } from "componentes/CardProdutoEditar";
 
 interface ListarProdutosProps {
-  ehPaginaHome: boolean;
+  ehPaginaHome?: boolean;
+  ehPaginaAdmin?: boolean;
   limitPaginas: number;
 }
 
 export function ListarProdutos({
-  ehPaginaHome,
+  ehPaginaHome = false,
   limitPaginas,
+  ehPaginaAdmin = false,
 }: ListarProdutosProps) {
   const [produtos, setProdutos] = useState<Produto[]>([]);
   const [limit, setLimit] = useState(limitPaginas);
@@ -58,9 +61,13 @@ export function ListarProdutos({
     <div className={styles.containerProdutos}>
       {ehCarregamentoInicial && <p>Carregando produtos</p>}
       <div className={styles.listarProdutos}>
-        {produtos.map((produto) => (
-          <CardProduto key={produto.id} {...produto} />
-        ))}
+        {produtos.map((produto) => {
+          return ehPaginaAdmin ? (
+            <CardProdutoEditar key={produto.id} {...produto} />
+          ) : (
+            <CardProduto key={produto.id} {...produto} />
+          );
+        })}
       </div>
       {!ehCarregamentoInicial && (
         <Botao

@@ -13,7 +13,7 @@ export default function ListagemProdutos() {
             />
             <div className={styles.catElistagem}>
                 <FiltrarCategorias />
-                <ListarProdutos ehPaginaHome={false}  limitPaginas={10} />
+                <ListarProdutos limitPaginas={10} />
             </div>
             
         </div>
