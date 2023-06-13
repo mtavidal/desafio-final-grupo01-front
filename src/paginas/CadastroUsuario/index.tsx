@@ -50,6 +50,6 @@ export default function CadastroUsuario() {
       </form>
       <div className={styles.footer}>
        </div> 
-      </div>j
+      </div>
   </div>;
 }
