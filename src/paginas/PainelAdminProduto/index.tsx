@@ -3,8 +3,50 @@ import styles from "./PainelAdminProduto.module.css";
 import { ListarProdutos } from "componentes/ListarProdutos";
 import Botao from "componentes/Botao";
 import CabecalhoListaProdutos from "componentes/CabecalhoListaProdutos";
+import CampoInput from "componentes/CampoInput";
+import { useState } from "react";
+import { api } from "lib/axios";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function PainelAdminProduto() {
+  const [nome, setNome] = useState("");
+  const [descricao, setDescricao] = useState("");
+  const [categoria, setCategoria] = useState("");
+  const [preco, setPreco] = useState("");
+  const [imagem, setImagem] = useState("");
+  const [atualizaLista, setAtualizaLista] = useState(0);
+
+  const notifyAdicionarProduto = () =>
+    toast.success(`Produto adicionado com sucesso`);
+
+  const cadastrarProduto = (evento: React.FormEvent<HTMLFormElement>) => {
+    evento.preventDefault();
+    const adicionarProduto = async () => {
+      try {
+        const response = await api.post(`/products`, {
+          title: nome,
+          price: preco,
+          description: descricao,
+          image: imagem,
+          category: categoria,
+        });
+        const data = await response.data;
+        setAtualizaLista(data.id);
+        notifyAdicionarProduto();
+      } catch (error) {
+        alert("Erro na requisição");
+        console.log(error);
+      }
+    };
+    adicionarProduto();
+    setNome("");
+    setDescricao("");
+    setImagem("");
+    setCategoria("");
+    setPreco("");
+    setImagem("");
+  };
+
   return (
     <>
       <CabecalhoAreaRestrita
@@ -24,22 +66,54 @@ export default function PainelAdminProduto() {
       />
       <div className={styles.containerPainel}>
         <div className={styles.containerFormProdutos}>
-          <form action="">
+          <form onSubmit={cadastrarProduto}>
             <h3>Adicionar Produto</h3>
-            <label htmlFor="nomeProduto">Nome: </label>
-            <input id="nomeProduto" type="text" />
-            <label htmlFor="descricaoProduto">Descrição: </label>
-            <input id="descricaoProduto" type="text" />
-            <label htmlFor="categoriaProduto">Categoria: </label>
-            <input id="categoriaProduto" type="text" />
-            <label htmlFor="precoProduto">Preço: </label>
-            <input id="precoProduto" type="number" step="0.01" />
-            <label htmlFor="imagemProduto">URL da Imagem: </label>
-            <input id="imagemProduto" type="text" />
+            <CampoInput
+              obrigatorio={true}
+              label="Nome"
+              placeholder="Nome do produto"
+              valor={nome}
+              aoAlterado={(valor) => setNome(valor)}
+            />
+            <CampoInput
+              obrigatorio={true}
+              label="Descrição"
+              placeholder="Breve descrição do produto"
+              valor={descricao}
+              aoAlterado={(valor) => setDescricao(valor)}
+              tipo="textarea"
+            />
+            <CampoInput
+              obrigatorio={true}
+              label="Categoria"
+              placeholder="Categoria do produto"
+              valor={categoria}
+              aoAlterado={(valor) => setCategoria(valor)}
+            />
+            <CampoInput
+              obrigatorio={true}
+              label="Preço"
+              placeholder="Valor do produto"
+              valor={preco}
+              aoAlterado={(valor) => setPreco(valor.replace(/,/g, "."))}
+              tipo="number"
+            />
+            <CampoInput
+              obrigatorio={true}
+              label="URL da Imagem"
+              placeholder="Endereço da imagem do produto"
+              valor={imagem}
+              aoAlterado={(valor) => setImagem(valor)}
+            />
             <br />
-            <Botao primario={false}>Adicionar</Botao>
+            <Botao primario={false}>Adicionar Produto</Botao>
+            <Toaster toastOptions={{ duration: 2000 }} />
           </form>
-          <ListarProdutos limitPaginas={10} ehPaginaAdmin={true} />
+          <ListarProdutos
+            limitPaginas={10}
+            ehPaginaAdmin={true}
+            atualizaLista={atualizaLista}
+          />
         </div>
       </div>
     </>

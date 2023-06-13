@@ -35,7 +35,7 @@
 
 @media only screen and (max-width: 500px) {
   .botao {
-    width: 100px;
+    width: 150px;
     padding: 5px;
   }
 }

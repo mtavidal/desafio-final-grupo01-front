@@ -10,12 +10,14 @@ interface ListarProdutosProps {
   ehPaginaHome?: boolean;
   ehPaginaAdmin?: boolean;
   limitPaginas: number;
+  atualizaLista?: number;
 }
 
 export function ListarProdutos({
   ehPaginaHome = false,
   limitPaginas,
   ehPaginaAdmin = false,
+  atualizaLista = 0,
 }: ListarProdutosProps) {
   const [produtos, setProdutos] = useState<Produto[]>([]);
   const [limit, setLimit] = useState(limitPaginas);
@@ -31,7 +33,7 @@ export function ListarProdutos({
         },
       });
       setProdutos([...produtos, ...response.data]);
-      setLimit(limit + 10);
+      setLimit(10);
     } catch (error) {
       alert("Erro na requisição");
     } finally {
@@ -45,6 +47,7 @@ export function ListarProdutos({
         const response = await api.get("/products", {
           params: {
             limit: limitPaginas,
+            sort: "desc",
           },
         });
         setProdutos(response.data);
@@ -56,7 +59,7 @@ export function ListarProdutos({
     };
 
     getProdutos();
-  }, [limitPaginas]);
+  }, [limitPaginas, atualizaLista]);
   function removeProdutos(id: number) {
     const novaListaProdutos = produtos.filter((produto) => produto.id !== id);
     setProdutos([...novaListaProdutos]);

@@ -24,8 +24,8 @@ export function CardProdutoEditar({
   atualizaLista,
 }: ProdutoProps) {
   const navigate = useNavigate();
-  function detalhesProduto(produto: ProdutoProps) {
-    navigate("/detalhes", {
+  function editarProduto(produto: ProdutoProps) {
+    navigate("/paineladmin/produtos/editar", {
       state: produto,
     });
   }
@@ -50,7 +50,7 @@ export function CardProdutoEditar({
       <div className={styles.botoesEditar}>
         <Botao
           onClick={() =>
-            detalhesProduto({
+            editarProduto({
               id,
               title,
               image,
@@ -65,7 +65,7 @@ export function CardProdutoEditar({
         <Botao primario={false} onClick={() => deletarProduto(id)}>
           Deletar
         </Botao>
-        <Toaster toastOptions={{ duration: 1200 }} />
+        <Toaster toastOptions={{ duration: 2000 }} />
       </div>
     </div>
   );
