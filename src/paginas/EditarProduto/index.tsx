@@ -15,6 +15,7 @@ export default function EditarProduto() {
   const [categoria, setCategoria] = useState(`${dadosProduto.category}`);
   const [preco, setPreco] = useState(`${dadosProduto.price}`);
   const [imagem, setImagem] = useState(`${dadosProduto.image}`);
+  const [editando, setEditando] = useState(false);
 
   const navigate = useNavigate();
   const notifyEditarProduto = () =>
@@ -24,6 +25,7 @@ export default function EditarProduto() {
     evento.preventDefault();
     const atualizarProduto = async () => {
       try {
+        setEditando(true);
         const response = await api.put(`/products/${dadosProduto.id}`, {
           id: dadosProduto.id,
           title: nome,
@@ -35,12 +37,11 @@ export default function EditarProduto() {
         const data = await response.data;
         console.log(data);
         notifyEditarProduto();
-        setTimeout(() => {
-          navigate(-1);
-        }, 2000);
       } catch (error) {
         alert("Erro na requisição");
         console.log(error);
+      } finally {
+        setEditando(false);
       }
     };
     atualizarProduto();
@@ -89,8 +90,18 @@ export default function EditarProduto() {
               aoAlterado={(valor) => setImagem(valor)}
             />
             <br />
-            <Botao primario={false}>Atualizar Produto</Botao>
-            <Toaster toastOptions={{ duration: 1000 }} />
+            <div className={styles.botoes}>
+              <Botao primario={false} disabled={editando}>
+                Atualizar Produto
+              </Botao>
+              <Botao
+                primario={false}
+                onClick={() => navigate("/paineladmin/produtos")}
+              >
+                Voltar
+              </Botao>
+            </div>
+            <Toaster toastOptions={{ duration: 3000 }} />
           </form>
         </div>
       </div>

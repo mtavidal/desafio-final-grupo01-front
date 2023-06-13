@@ -27,6 +27,12 @@
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
+.botoes {
+  display: flex;
+  gap: 10%;
+  align-items: center;
+  justify-content: center;
+}
 
 @media only screen and (max-width: 500px) {
   .containerPainel form {
