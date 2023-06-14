@@ -1,0 +1,97 @@
+.containerUsuarios {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+}
+
+.listarUsuarios {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 15px;
+  justify-content: flex-start;
+  padding: 3.5% 0px;
+}
+.cardUsuario {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--azulmedioclaro);
+  flex-wrap: wrap;
+  border-radius: 7px;
+  height: 120px;
+}
+.listarUsuariosCabecalhoMobile {
+  display: none;
+}
+
+.cardUsuarioCabecalho {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--azulmedioescuro2);
+  flex-wrap: wrap;
+  border-radius: 7px;
+}
+.cardUsuarioCabecalho h3 {
+  color: var(--azulclaro);
+}
+
+.cardUsuarioTextos {
+  width: 65%;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.cardUsuarioTexto {
+  width: 33%;
+  flex-wrap: wrap;
+  word-break: break-all;
+}
+.cardUsuarioBotoes {
+  width: 200px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+@media only screen and (max-width: 1090px) {
+  .cardUsuarioCabecalho {
+    display: none;
+  }
+  .listarUsuariosCabecalhoMobile {
+    display: flex;
+  }
+  .cardUsuario {
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    height: 250px;
+  }
+  .cardUsuarioTextos {
+    flex-direction: column;
+    width: 100%;
+  }
+  .cardUsuarioTexto {
+    width: 90%;
+    margin: 10px;
+  }
+  .listarUsuarios {
+    align-items: center;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .cardUsuario {
+    width: 100%;
+  }
+  .cardUsuarioTexto {
+    width: 90%;
+  }
+}

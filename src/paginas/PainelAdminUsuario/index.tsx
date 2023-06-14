@@ -5,40 +5,43 @@ import { Toaster, toast } from "react-hot-toast";
 import { useState } from "react";
 import CampoInput from "componentes/CampoInput";
 import Botao from "componentes/Botao";
+import { api } from "lib/axios";
+import ListarUsuarios from "componentes/ListarUsuarios";
 
 export default function PainelAdminUsuario() {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [tipoUsuario, setTipoUsuario] = useState("");
+  const [atualizaLista, setAtualizaLista] = useState(0);
 
-  // const notifyAdicionarUsuario = () =>
-  toast.success(`Usuario adicionado com sucesso`);
+  const notifyAdicionarUsuario = () =>
+    toast.success(`Usuario adicionado com sucesso`);
 
   const cadastrarUsuario = (evento: React.FormEvent<HTMLFormElement>) => {
     evento.preventDefault();
-    // const adicionarUsuario = async () => {
-    // try {
-    //   const response = await api.post(`/products`, {
-    //     title: nome,
-    //     price: preco,
-    //     description: descricao,
-    //     image: imagem,
-    //     category: categoria,
-    //   });
-    //   const data = await response.data;
-    //   setAtualizaLista(data.id);
-    //   notifyAdicionarProduto();
-    // } catch (error) {
-    //   alert("Erro na requisição");
-    //   console.log(error);
-    // }
-    // };
-    // adicionarUsuario();
-    // setNome("");
-    // setEmail("");
-    // setSenha("");
-    // setTipoUsuario("");
+    const adicionarUsuario = async () => {
+      try {
+        const response = await api.post(`/users`, {
+          email: email,
+          password: senha,
+          name: nome,
+          type: tipoUsuario,
+        });
+        const data = await response.data;
+        console.log(data);
+        setAtualizaLista(data.id);
+        notifyAdicionarUsuario();
+      } catch (error) {
+        alert("Erro na requisição");
+        console.log(error);
+      }
+    };
+    adicionarUsuario();
+    setNome("");
+    setEmail("");
+    setSenha("");
+    setTipoUsuario("");
   };
 
   return (
@@ -97,6 +100,7 @@ export default function PainelAdminUsuario() {
             <Botao primario={false}>Adicionar Usuário</Botao>
             <Toaster toastOptions={{ duration: 2000 }} />
           </form>
+          <ListarUsuarios atualizaLista={atualizaLista} />
         </div>
       </div>
     </>

@@ -60,6 +60,7 @@ export function ListarProdutos({
 
     getProdutos();
   }, [limitPaginas, atualizaLista]);
+
   function removeProdutos(id: number) {
     const novaListaProdutos = produtos.filter((produto) => produto.id !== id);
     setProdutos([...novaListaProdutos]);

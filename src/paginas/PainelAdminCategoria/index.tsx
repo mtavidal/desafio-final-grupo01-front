@@ -52,8 +52,8 @@ export default function PainelAdminCategoria() {
         titulo="Gerenciamento de Categorias"
         subtitulo="Adicione, edite e delete as categorias"
       />
-      <div className={styles.containerPainel}>
-        <div className={styles.containerFormProdutos}>
+      <div className={styles.containerPainelCategoria}>
+        <div className={styles.containerFormCategoria}>
           <form onSubmit={cadastrarCategoria}>
             <h3>Adicionar Categoria</h3>
             <CampoInput
@@ -67,6 +67,7 @@ export default function PainelAdminCategoria() {
             <Botao primario={false}>Adicionar Categoria</Botao>
             <Toaster toastOptions={{ duration: 2000 }} />
           </form>
+          <div>lista de categorias</div>
         </div>
       </div>
     </>
