@@ -68,7 +68,7 @@
 }
 
 .container form .button {
-  font-family: 'Public Sans';
+  font-family: var(--fonte);
   text-align: center;
   font-style: normal;
   font-size: 16px;
@@ -97,7 +97,7 @@
 }
 
 .container h1{
-font-family: 'Public Sans';
+font-family: var(--fonte2);
 margin-top: 30px;
 width: 141px;
 height: 30px;
@@ -105,8 +105,6 @@ left: 157px;
 top: 30px;
 color: #111111;
 
-
-font-family: 'Public Sans';
 font-style: normal;
 font-weight: 600;
 font-size: 22px;
@@ -141,10 +139,10 @@ color: #111111;
   height: 33px;
   margin-inline-start: 90px;
   top: 565px;
-  font-family: 'Poppins';
+  font-family: var(--fonte);
   font-style: normal;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 21px;
   letter-spacing: -0.3px;
   color: #526D82 
@@ -153,4 +151,5 @@ color: #111111;
 
   .footer a{
     color: #526D82;
+    text-decoration: underline;
   }
