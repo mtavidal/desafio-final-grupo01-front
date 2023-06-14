@@ -29,6 +29,18 @@
   align-self: start;
   padding-left: 7%;
   font-size: 16px;
-  margin: 5px 0;
+  margin-top: 25px;
   color: var(--azulescuro);
+}
+
+@media only screen and (max-width: 800px) {
+  .containerPedido {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .paginaSucessoTitulo {
+    font-size: 14px;
+  }
 }

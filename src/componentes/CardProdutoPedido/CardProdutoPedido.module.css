@@ -13,7 +13,7 @@
 }
 
 .cardProdutoPedido div {
-  width: 50%;
+  width: 70%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -27,16 +27,31 @@
 .cardProdutoPedido h1 {
   font-size: 16px;
   margin-top: 10px;
+  width: 33%;
+  word-break: break-all;
 }
 
 .cardProdutoPedido h2 {
   font-size: 24px;
-  margin: 0px;
+  margin: 10px;
 }
 
 @media only screen and (max-width: 500px) {
+  .cardProdutoPedido img {
+    width: 100px;
+  }
+
   .cardProdutoPedido {
     flex-direction: column;
     padding-bottom: 10px;
+  }
+  .cardProdutoPedido div {
+    width: 100%;
+  }
+  .cardProdutoPedido h1 {
+    font-size: 16px;
+    margin-top: 10px;
+    width: 70%;
+    word-break: break-all;
   }
 }

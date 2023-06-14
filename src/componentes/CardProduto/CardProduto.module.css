@@ -1,5 +1,5 @@
 .cardProduto {
-  width: 180px;
+  width: 230px;
   border: 2px solid var(--azulescuro);
   background-color: var(--branco);
   padding: 20px;
@@ -21,7 +21,7 @@
 
 .cardProduto h1 {
   font-size: 16px;
-  margin-top: 10px;
+  margin: 10px 0;
 }
 
 .cardProduto h2 {

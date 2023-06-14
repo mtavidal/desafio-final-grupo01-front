@@ -27,6 +27,9 @@
   border-bottom-left-radius: 7px;
   border-bottom-right-radius: 7px;
 }
+.total h2 {
+  padding: 17px 0;
+}
 
 @media only screen and (max-width: 500px) {
   .botoes {

@@ -7,7 +7,7 @@
 .cardDetalhes {
   display: flex;
   flex-wrap: wrap;
-  width: 50%;
+  width: 60%;
   align-items: center;
   justify-content: space-evenly;
   align-self: center;
@@ -20,24 +20,28 @@
 }
 
 .textosDetalhes {
-  width: 300px;
+  width: 250px;
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
 .cardDetalhes img {
-  max-width: 300px;
+  max-width: 100%;
   max-height: 300px;
 }
 
 .cardDetalhes h1 {
   font-size: 25px;
-  margin: 0;
+}
+
+.cardDetalhes h2 {
+  font-size: 25px;
+  padding-bottom: 15px;
 }
 
 .cardDetalhes h4 {
   font-size: 14px;
-  margin: 0;
 }
 
 .inputNumerico {

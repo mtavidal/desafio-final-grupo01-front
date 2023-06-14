@@ -2,7 +2,7 @@ import CabecalhoAreaRestrita from "componentes/CabecalhoAreaRestrita";
 import styles from "./PainelAdminCategoria.module.css";
 import CampoInput from "componentes/CampoInput";
 import Botao from "componentes/Botao";
-import { Toaster, toast } from "react-hot-toast";
+// import { Toaster, toast } from "react-hot-toast";
 import CabecalhoListaProdutos from "componentes/CabecalhoListaProdutos";
 import { useState } from "react";
 
@@ -10,7 +10,7 @@ export default function PainelAdminCategoria() {
   const [categoria, setCategoria] = useState("");
 
   // const notifyAdicionarProduto = () =>
-  toast.success(`Categoria adicionada com sucesso`);
+  // toast.success(`Categoria adicionada com sucesso`);
 
   const cadastrarCategoria = (evento: React.FormEvent<HTMLFormElement>) => {
     //   evento.preventDefault();
@@ -65,7 +65,7 @@ export default function PainelAdminCategoria() {
             />
             <br />
             <Botao primario={false}>Adicionar Categoria</Botao>
-            <Toaster toastOptions={{ duration: 2000 }} />
+            {/* <Toaster toastOptions={{ duration: 2000 }} /> */}
           </form>
           <div>lista de categorias</div>
         </div>
