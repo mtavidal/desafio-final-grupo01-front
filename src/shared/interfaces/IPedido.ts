@@ -1,4 +1,7 @@
+import { ProdutoNoCarrinho } from "./IProdutos";
+
 export interface Pedido {
   id: number;
-  date: string;
+  data: string;
+  produtos: ProdutoNoCarrinho[];
 }

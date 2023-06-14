@@ -1,0 +1,29 @@
+.containerPainel {
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+}
+.containerPainel form {
+  margin-top: 2.5%;
+  display: flex;
+  width: 300px;
+  padding: 15px;
+  flex-direction: column;
+  background-color: var(--azulmedioclaro);
+  height: 350px;
+  border-radius: 7px;
+}
+.containerPainel h3 {
+  color: var(--azulmedioescuro2);
+  text-align: center;
+  font-size: 20px;
+  margin: 0;
+  font-family: var(--fonte2);
+  text-transform: uppercase;
+}
+
+.containerFormUsuarios {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}

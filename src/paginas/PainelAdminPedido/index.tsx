@@ -10,8 +10,8 @@ export default function PainelAdminPedido() {
         titulo1="Pedidos"
         link2="/paineladmin/produtos"
         titulo2="Produtos"
-        link3="/paineladmin/clientes"
-        titulo3="Clientes"
+        link3="/paineladmin/usuarios"
+        titulo3="Usuários"
         link4="/paineladmin/categorias"
         titulo4="Categorias"
       />

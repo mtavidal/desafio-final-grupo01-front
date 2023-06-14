@@ -2,21 +2,15 @@ import CabecalhoListaProdutos from "componentes/CabecalhoListaProdutos";
 import styles from "./SucessoDoPedido.module.css";
 import { useLocation } from "react-router-dom";
 import { Pedido } from "shared/interfaces/IPedido";
-// import { api } from "lib/axios";
+import CardProdutoPedido from "componentes/CardProdutoPedido";
 
 export default function SucessoDoPedido() {
   const location = useLocation();
   const pedidoRetorno = location.state as Pedido;
-  // const getPedido = async () => {
-  //   try {
-  //     const response = await api.get(`/cart/${pedidoRetorno.id}`);
-  //     console.log(response.data);
-  //   } catch (error) {
-  //     alert("Erro na requisição");
-  //   }
-  // };
-  // getPedido();
-
+  function formataData(isoDate: string) {
+    const data = new Date(isoDate);
+    return data.toLocaleDateString("pt-BR");
+  }
   return (
     <div>
       <CabecalhoListaProdutos
@@ -24,11 +18,16 @@ export default function SucessoDoPedido() {
         subtitulo="Veja detalhes do seu pedido"
       />
       <div className={styles.containerPaginaSucesso}>
-        <div>
-          <h2>Id do pedido: {pedidoRetorno.id}</h2>
-          <h2>Data do pedido: {pedidoRetorno.date}</h2>
+        <div className={styles.containerPedido}>
+          <div className={styles.paginaSucessoTitulo}>
+            <h2>Id do pedido: {pedidoRetorno.id}</h2>
+            <h2>Data do pedido: {formataData(pedidoRetorno.data)}</h2>
+          </div>
+          <h4>Itens do pedido: </h4>
+          {pedidoRetorno.produtos.map((produto) => {
+            return <CardProdutoPedido key={produto.id} {...produto} />;
+          })}
         </div>
-        <p>lista com os itens do pedido</p>
       </div>
     </div>
   );

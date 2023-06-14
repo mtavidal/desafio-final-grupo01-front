@@ -8,7 +8,7 @@ import DetalhesProduto from "paginas/DetalhesProduto";
 import SucessoDoPedido from "paginas/SucessoDoPedido";
 import PainelAdminPedido from "paginas/PainelAdminPedido";
 import PainelAdminProduto from "paginas/PainelAdminProduto";
-import PainelAdminCliente from "paginas/PainelAdminCliente";
+import PainelAdminUsuario from "paginas/PainelAdminUsuario";
 import PainelAdminCategoria from "paginas/PainelAdminCategoria";
 import PainelClientePedidos from "paginas/PainelClientePedidos";
 import PainelClienteEditar from "paginas/PainelClienteEditar";
@@ -29,7 +29,7 @@ export default function Router() {
       <Route path="/paineladmin/pedidos" element={<PainelAdminPedido />} />
       <Route path="/paineladmin/produtos" element={<PainelAdminProduto />} />
       <Route path="/paineladmin/produtos/editar" element={<EditarProduto />} />
-      <Route path="/paineladmin/clientes" element={<PainelAdminCliente />} />
+      <Route path="/paineladmin/usuarios" element={<PainelAdminUsuario />} />
       <Route
         path="/paineladmin/categorias"
         element={<PainelAdminCategoria />}

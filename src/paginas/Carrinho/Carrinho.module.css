@@ -33,7 +33,7 @@
     justify-content: center;
   }
   .botoes button {
-    margin: 0 5px;
+    margin: 10px;
   }
   .total {
     font-size: 13px;

@@ -1,0 +1,42 @@
+.cardProdutoPedido {
+  width: 85%;
+  border: 2px solid var(--azulescuro);
+  background-color: var(--branco);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  text-align: center;
+  align-items: center;
+  border-radius: 5px;
+  margin: 10px 0;
+  padding: 10px 0;
+}
+
+.cardProdutoPedido div {
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.cardProdutoPedido img {
+  width: 120px;
+}
+
+.cardProdutoPedido h1 {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.cardProdutoPedido h2 {
+  font-size: 24px;
+  margin: 0px;
+}
+
+@media only screen and (max-width: 500px) {
+  .cardProdutoPedido {
+    flex-direction: column;
+    padding-bottom: 10px;
+  }
+}

@@ -12,7 +12,6 @@ export default function Carrinho() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const date = new Date();
-  // const [pedido, setPedido] = useState<Produto[]>([]);
 
   const produtos =
     cartState.cart.length > 0
@@ -39,17 +38,14 @@ export default function Carrinho() {
   function enviarPedido() {
     const enviarPedido = async () => {
       try {
-        const itensPedido = cartState.cart.map((produto) => {
-          return { productId: produto.id, quantity: produto.quantidade };
-        });
         const response = await api.post("/carts", {
           userId: 1,
           date: date.toLocaleDateString(),
-          products: itensPedido,
+          products: cartState.cart,
         });
-        const pedidoIdeData = response.data;
+
         navigate("/sucesso", {
-          state: pedidoIdeData,
+          state: response.data,
         });
         dispatch(esvaziarCarrinho());
       } catch (error) {
