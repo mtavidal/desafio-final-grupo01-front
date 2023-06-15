@@ -40,7 +40,6 @@ export default function Router() {
         path="/paineladmin/categorias/editar"
         element={<EditarCategoria />}
       />
-      <Route path="/painelcliente" element={<PainelClientePedidos />} />
       <Route path="/painelcliente/pedidos" element={<PainelClientePedidos />} />
       <Route path="/painelcliente/editar" element={<PainelClienteEditar />} />
 

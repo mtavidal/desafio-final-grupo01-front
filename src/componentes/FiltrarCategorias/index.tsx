@@ -4,8 +4,8 @@ import styles from "./FiltrarCategorias.module.css";
 export default function FiltrarCategorias() {
   return (
     <div className={styles.containerCategorias}>
-      <h2>Categorias</h2>
       <form action="">
+        <h3>Categorias</h3>
         <label htmlFor="catDeGrau">
           <input id="catDeGrau" type="checkbox" />
           Óculos de Grau
