@@ -20,8 +20,8 @@ export default function EditarProduto() {
   const [editando, setEditando] = useState(false);
 
   const navigate = useNavigate();
-  const notifyEditarProduto = () =>
-    toast.success(`Produto atualizado com sucesso`);
+  const notifyEditarProduto = (id: number) =>
+    toast.success(`Produto de id:${id} atualizado com sucesso`);
 
   const editarProduto = (evento: React.FormEvent<HTMLFormElement>) => {
     evento.preventDefault();
@@ -37,8 +37,7 @@ export default function EditarProduto() {
           category: categoria,
         });
         const data = await response.data;
-        console.log(data);
-        notifyEditarProduto();
+        notifyEditarProduto(data.id);
       } catch (error) {
         alert("Erro na requisição");
         console.log(error);

@@ -5,10 +5,12 @@ import { Pedido } from "shared/interfaces/IPedido";
 import { useEffect, useState } from "react";
 import { api } from "lib/axios";
 import Botao from "componentes/Botao";
+import { toast } from "react-hot-toast";
 
 export default function PainelAdminPedido() {
   const [pedidos, setPedidos] = useState<Pedido[]>([]);
   const [carregando, setCarregando] = useState(false);
+  const [pedidoDeletado, setPedidoDeletado] = useState(0);
   function formataData(isoDate: string) {
     const data = new Date(isoDate);
     return data.toLocaleDateString("pt-BR");
@@ -26,8 +28,21 @@ export default function PainelAdminPedido() {
       }
     };
     getPedidos();
-  }, []);
-  console.log(pedidos);
+  }, [pedidoDeletado]);
+
+  const notifyDeletePedido = (id: any) =>
+    toast.success(`Pedido com id: ${id} deletado com sucesso!`);
+
+  const deletarPedido = async (id: number) => {
+    try {
+      const response = await api.delete(`/carts/${id}`);
+      setPedidoDeletado(id);
+      notifyDeletePedido(response.data);
+    } catch (error) {
+      alert("Erro na requisição");
+    }
+  };
+
   return (
     <>
       <CabecalhoAreaRestrita
@@ -59,7 +74,7 @@ export default function PainelAdminPedido() {
                   </div>
                   <h4>Itens do pedido: </h4>
                   <div className={styles.detalhesProdutoPedido}>
-                    <div>
+                    <div className={styles.detalhesProdutoPedidoTextos}>
                       {pedido.produtos.map((produto) => {
                         return (
                           <div
@@ -78,7 +93,14 @@ export default function PainelAdminPedido() {
                         );
                       })}
                     </div>
-                    <Botao primario={false}>Deletar</Botao>
+                    <div className={styles.detalhesProdutoPedidoBotao}>
+                      <Botao
+                        primario={false}
+                        onClick={() => deletarPedido(pedido.id)}
+                      >
+                        Deletar
+                      </Botao>
+                    </div>
                   </div>
                 </div>
               );

@@ -2,38 +2,37 @@ import CabecalhoAreaRestrita from "componentes/CabecalhoAreaRestrita";
 import styles from "./PainelAdminCategoria.module.css";
 import CampoInput from "componentes/CampoInput";
 import Botao from "componentes/Botao";
-// import { toast } from "react-hot-toast";
 import CabecalhoListaProdutos from "componentes/CabecalhoListaProdutos";
 import { useState } from "react";
+import ListarCategorias from "componentes/ListarCategorias";
+import { toast } from "react-hot-toast";
+import { api } from "lib/axios";
 
 export default function PainelAdminCategoria() {
   const [categoria, setCategoria] = useState("");
+  const [atualizaLista, setAtualizaLista] = useState(0);
 
-  // const notifyAdicionarProduto = () =>
-  // toast.success(`Categoria adicionada com sucesso`);
+  const notifyAdicionarCategoria = () =>
+    toast.success(`Categoria adicionada com sucesso`);
 
   const cadastrarCategoria = (evento: React.FormEvent<HTMLFormElement>) => {
-    //   evento.preventDefault();
-    //   const adicionarCategoria = async () => {
-    // try {
-    //   const response = await api.post(`/products`, {
-    //     title: nome,
-    //     price: preco,
-    //     description: descricao,
-    //     image: imagem,
-    //     category: categoria,
-    //   });
-    //   const data = await response.data;
-    //   setAtualizaLista(data.id);
-    //   notifyAdicionarProduto();
-    // } catch (error) {
-    //   alert("Erro na requisição");
-    //   console.log(error);
+    evento.preventDefault();
+    const adicionarCategoria = async () => {
+      try {
+        const response = await api.post(`/categoria`, {
+          nome: categoria,
+        });
+        const data = await response.data;
+        setAtualizaLista(data.id);
+        notifyAdicionarCategoria();
+      } catch (error) {
+        alert("Erro na requisição");
+        console.log(error);
+      }
+    };
+    adicionarCategoria();
+    setCategoria("");
   };
-  //   };
-  //   adicionarCategoria();
-  //   setCategoria("");
-  // };
 
   return (
     <>
@@ -66,7 +65,7 @@ export default function PainelAdminCategoria() {
             <br />
             <Botao primario={false}>Adicionar Categoria</Botao>
           </form>
-          <div>lista de categorias</div>
+          <ListarCategorias atualizaLista={atualizaLista} />
         </div>
       </div>
     </>

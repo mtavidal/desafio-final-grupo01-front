@@ -19,8 +19,8 @@ export default function EditarUsuario() {
   const [editando, setEditando] = useState(false);
 
   const navigate = useNavigate();
-  const notifyEditarUsuario = () =>
-    toast.success(`Usuário atualizado com sucesso`);
+  const notifyEditarUsuario = (id: number) =>
+    toast.success(`Usuário de id:${id} atualizado com sucesso`);
 
   const editarUsuario = (evento: React.FormEvent<HTMLFormElement>) => {
     evento.preventDefault();
@@ -34,8 +34,7 @@ export default function EditarUsuario() {
           type: tipoUsuario,
         });
         const data = await response.data;
-        console.log(data);
-        notifyEditarUsuario();
+        notifyEditarUsuario(data.id);
       } catch (error) {
         alert("Erro na requisição");
         console.log(error);

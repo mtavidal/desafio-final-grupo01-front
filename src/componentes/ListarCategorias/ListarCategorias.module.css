@@ -1,0 +1,97 @@
+.containerCategorias {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+}
+
+.listarCategorias {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 15px;
+  justify-content: flex-start;
+  padding: 3.5% 0px;
+}
+.cardCategorias {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--azulmedioclaro);
+  flex-wrap: wrap;
+  border-radius: 7px;
+  height: 120px;
+}
+.listarCategoriasCabecalhoMobile {
+  display: none;
+}
+
+.cardCategoriasCabecalho {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--azulmedioescuro2);
+  flex-wrap: wrap;
+  border-radius: 7px;
+}
+.cardCategoriasCabecalho h3 {
+  color: var(--azulclaro);
+}
+
+.cardCategoriasTextos {
+  width: 65%;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.cardCategoriasTexto {
+  width: 33%;
+  flex-wrap: wrap;
+  word-break: break-all;
+}
+.cardCategoriasBotoes {
+  width: 200px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+@media only screen and (max-width: 1090px) {
+  .cardCategoriasCabecalho {
+    display: none;
+  }
+  .listarCategoriasCabecalhoMobile {
+    display: flex;
+  }
+  .cardCategorias {
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    height: 250px;
+  }
+  .cardCategoriasTextos {
+    flex-direction: column;
+    width: 100%;
+  }
+  .cardCategoriasTexto {
+    width: 90%;
+    margin: 10px;
+  }
+  .listarCategorias {
+    align-items: center;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .cardCategorias {
+    width: 100%;
+  }
+  .cardCategoriasTexto {
+    width: 90%;
+  }
+}

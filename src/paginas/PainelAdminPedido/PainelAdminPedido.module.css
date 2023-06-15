@@ -33,19 +33,25 @@
 }
 
 .detalhesProdutoPedido {
-  width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
 .cardItensPedido {
   display: flex;
-  width: 500px;
   flex-direction: row;
   font-size: 12px;
   padding: 5px 20px;
   justify-content: space-between;
   text-align: center;
+}
+.detalhesProdutoPedidoTextos {
+  width: 70%;
+  padding: 0 1%;
+}
+.detalhesProdutoPedidoBotao {
+  width: 20%;
+  display: flex;
 }
 
 @media only screen and (max-width: 800px) {
@@ -64,5 +70,8 @@
   }
   .cardItensPedido {
     width: 100%;
+  }
+  .detalhesProdutoPedidoBotao {
+    width: 30%;
   }
 }
