@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./EditarProduto.module.css";
 import { ProdutoNoCarrinho } from "shared/interfaces/IProdutos";
 import CampoInput from "componentes/CampoInput";
-import { Toaster, toast } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import Botao from "componentes/Botao";
 import { useState } from "react";
 import { api } from "lib/axios";
@@ -118,7 +118,6 @@ export default function EditarProduto() {
                 Voltar
               </Botao>
             </div>
-            <Toaster toastOptions={{ duration: 3000 }} />
           </form>
         </div>
       </div>

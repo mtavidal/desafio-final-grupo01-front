@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./CardProdutoEditar.module.css";
 import Botao from "componentes/Botao";
 import { api } from "lib/axios";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 interface ProdutoProps {
   id: number;
@@ -46,7 +46,12 @@ export function CardProdutoEditar({
     <div className={styles.cardProduto}>
       <img src={image} alt={`produto ${title}`} />
       <h1>{title}</h1>
-      <h2>R$ {price}</h2>
+      <h2>
+        {new Intl.NumberFormat("PT-BR", {
+          style: "currency",
+          currency: "BRL",
+        }).format(price)}
+      </h2>
       <div className={styles.botoesEditar}>
         <Botao
           onClick={() =>
@@ -65,7 +70,6 @@ export function CardProdutoEditar({
         <Botao primario={false} onClick={() => deletarProduto(id)}>
           Deletar
         </Botao>
-        <Toaster toastOptions={{ duration: 2000 }} />
       </div>
     </div>
   );

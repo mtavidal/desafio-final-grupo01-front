@@ -3,7 +3,8 @@ import styles from "./ListarUsuarios.module.css";
 import { api } from "lib/axios";
 import { Usuario } from "shared/interfaces/IUsuarios";
 import Botao from "componentes/Botao";
-import { Toaster, toast } from "react-hot-toast";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 interface ListarUsuariosProps {
   atualizaLista?: number;
@@ -47,6 +48,13 @@ export default function ListarUsuarios({
     }
   };
 
+  const navigate = useNavigate();
+  function editarUsuario(usuario: Usuario) {
+    navigate("/paineladmin/usuarios/editar", {
+      state: usuario,
+    });
+  }
+
   return (
     <div className={styles.containerUsuarios}>
       {carregandoUsuario ? (
@@ -75,14 +83,25 @@ export default function ListarUsuarios({
                   <h4 className={styles.cardUsuarioTexto}>{usuario.type}</h4>
                 </div>
                 <div className={styles.cardUsuarioBotoes}>
-                  <Botao>Editar</Botao>
+                  <Botao
+                    onClick={() =>
+                      editarUsuario({
+                        id: usuario.id,
+                        name: usuario.name,
+                        email: usuario.email,
+                        type: usuario.type,
+                        password: usuario.password,
+                      })
+                    }
+                  >
+                    Editar
+                  </Botao>
                   <Botao
                     primario={false}
                     onClick={() => deletarUsuario(usuario.id)}
                   >
                     Deletar
                   </Botao>
-                  <Toaster toastOptions={{ duration: 2000 }} />
                 </div>
               </div>
             );

@@ -63,8 +63,19 @@ export default function ProdutosNoCarrinho({
         />
         <div>
           <h1>{title}</h1>
-          <h3>Preço unitário: {price}</h3>
-          <h2>R$ {(quantidade * price).toFixed(2)}</h2>
+          <h3>
+            Preço unitário:{" "}
+            {new Intl.NumberFormat("PT-BR", {
+              style: "currency",
+              currency: "BRL",
+            }).format(price)}
+          </h3>
+          <h2>
+            {new Intl.NumberFormat("PT-BR", {
+              style: "currency",
+              currency: "BRL",
+            }).format(quantidade * price)}
+          </h2>
         </div>
       </div>
       <div className={styles.contatorEbotao}>

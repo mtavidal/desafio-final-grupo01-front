@@ -32,7 +32,12 @@
   background: var(--azulescuro);
   color: var(--azulclaro);
 }
-
+.secundario:disabled {
+  border: 2px solid var(--cinzaescuro);
+  background: var(--cinza);
+  color: var(--cinzaescuro);
+  cursor: pointer;
+}
 @media only screen and (max-width: 500px) {
   .botao {
     width: 130px;

@@ -13,6 +13,19 @@
   height: 380px;
   border-radius: 7px;
 }
+
+.ajusteLabel {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+.ajusteSelect {
+  border: none;
+  padding: 5px;
+  border-radius: 7px;
+  padding: 7px;
+  font-family: var(--fonte1);
+}
+
 .containerPainel h3 {
   color: var(--azulmedioescuro2);
   text-align: center;

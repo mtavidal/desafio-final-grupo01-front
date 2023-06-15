@@ -6,6 +6,7 @@ import Botao from "componentes/Botao";
 import { useNavigate } from "react-router-dom";
 import CabecalhoListaProdutos from "componentes/CabecalhoListaProdutos";
 import { api } from "lib/axios";
+import { toast } from "react-hot-toast";
 
 export default function Carrinho() {
   const cartState = useAppSelector((store) => store.cartReducer);
@@ -34,6 +35,8 @@ export default function Carrinho() {
   function irParaProdutos() {
     navigate("/produtos");
   }
+  const notifyPedidoEnviado = () =>
+    toast.success(`Pedido realizado com sucesso!`);
 
   function enviarPedido() {
     const enviarPedido = async () => {
@@ -47,6 +50,7 @@ export default function Carrinho() {
         navigate("/sucesso", {
           state: response.data,
         });
+        notifyPedidoEnviado();
         dispatch(esvaziarCarrinho());
       } catch (error) {
         alert("Erro na requisição");
@@ -69,7 +73,12 @@ export default function Carrinho() {
             {produtos}
             <div className={styles.total}>
               <h2>Total da compra:</h2>
-              <h2>R$ {totalPedido.toFixed(2)}</h2>
+              <h2>
+                {new Intl.NumberFormat("PT-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                }).format(totalPedido)}
+              </h2>
             </div>
             <div className={styles.botoes}>
               <div>

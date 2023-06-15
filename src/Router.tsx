@@ -14,6 +14,7 @@ import PainelClientePedidos from "paginas/PainelClientePedidos";
 import PainelClienteEditar from "paginas/PainelClienteEditar";
 import EditarProduto from "paginas/EditarProduto";
 import CadastroUsuario from "paginas/CadastroUsuario";
+import EditarUsuario from "paginas/EditarUsuario";
 
 export default function Router() {
   return (
@@ -25,11 +26,11 @@ export default function Router() {
       <Route path="/detalhes" element={<DetalhesProduto />} />
       <Route path="/sucesso" element={<SucessoDoPedido />} />
       <Route path="/cadastrousuario" element={<CadastroUsuario />} />
-      <Route path="/paineladmin" element={<PainelAdminPedido />} />
       <Route path="/paineladmin/pedidos" element={<PainelAdminPedido />} />
       <Route path="/paineladmin/produtos" element={<PainelAdminProduto />} />
       <Route path="/paineladmin/produtos/editar" element={<EditarProduto />} />
       <Route path="/paineladmin/usuarios" element={<PainelAdminUsuario />} />
+      <Route path="/paineladmin/usuarios/editar" element={<EditarUsuario />} />
       <Route
         path="/paineladmin/categorias"
         element={<PainelAdminCategoria />}

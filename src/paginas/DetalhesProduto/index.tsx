@@ -4,7 +4,7 @@ import { ProdutoNoCarrinho } from "shared/interfaces/IProdutos";
 import Botao from "componentes/Botao";
 import { useAppDispatch } from "hooks";
 import { addProduto } from "store/modules/carrinho";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 export default function DetalhesProduto() {
   const dispatch = useAppDispatch();
@@ -41,14 +41,18 @@ export default function DetalhesProduto() {
           <h1>{produtoNoCarrinho.title}</h1>
           <h3>Categoria: {produtoNoCarrinho.category}</h3>
           <h4>Descrição: {produtoNoCarrinho.description}</h4>
-          <h2>R$ {produtoNoCarrinho.price}</h2>
+          <h2>
+            {new Intl.NumberFormat("PT-BR", {
+              style: "currency",
+              currency: "BRL",
+            }).format(produtoNoCarrinho.price)}
+          </h2>
           <Botao
             primario={false}
             onClick={() => adicionarProdutoCarrinho(produtoNoCarrinho)}
           >
             Adicionar no Carrinho
           </Botao>
-          <Toaster toastOptions={{ duration: 1200 }} />
         </div>
       </div>
       <Botao onClick={irParaProdutos}>Continuar comprando</Botao>

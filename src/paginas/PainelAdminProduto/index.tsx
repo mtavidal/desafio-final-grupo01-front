@@ -6,7 +6,7 @@ import CabecalhoListaProdutos from "componentes/CabecalhoListaProdutos";
 import CampoInput from "componentes/CampoInput";
 import { useState } from "react";
 import { api } from "lib/axios";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 export default function PainelAdminProduto() {
   const [nome, setNome] = useState("");
@@ -107,7 +107,6 @@ export default function PainelAdminProduto() {
             />
             <br />
             <Botao primario={false}>Adicionar Produto</Botao>
-            <Toaster toastOptions={{ duration: 2000 }} />
           </form>
           <ListarProdutos
             limitPaginas={10}

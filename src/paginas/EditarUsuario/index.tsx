@@ -1,51 +1,52 @@
-import CabecalhoAreaRestrita from "componentes/CabecalhoAreaRestrita";
-import styles from "./PainelAdminUsuario.module.css";
-import CabecalhoListaProdutos from "componentes/CabecalhoListaProdutos";
-import { toast } from "react-hot-toast";
-import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import styles from "./EditarUsuario.module.css";
 import CampoInput from "componentes/CampoInput";
+import { toast } from "react-hot-toast";
 import Botao from "componentes/Botao";
+import { useState } from "react";
 import { api } from "lib/axios";
-import ListarUsuarios from "componentes/ListarUsuarios";
+import CabecalhoListaProdutos from "componentes/CabecalhoListaProdutos";
+import CabecalhoAreaRestrita from "componentes/CabecalhoAreaRestrita";
+import { Usuario } from "shared/interfaces/IUsuarios";
 
-export default function PainelAdminUsuario() {
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
-  const [tipoUsuario, setTipoUsuario] = useState("");
-  const [atualizaLista, setAtualizaLista] = useState(0);
+export default function EditarUsuario() {
+  const location = useLocation();
+  const dadosUsuario = location.state as Usuario;
+  const [nome, setNome] = useState(`${dadosUsuario.name}`);
+  const [email, setEmail] = useState(`${dadosUsuario.email}`);
+  const [senha, setSenha] = useState(`${dadosUsuario.password}`);
+  const [tipoUsuario, setTipoUsuario] = useState(`${dadosUsuario.type}`);
+  const [editando, setEditando] = useState(false);
 
-  const notifyAdicionarUsuario = () =>
-    toast.success(`Usuario adicionado com sucesso`);
+  const navigate = useNavigate();
+  const notifyEditarUsuario = () =>
+    toast.success(`Usuário atualizado com sucesso`);
 
-  const cadastrarUsuario = (evento: React.FormEvent<HTMLFormElement>) => {
+  const editarUsuario = (evento: React.FormEvent<HTMLFormElement>) => {
     evento.preventDefault();
-    const adicionarUsuario = async () => {
+    const atualizarUsuario = async () => {
       try {
-        const response = await api.post(`/users`, {
+        setEditando(true);
+        const response = await api.put(`/users/${dadosUsuario.id}`, {
+          name: nome,
           email: email,
           password: senha,
-          name: nome,
           type: tipoUsuario,
         });
         const data = await response.data;
         console.log(data);
-        setAtualizaLista(data.id);
-        notifyAdicionarUsuario();
+        notifyEditarUsuario();
       } catch (error) {
         alert("Erro na requisição");
         console.log(error);
+      } finally {
+        setEditando(false);
       }
     };
-    adicionarUsuario();
-    setNome("");
-    setEmail("");
-    setSenha("");
-    setTipoUsuario("");
+    atualizarUsuario();
   };
-
   return (
-    <>
+    <div>
       <CabecalhoAreaRestrita
         tituloArea="Painel do Administrador"
         link1="/paineladmin/pedidos"
@@ -63,8 +64,8 @@ export default function PainelAdminUsuario() {
       />
       <div className={styles.containerPainel}>
         <div className={styles.containerFormUsuarios}>
-          <form onSubmit={cadastrarUsuario}>
-            <h3>Adicionar Usuário</h3>
+          <form onSubmit={editarUsuario}>
+            <h3>Atualizar Usuário</h3>
             <CampoInput
               obrigatorio={true}
               label="Nome"
@@ -105,11 +106,20 @@ export default function PainelAdminUsuario() {
               <option value="Cliente">Cliente</option>
             </select>
             <br />
-            <Botao primario={false}>Adicionar Usuário</Botao>
+            <div className={styles.botoes}>
+              <Botao primario={false} disabled={editando}>
+                Atualizar Usuário
+              </Botao>
+              <Botao
+                primario={false}
+                onClick={() => navigate("/paineladmin/usuarios")}
+              >
+                Voltar
+              </Botao>
+            </div>
           </form>
-          <ListarUsuarios atualizaLista={atualizaLista} />
         </div>
       </div>
-    </>
+    </div>
   );
 }

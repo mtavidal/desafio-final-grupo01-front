@@ -35,7 +35,12 @@ export function CardProduto({
     >
       <img src={image} alt={`produto ${title}`} />
       <h1>{title}</h1>
-      <h2>R$ {price}</h2>
+      <h2>
+        {new Intl.NumberFormat("PT-BR", {
+          style: "currency",
+          currency: "BRL",
+        }).format(price)}
+      </h2>
     </div>
   );
 }

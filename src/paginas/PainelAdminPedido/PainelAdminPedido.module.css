@@ -1,0 +1,68 @@
+.containerPaginaSucesso {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 33vh;
+  padding: 40px 0;
+}
+.containerPedido {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.espacoPedidos {
+  width: 80%;
+  margin: 10px;
+  background-color: var(--azulmedioclaro);
+  padding: 20px;
+  border-radius: 7px;
+}
+.espacoPedidos h4 {
+  border-bottom: 2px solid var(--azulescuro);
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+.paginaSucessoTitulo {
+  font-family: var(--fonte2);
+  text-align: center;
+  color: var(--azulescuro);
+  font-size: 14px;
+}
+
+.detalhesProdutoPedido {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardItensPedido {
+  display: flex;
+  width: 500px;
+  flex-direction: row;
+  font-size: 12px;
+  padding: 5px 20px;
+  justify-content: space-between;
+  text-align: center;
+}
+
+@media only screen and (max-width: 800px) {
+  .containerPedido {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .paginaSucessoTitulo {
+    font-size: 14px;
+  }
+  .cardItensPedido {
+    flex-direction: column;
+    align-items: center;
+  }
+  .cardItensPedido {
+    width: 100%;
+  }
+}
