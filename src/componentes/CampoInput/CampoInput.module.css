@@ -7,8 +7,16 @@
   padding-top: 10px;
   padding-bottom: 5px;
 }
-.campo input {
+.inputPadrao {
   border: none;
+  padding: 5px;
+  border-radius: 7px;
+  padding: 7px;
+  font-family: var(--fonte1);
+}
+
+.comBorda {
+  border: 1px solid var(--preto);
   padding: 5px;
   border-radius: 7px;
   padding: 7px;

@@ -9,6 +9,7 @@ interface CampoInputProps {
   tipo?: "text" | "date" | "password" | "email" | "number" | "textarea";
   step?: string;
   min?: string;
+  comBorda?: boolean;
 }
 
 export default function CampoInput({
@@ -20,6 +21,7 @@ export default function CampoInput({
   tipo = "text",
   step = "0.01",
   min = "0",
+  comBorda = false,
 }: CampoInputProps) {
   const aoDigitado = (evento: React.ChangeEvent<HTMLInputElement>) => {
     aoAlterado(evento.target.value);
@@ -29,6 +31,7 @@ export default function CampoInput({
     <div className={styles.campo}>
       <label>{label}</label>
       <input
+        className={comBorda ? styles.comBorda : styles.inputPadrao}
         value={valor}
         onChange={aoDigitado}
         required={obrigatorio}

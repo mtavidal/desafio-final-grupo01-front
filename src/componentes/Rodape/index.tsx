@@ -10,7 +10,7 @@ import iconeWhats from "./imagens/whatsapp.png";
 
 export default function Rodape() {
   return (
-    <footer>
+    <footer className={styles.footerPin}>
       <div className={styles.rodape}>
         <img className={styles.logoImg} src={logo} alt="Logo do Good WearEye" />
         <div className={styles.rodapeInfos}>
