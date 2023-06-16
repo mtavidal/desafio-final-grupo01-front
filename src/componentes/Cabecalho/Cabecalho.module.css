@@ -20,6 +20,11 @@
 .cabecalho img {
   width: 120px;
 }
+.cabecalho h5 {
+  width: 150px;
+  text-align: center;
+  color: var(--azulclaro);
+}
 
 .shoppingCartIcon {
   color: var(--azulclaro);
@@ -45,6 +50,25 @@
   opacity: 0.5;
 }
 
+.logado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logado button {
+  padding-top: 5px;
+  text-decoration: underline;
+  border: none;
+  background-color: var(--azulescuro);
+  color: var(--azulmedioclaro);
+}
+
+.logado button:hover {
+  color: var(--azulmedioescuro);
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 500px) {
   .cabecalho .carrinho {
     flex-wrap: wrap;
@@ -58,5 +82,9 @@
   }
   .cabecalho nav {
     justify-content: center;
+  }
+  .cabecalho h5 {
+    width: 100px;
+    word-break: break-all;
   }
 }

@@ -5,12 +5,15 @@ import IconeCarrinho from "@mui/icons-material/ShoppingCart";
 import IconeBotao from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "hooks";
+import { useAppDispatch, useAppSelector } from "hooks";
+import { logout } from "store/modules/usuario";
 
 export default function Cabecalho() {
   const cartState = useAppSelector((state) => state.cartReducer);
   const quantidadeProduto = cartState.cart.length;
 
+  const usuario = useAppSelector((state) => state.authReducer.usuario);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   return (
@@ -38,9 +41,16 @@ export default function Cabecalho() {
             <IconeCarrinho className={styles.shoppingCartIcon} />
           </Badge>
         </IconeBotao>
-        <LinkEstilizado style={styles.link} url="/login">
-          Login
-        </LinkEstilizado>
+        {usuario ? (
+          <div className={styles.logado}>
+            <h5>Olá, {usuario.name.split(" ")[0]}</h5>
+            <button onClick={() => dispatch(logout())}>sair</button>
+          </div>
+        ) : (
+          <LinkEstilizado style={styles.link} url="/login">
+            Login
+          </LinkEstilizado>
+        )}
       </nav>
     </header>
   );
