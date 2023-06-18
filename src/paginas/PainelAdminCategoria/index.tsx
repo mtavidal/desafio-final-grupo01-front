@@ -1,4 +1,3 @@
-import CabecalhoAreaRestrita from "componentes/CabecalhoAreaRestrita";
 import styles from "./PainelAdminCategoria.module.css";
 import CampoInput from "componentes/CampoInput";
 import Botao from "componentes/Botao";
@@ -36,17 +35,6 @@ export default function PainelAdminCategoria() {
 
   return (
     <>
-      <CabecalhoAreaRestrita
-        tituloArea="Painel do Administrador"
-        link1="/paineladmin/pedidos"
-        titulo1="Pedidos"
-        link2="/paineladmin/produtos"
-        titulo2="Produtos"
-        link3="/paineladmin/usuarios"
-        titulo3="Usuários"
-        link4="/paineladmin/categorias"
-        titulo4="Categorias"
-      />
       <CabecalhoListaProdutos
         titulo="Gerenciamento de Categorias"
         subtitulo="Adicione, edite e delete as categorias"

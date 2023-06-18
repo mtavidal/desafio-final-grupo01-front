@@ -1,4 +1,3 @@
-import CabecalhoAreaRestrita from "componentes/CabecalhoAreaRestrita";
 import styles from "./PainelClienteEditar.module.css";
 import Botao from "componentes/Botao";
 import { useNavigate } from "react-router-dom";
@@ -40,17 +39,6 @@ export default function PainelClienteEditar() {
   };
   return (
     <>
-      <CabecalhoAreaRestrita
-        tituloArea="Painel do Cliente"
-        link1="/painelcliente/pedidos"
-        titulo1="Pedidos"
-        link2="/painelcliente/editar"
-        titulo2="Editar Cadastro"
-        link3=" "
-        titulo3=" "
-        link4=" "
-        titulo4=" "
-      />
       <div className={styles.containerPainel}>
         <div className={styles.containerFormCliente}>
           <form onSubmit={editarCadastroCliente}>

@@ -6,7 +6,6 @@ import Botao from "componentes/Botao";
 import { useState } from "react";
 import { api } from "lib/axios";
 import CabecalhoListaProdutos from "componentes/CabecalhoListaProdutos";
-import CabecalhoAreaRestrita from "componentes/CabecalhoAreaRestrita";
 import { Usuario } from "shared/interfaces/IUsuarios";
 
 export default function EditarUsuario() {
@@ -46,17 +45,6 @@ export default function EditarUsuario() {
   };
   return (
     <div>
-      <CabecalhoAreaRestrita
-        tituloArea="Painel do Administrador"
-        link1="/paineladmin/pedidos"
-        titulo1="Pedidos"
-        link2="/paineladmin/produtos"
-        titulo2="Produtos"
-        link3="/paineladmin/usuarios"
-        titulo3="Usuários"
-        link4="/paineladmin/categorias"
-        titulo4="Categorias"
-      />
       <CabecalhoListaProdutos
         titulo="Gerenciamento de Usuários"
         subtitulo="Adicione, edite e delete os usuários"

@@ -1,4 +1,6 @@
 import Cabecalho from "componentes/Cabecalho";
+import CabecalhoAdmin from "componentes/CabecalhoAdmin";
+import CabecalhoCliente from "componentes/CabecalhoCliente";
 import Rodape from "componentes/Rodape";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { api } from "lib/axios";
@@ -10,6 +12,7 @@ import { setUser } from "store/modules/usuario";
 function App() {
   const { token, usuario } = useAppSelector((state) => state.authReducer);
   const dispatch = useAppDispatch();
+  const ehAdmin = usuario?.type === "Administrador" ? true : false;
 
   useEffect(() => {
     const estaLogado = async () => {
@@ -33,6 +36,7 @@ function App() {
     <>
       <Toaster toastOptions={{ duration: 2000 }} />
       <Cabecalho />
+      {usuario ? ehAdmin ? <CabecalhoAdmin /> : <CabecalhoCliente /> : ""}
       <Router />
       <Rodape />
     </>
