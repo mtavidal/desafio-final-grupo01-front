@@ -12,7 +12,8 @@ interface UserState {
   token: string | null;
 }
 
-const token = localStorage.getItem("@autenticacao-react:token") || null;
+const token =
+  localStorage.getItem("@desafio-final-grupo01-front:token") || null;
 
 const initialState: UserState = {
   usuario: null,
@@ -24,13 +25,16 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action: PayloadAction<LoginResponse>) => {
-      localStorage.setItem("@autenticacao-react:token", action.payload.token);
+      localStorage.setItem(
+        "@desafio-final-grupo01-front:token",
+        action.payload.token
+      );
 
       state.usuario = action.payload.usuario;
       state.token = action.payload.token;
     },
     logout: (state) => {
-      localStorage.removeItem("@autenticacao-react:token");
+      localStorage.removeItem("@desafio-final-grupo01-front:token");
 
       state.token = null;
       state.usuario = null;
