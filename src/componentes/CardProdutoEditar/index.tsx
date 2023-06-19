@@ -3,6 +3,7 @@ import styles from "./CardProdutoEditar.module.css";
 import Botao from "componentes/Botao";
 import { api } from "lib/axios";
 import toast from "react-hot-toast";
+import { Categoria } from "shared/interfaces/ICategoria";
 
 interface ProdutoProps {
   id: number;
@@ -10,7 +11,7 @@ interface ProdutoProps {
   image: string;
   price: number;
   description: string;
-  category: string;
+  category: Categoria;
   atualizaLista?: (id: number) => void;
 }
 

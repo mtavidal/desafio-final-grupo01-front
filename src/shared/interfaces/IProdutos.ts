@@ -14,7 +14,7 @@ export interface Produto {
   category: string;
 }
 
-export interface ProdutoNoCarrinho extends Produto {
+export interface ProdutoNoCarrinho extends ProdutoResponse {
   quantidade: number;
 }
 export interface ProdutoResponse {

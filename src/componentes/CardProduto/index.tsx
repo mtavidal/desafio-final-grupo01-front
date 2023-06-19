@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./CardProduto.module.css";
+import { Categoria } from "shared/interfaces/ICategoria";
 
 interface ProdutoProps {
   id: number;
@@ -7,7 +8,7 @@ interface ProdutoProps {
   image: string;
   price: number;
   description: string;
-  category: string;
+  category: Categoria;
 }
 
 export function CardProduto({

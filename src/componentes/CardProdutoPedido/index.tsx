@@ -1,3 +1,4 @@
+import { Categoria } from "shared/interfaces/ICategoria";
 import styles from "./CardProdutoPedido.module.css";
 
 interface CardProdutoPedidoProps {
@@ -6,7 +7,7 @@ interface CardProdutoPedidoProps {
   image: string;
   price: number;
   description: string;
-  category: string;
+  category: Categoria;
   quantidade: number;
 }
 

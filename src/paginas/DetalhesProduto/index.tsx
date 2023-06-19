@@ -39,7 +39,7 @@ export default function DetalhesProduto() {
         />
         <div className={styles.textosDetalhes}>
           <h1>{produtoNoCarrinho.title}</h1>
-          <h3>Categoria: {produtoNoCarrinho.category}</h3>
+          <h3>Categoria: {produtoNoCarrinho.category.nome}</h3>
           <h4>Descrição: {produtoNoCarrinho.description}</h4>
           <h2>
             {new Intl.NumberFormat("PT-BR", {

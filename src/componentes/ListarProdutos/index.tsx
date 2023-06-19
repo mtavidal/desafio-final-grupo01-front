@@ -19,7 +19,7 @@ export function ListarProdutos({
   ehPaginaAdmin = false,
   atualizaLista = 0,
 }: ListarProdutosProps) {
-  const [produtos, setProdutos] = useState<Produto[]>([]);
+  const [produtos, setProdutos] = useState<ProdutoResponse[]>([]);
   const limit = limitPaginas;
   const [skip, setSkip] = useState(10);
   const [totalProdutoBanco, setTotalProdutoBanco] = useState(0);
