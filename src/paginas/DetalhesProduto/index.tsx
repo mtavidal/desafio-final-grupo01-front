@@ -33,10 +33,14 @@ export default function DetalhesProduto() {
   return (
     <div className={styles.containerDetalhes}>
       <div className={styles.cardDetalhes}>
-        <img
-          src={produtoNoCarrinho.image}
-          alt={`produto ${produtoNoCarrinho.title}`}
-        />
+        <div className={styles.imgWrapper}>
+          <img
+            src={produtoNoCarrinho.image}
+            alt={`produto ${produtoNoCarrinho.title}`}
+            className={styles.hoverZoom}
+          />
+        </div>
+
         <div className={styles.textosDetalhes}>
           <h1>{produtoNoCarrinho.title}</h1>
           <h3>Categoria: {produtoNoCarrinho.category.nome}</h3>

@@ -7,10 +7,12 @@ import { api } from "lib/axios";
 import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import Router from "Router";
-import { setUser } from "store/modules/usuario";
+import { finalizandoCarregamento, setUser } from "store/modules/usuario";
 
 function App() {
-  const { token, usuario } = useAppSelector((state) => state.authReducer);
+  const { token, usuario, carregando } = useAppSelector(
+    (state) => state.authReducer
+  );
   const dispatch = useAppDispatch();
   const ehAdmin = usuario?.type === "Administrador" ? true : false;
 
@@ -28,6 +30,8 @@ function App() {
       } catch (error) {
         alert("Erro na requisição");
         console.log(error);
+      } finally {
+        dispatch(finalizandoCarregamento());
       }
     };
     estaLogado();
@@ -37,7 +41,7 @@ function App() {
       <Toaster toastOptions={{ duration: 2000 }} />
       <Cabecalho />
       {usuario ? ehAdmin ? <CabecalhoAdmin /> : <CabecalhoCliente /> : ""}
-      <Router />
+      {!carregando ? <Router /> : <h1>carregando</h1>}
       <Rodape />
     </>
   );

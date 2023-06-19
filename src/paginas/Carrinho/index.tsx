@@ -60,7 +60,7 @@ export default function Carrinho() {
       };
       enviarPedido();
     } else {
-      navigate("/login");
+      navigate("/login?origin=carrinho");
     }
   }
 

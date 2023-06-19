@@ -6,10 +6,10 @@ interface RotaUsuarioLogadoProps {
   children: ReactNode;
 }
 export function RotaUsuarioLogado({ children }: RotaUsuarioLogadoProps) {
-  const usuario = useAppSelector((state) => state.authReducer.usuario);
+  const { usuario, carregando } = useAppSelector((state) => state.authReducer);
 
   console.log("rota usuario logado:", usuario);
-  if (!usuario) {
+  if (!usuario && !carregando) {
     return <Navigate to="/" replace />;
   }
 

@@ -6,10 +6,10 @@ interface RotaAdminProps {
   children: ReactNode;
 }
 export function RotaAdmin({ children }: RotaAdminProps) {
-  const usuario = useAppSelector((state) => state.authReducer.usuario);
+  const { usuario, carregando } = useAppSelector((state) => state.authReducer);
   const ehAdmin = usuario?.type === "Administrador" ? true : false;
 
-  if (!ehAdmin) {
+  if (!ehAdmin && !carregando) {
     return <Navigate to="/" replace />;
   }
 

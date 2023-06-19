@@ -2,7 +2,7 @@ import styles from "./ListarProdutos.module.css";
 import { useEffect, useState } from "react";
 import { CardProduto } from "componentes/CardProduto";
 import { api } from "lib/axios";
-import { Produto, ProdutoResponse } from "shared/interfaces/IProdutos";
+import { ProdutoResponse } from "shared/interfaces/IProdutos";
 import Botao from "componentes/Botao";
 import { CardProdutoEditar } from "componentes/CardProdutoEditar";
 

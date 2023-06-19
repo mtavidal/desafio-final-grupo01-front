@@ -30,6 +30,19 @@
   max-width: 100%;
   max-height: 300px;
 }
+.imgWrapper {
+  overflow-y: clip;
+}
+
+img.hoverZoom {
+  transition: all 0.3s ease 0s;
+  width: 100%;
+}
+
+img.hoverZoom:hover {
+  transform: scale(2.05);
+  cursor: zoom-in;
+}
 
 .cardDetalhes h1 {
   font-size: 25px;
@@ -47,6 +60,14 @@
 .inputNumerico {
   margin-bottom: 20px;
 }
+@media only screen and (max-width: 1280px) {
+  .cardDetalhes {
+    width: 80%;
+  }
+  img.hoverZoom:hover {
+    transform: scale(1.6);
+  }
+}
 
 @media only screen and (max-width: 500px) {
   .cardDetalhes {
@@ -62,5 +83,8 @@
   .cardDetalhes img {
     max-width: 200px;
     max-height: 200px;
+  }
+  img.hoverZoom:hover {
+    transform: scale(1.43);
   }
 }

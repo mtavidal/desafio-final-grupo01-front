@@ -10,6 +10,7 @@ interface LoginResponse {
 interface UserState {
   usuario: Usuario | null;
   token: string | null;
+  carregando: boolean;
 }
 
 const token =
@@ -18,6 +19,7 @@ const token =
 const initialState: UserState = {
   usuario: null,
   token,
+  carregando: true,
 };
 
 export const authSlice = createSlice({
@@ -42,9 +44,13 @@ export const authSlice = createSlice({
     setUser: (state, action: PayloadAction<Usuario>) => {
       state.usuario = action.payload;
     },
+    finalizandoCarregamento: (state) => {
+      state.carregando = false;
+    },
   },
 });
 
-export const { login, logout, setUser } = authSlice.actions;
+export const { login, logout, setUser, finalizandoCarregamento } =
+  authSlice.actions;
 
 export default authSlice.reducer;
