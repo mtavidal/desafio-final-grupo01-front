@@ -58,6 +58,7 @@ export default function PainelAdminPedido() {
                 <div className={styles.espacoPedidos} key={pedido.id}>
                   <div className={styles.paginaSucessoTitulo}>
                     <h2>Id do pedido: {pedido.id}</h2>
+                    <h2>Id do cliente: {pedido.userId}</h2>
                     <h2>Data do pedido: {formataData(pedido.data)}</h2>
                   </div>
                   <h4>Itens do pedido: </h4>

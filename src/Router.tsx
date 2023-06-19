@@ -36,7 +36,14 @@ export default function Router() {
         }
       />
       <Route path="/detalhes" element={<DetalhesProduto />} />
-      <Route path="/sucesso" element={<SucessoDoPedido />} />
+      <Route
+        path="/sucesso"
+        element={
+          <RotaUsuarioLogado>
+            <SucessoDoPedido />
+          </RotaUsuarioLogado>
+        }
+      />
       <Route path="/cadastrousuario" element={<CadastroUsuario />} />
       <Route
         path="/paineladmin"

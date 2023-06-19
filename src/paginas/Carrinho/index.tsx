@@ -10,6 +10,7 @@ import { toast } from "react-hot-toast";
 
 export default function Carrinho() {
   const cartState = useAppSelector((store) => store.cartReducer);
+  const usuario = useAppSelector((store) => store.authReducer.usuario);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const date = new Date();
@@ -39,24 +40,28 @@ export default function Carrinho() {
     toast.success(`Pedido realizado com sucesso!`);
 
   function enviarPedido() {
-    const enviarPedido = async () => {
-      try {
-        const response = await api.post("/carts", {
-          userId: 1,
-          date: date.toLocaleDateString(),
-          products: cartState.cart,
-        });
+    if (usuario) {
+      const enviarPedido = async () => {
+        try {
+          const response = await api.post("/carts", {
+            userId: usuario.id,
+            date: date.toLocaleDateString(),
+            products: cartState.cart,
+          });
 
-        navigate("/sucesso", {
-          state: response.data,
-        });
-        notifyPedidoEnviado();
-        dispatch(esvaziarCarrinho());
-      } catch (error) {
-        alert("Erro na requisição");
-      }
-    };
-    enviarPedido();
+          navigate("/sucesso", {
+            state: response.data,
+          });
+          notifyPedidoEnviado();
+          dispatch(esvaziarCarrinho());
+        } catch (error) {
+          alert("Erro na requisição");
+        }
+      };
+      enviarPedido();
+    } else {
+      navigate("/login");
+    }
   }
 
   return (
