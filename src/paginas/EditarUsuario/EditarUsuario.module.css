@@ -37,6 +37,7 @@
   border-radius: 7px;
   padding: 7px;
   font-family: var(--fonte1);
+  color: var(--azulmedioescuro);
 }
 
 .botoes {

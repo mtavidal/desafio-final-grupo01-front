@@ -22,6 +22,18 @@
   font-family: var(--fonte2);
   text-transform: uppercase;
 }
+.ajusteLabel {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+.ajusteSelect {
+  border: none;
+  padding: 5px;
+  border-radius: 7px;
+  padding: 7px;
+  font-family: var(--fonte1);
+  color: var(--azulmedioescuro2);
+}
 
 .containerFormProdutos {
   display: flex;

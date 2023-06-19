@@ -1,21 +1,23 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./EditarProduto.module.css";
-import { ProdutoNoCarrinho } from "shared/interfaces/IProdutos";
+import { ProdutoResponse } from "shared/interfaces/IProdutos";
 import CampoInput from "componentes/CampoInput";
 import { toast } from "react-hot-toast";
 import Botao from "componentes/Botao";
 import { useState } from "react";
 import { api } from "lib/axios";
 import CabecalhoListaProdutos from "componentes/CabecalhoListaProdutos";
+import { Categoria } from "shared/interfaces/ICategoria";
 
 export default function EditarProduto() {
   const location = useLocation();
-  const dadosProduto = location.state as ProdutoNoCarrinho;
+  const dadosProduto = location.state as ProdutoResponse;
   const [nome, setNome] = useState(`${dadosProduto.title}`);
   const [descricao, setDescricao] = useState(`${dadosProduto.description}`);
-  const [categoria, setCategoria] = useState(`${dadosProduto.category}`);
+  const [categoria, setCategoria] = useState(`${dadosProduto.category.id}`);
   const [preco, setPreco] = useState(`${dadosProduto.price}`);
   const [imagem, setImagem] = useState(`${dadosProduto.image}`);
+  const [listaCategorias, setListaCategorias] = useState<Categoria[]>([]);
   const [editando, setEditando] = useState(false);
 
   const navigate = useNavigate();
@@ -26,6 +28,7 @@ export default function EditarProduto() {
     evento.preventDefault();
     const atualizarProduto = async () => {
       try {
+        console.log(categoria);
         setEditando(true);
         const response = await api.put(`/products/${dadosProduto.id}`, {
           id: dadosProduto.id,
@@ -46,6 +49,20 @@ export default function EditarProduto() {
     };
     atualizarProduto();
   };
+
+  const listarCategorias = async () => {
+    try {
+      const response = await api.get(`/categoria`);
+      const data = await response.data;
+      setListaCategorias(data);
+    } catch (error) {
+      alert("Erro na requisição");
+      console.log(error);
+    }
+  };
+
+  listarCategorias();
+
   return (
     <div>
       <CabecalhoListaProdutos
@@ -71,13 +88,28 @@ export default function EditarProduto() {
               aoAlterado={(valor) => setDescricao(valor)}
               tipo="textarea"
             />
-            <CampoInput
-              obrigatorio={true}
-              label="Categoria"
-              placeholder="Categoria do produto"
-              valor={categoria}
-              aoAlterado={(valor) => setCategoria(valor)}
-            />
+            <label className={styles.ajusteLabel}>Categoria</label>
+            <select
+              className={styles.ajusteSelect}
+              name="selectCategoria"
+              id="selectCategoria"
+              required
+              value={categoria}
+              onChange={(evento: React.ChangeEvent<HTMLSelectElement>) =>
+                setCategoria(evento.target.value)
+              }
+            >
+              <option value={dadosProduto.category.id}>
+                {dadosProduto.category.nome}
+              </option>
+              {listaCategorias.map((categoria) => {
+                return (
+                  <option key={categoria.id} value={categoria.id}>
+                    {categoria.nome}
+                  </option>
+                );
+              })}
+            </select>
             <CampoInput
               obrigatorio={true}
               label="Preço"

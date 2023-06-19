@@ -2,7 +2,7 @@ import styles from "./ListarProdutos.module.css";
 import { useEffect, useState } from "react";
 import { CardProduto } from "componentes/CardProduto";
 import { api } from "lib/axios";
-import { Produto } from "shared/interfaces/IProdutos";
+import { Produto, ProdutoResponse } from "shared/interfaces/IProdutos";
 import Botao from "componentes/Botao";
 import { CardProdutoEditar } from "componentes/CardProdutoEditar";
 
@@ -20,7 +20,9 @@ export function ListarProdutos({
   atualizaLista = 0,
 }: ListarProdutosProps) {
   const [produtos, setProdutos] = useState<Produto[]>([]);
-  const [limit, setLimit] = useState(limitPaginas);
+  const limit = limitPaginas;
+  const [skip, setSkip] = useState(10);
+  const [totalProdutoBanco, setTotalProdutoBanco] = useState(0);
   const [ehCarregamentoInicial, setEhCarregamentoInicial] = useState(true);
   const [estaCarregandoMais, setEstaCarregandoMais] = useState(false);
 
@@ -30,10 +32,24 @@ export function ListarProdutos({
       const response = await api.get("/products", {
         params: {
           limit,
+          sort: "desc",
+          skip,
         },
       });
-      setProdutos([...produtos, ...response.data]);
-      setLimit(10);
+      const responseProdutos = response.data.produtos.map(
+        (produto: ProdutoResponse) => {
+          return {
+            id: produto.id,
+            title: produto.title,
+            image: produto.image,
+            price: produto.price,
+            description: produto.description,
+            category: produto.category,
+          };
+        }
+      );
+      setProdutos([...produtos, ...responseProdutos]);
+      setSkip(skip + 10);
     } catch (error) {
       alert("Erro na requisição");
     } finally {
@@ -50,7 +66,20 @@ export function ListarProdutos({
             sort: "desc",
           },
         });
-        setProdutos(response.data);
+        const responseProdutos = response.data.produtos.map(
+          (produto: ProdutoResponse) => {
+            return {
+              id: produto.id,
+              title: produto.title,
+              image: produto.image,
+              price: produto.price,
+              description: produto.description,
+              category: produto.category,
+            };
+          }
+        );
+        setProdutos(responseProdutos);
+        setTotalProdutoBanco(response.data.total);
       } catch (error) {
         alert("Erro na requisição");
       } finally {
@@ -85,7 +114,7 @@ export function ListarProdutos({
       {!ehCarregamentoInicial && produtos.length > 0 && (
         <Botao
           disabled={estaCarregandoMais}
-          hidden={ehPaginaHome}
+          hidden={ehPaginaHome || totalProdutoBanco <= skip}
           onClick={getMaisProdutos}
         >
           {estaCarregandoMais ? "Carregando" : "Carregar mais produtos"}

@@ -1,3 +1,5 @@
+import { Categoria } from "./ICategoria";
+
 export interface Produto {
   id: number;
   // nome: string
@@ -14,4 +16,12 @@ export interface Produto {
 
 export interface ProdutoNoCarrinho extends Produto {
   quantidade: number;
+}
+export interface ProdutoResponse {
+  id: number;
+  title: string;
+  image: string;
+  price: number;
+  description: string;
+  category: Categoria;
 }

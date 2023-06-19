@@ -6,6 +6,7 @@ import CampoInput from "componentes/CampoInput";
 import { useState } from "react";
 import { api } from "lib/axios";
 import toast from "react-hot-toast";
+import { Categoria } from "shared/interfaces/ICategoria";
 
 export default function PainelAdminProduto() {
   const [nome, setNome] = useState("");
@@ -13,6 +14,7 @@ export default function PainelAdminProduto() {
   const [categoria, setCategoria] = useState("");
   const [preco, setPreco] = useState("");
   const [imagem, setImagem] = useState("");
+  const [listaCategorias, setListaCategorias] = useState<Categoria[]>([]);
   const [atualizaLista, setAtualizaLista] = useState(0);
 
   const notifyAdicionarProduto = () =>
@@ -46,6 +48,18 @@ export default function PainelAdminProduto() {
     setImagem("");
   };
 
+  const listarCategorias = async () => {
+    try {
+      const response = await api.get(`/categoria`);
+      const data = await response.data;
+      setListaCategorias(data);
+    } catch (error) {
+      alert("Erro na requisição");
+      console.log(error);
+    }
+  };
+  listarCategorias();
+
   return (
     <>
       <CabecalhoListaProdutos
@@ -71,13 +85,26 @@ export default function PainelAdminProduto() {
               aoAlterado={(valor) => setDescricao(valor)}
               tipo="textarea"
             />
-            <CampoInput
-              obrigatorio={true}
-              label="Categoria"
-              placeholder="Categoria do produto"
-              valor={categoria}
-              aoAlterado={(valor) => setCategoria(valor)}
-            />
+            <label className={styles.ajusteLabel}>Categoria</label>
+            <select
+              className={styles.ajusteSelect}
+              name="selectCategoria"
+              id="selectCategoria"
+              required
+              value={categoria}
+              onChange={(evento: React.ChangeEvent<HTMLSelectElement>) =>
+                setCategoria(evento.target.value)
+              }
+            >
+              <option value="">Selecione a categoria</option>
+              {listaCategorias.map((categoria) => {
+                return (
+                  <option key={categoria.id} value={categoria.id}>
+                    {categoria.nome}
+                  </option>
+                );
+              })}
+            </select>
             <CampoInput
               obrigatorio={true}
               label="Preço"
