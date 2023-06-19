@@ -5,11 +5,15 @@ import { toast } from "react-hot-toast";
 import { useState } from "react";
 import CampoInput from "componentes/CampoInput";
 import { api } from "lib/axios";
+import CabecalhoListaProdutos from "componentes/CabecalhoListaProdutos";
+import { useAppSelector } from "hooks";
 
 export default function PainelClienteEditar() {
-  const [nome, setNome] = useState(``);
-  const [email, setEmail] = useState(``);
-  const [senha, setSenha] = useState(``);
+  const selector = useAppSelector((store) => store.authReducer);
+
+  const [nome, setNome] = useState(`${selector.usuario?.name}`);
+  const [email, setEmail] = useState(`${selector.usuario?.email}`);
+  const [senha, setSenha] = useState(`${selector.usuario?.password}`);
 
   const [editando, setEditando] = useState(false);
 
@@ -19,26 +23,31 @@ export default function PainelClienteEditar() {
   const editarCadastroCliente = (evento: React.FormEvent<HTMLFormElement>) => {
     evento.preventDefault();
     const atualizarCliente = async () => {
-      // try {
-      //   setEditando(true);
-      //   const response = await api.put(`/users/${dadosUsuario.id}`, {
-      //     name: nome,
-      //     email: email,
-      //     password: senha,
-      //   });
-      //   const data = await response.data;
-      //   notifyCadastroEditado(data.id);
-      // } catch (error) {
-      //   alert("Erro na requisição");
-      //   console.log(error);
-      // } finally {
-      //   setEditando(false);
-      // }
+      try {
+        setEditando(true);
+        const response = await api.put(`/users/${selector.usuario?.id}`, {
+          name: nome,
+          email: email,
+          password: senha,
+          type: "Cliente",
+        });
+        const data = await response.data;
+        notifyCadastroEditado(data.id);
+      } catch (error) {
+        alert("Erro na requisição");
+        console.log(error);
+      } finally {
+        setEditando(false);
+      }
     };
     atualizarCliente();
   };
   return (
     <>
+      <CabecalhoListaProdutos
+        titulo="Editar dados do usuário"
+        subtitulo="Digite para atualizar seus dados"
+      />
       <div className={styles.containerPainel}>
         <div className={styles.containerFormCliente}>
           <form onSubmit={editarCadastroCliente}>

@@ -19,6 +19,7 @@ import EditarCategoria from "paginas/EditarCategoria";
 import { RotaAdmin } from "componentes/RotaAdmin";
 import { RotaUsuarioLogado } from "componentes/RotaUsuarioLogado";
 import { RotaLogin } from "componentes/RotaLogin";
+import NaoEncontrada from "paginas/NaoEncontrada";
 
 export default function Router() {
   return (
@@ -37,6 +38,14 @@ export default function Router() {
       <Route path="/detalhes" element={<DetalhesProduto />} />
       <Route path="/sucesso" element={<SucessoDoPedido />} />
       <Route path="/cadastrousuario" element={<CadastroUsuario />} />
+      <Route
+        path="/paineladmin"
+        element={
+          <RotaAdmin>
+            <PainelAdminPedido />
+          </RotaAdmin>
+        }
+      />
       <Route
         path="/paineladmin/pedidos"
         element={
@@ -94,6 +103,14 @@ export default function Router() {
         }
       />
       <Route
+        path="/painelcliente"
+        element={
+          <RotaUsuarioLogado>
+            <PainelClientePedidos />
+          </RotaUsuarioLogado>
+        }
+      />
+      <Route
         path="/painelcliente/pedidos"
         element={
           <RotaUsuarioLogado>
@@ -109,13 +126,7 @@ export default function Router() {
           </RotaUsuarioLogado>
         }
       />
-
-      {/* <Route path="/" element={<PaginaBase />}>
-            <Route index element={<Inicio />} />
-            <Route path="Favoritos" element={<Favoritos />} />
-            <Route path=":id" element={<Player />} />
-            <Route path="*" element={<NaoEncontrada />} />
-        </Route> */}
+      <Route path="*" element={<NaoEncontrada />} />
     </Routes>
   );
 }

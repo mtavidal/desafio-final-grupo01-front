@@ -1,0 +1,19 @@
+.containerNaoEncontrada {
+  min-height: 38vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.conteudo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.conteudo h3 {
+  font-family: var(--fonte2);
+  font-size: 30px;
+  color: var(--azulescuro);
+  text-align: center;
+}

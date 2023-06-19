@@ -6,7 +6,7 @@
 
 .containerPainel form {
   display: flex;
-  width: 60%;
+  width: 40%;
   padding: 15px;
   flex-direction: column;
   background-color: var(--azulmedioclaro);
@@ -33,6 +33,12 @@
   gap: 10%;
   align-items: center;
   justify-content: center;
+}
+
+@media only screen and (max-width: 1280px) {
+  .containerPainel form {
+    width: 75%;
+  }
 }
 
 @media only screen and (max-width: 500px) {
