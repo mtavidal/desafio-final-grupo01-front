@@ -1,4 +1,4 @@
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useSearchParams } from "react-router-dom";
 import { useAppSelector } from "../../hooks";
 import { ReactNode } from "react";
 
@@ -8,13 +8,14 @@ interface RotaLoginProps {
 export function RotaLogin({ children }: RotaLoginProps) {
   const usuario = useAppSelector((state) => state.authReducer.usuario);
   const ehAdmin = usuario?.type === "Administrador" ? true : false;
-  const params = useParams();
+  const params = useSearchParams();
+  const veioCarrinho = params[0].get("origin") === "carrinho" ? true : false;
 
   if (!usuario) {
     return <>{children}</>;
   }
 
-  if (params) {
+  if (veioCarrinho) {
     return <Navigate to="/carrinho" />;
   }
 

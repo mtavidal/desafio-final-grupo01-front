@@ -5,10 +5,11 @@ import { useEffect, useState } from "react";
 import { api } from "lib/axios";
 import Botao from "componentes/Botao";
 import { toast } from "react-hot-toast";
+import CarregandoPagina from "componentes/CarregandoPagina";
 
 export default function PainelAdminPedido() {
   const [pedidos, setPedidos] = useState<Pedido[]>([]);
-  const [carregando, setCarregando] = useState(false);
+  const [carregando, setCarregando] = useState(true);
   const [pedidoDeletado, setPedidoDeletado] = useState(0);
   function formataData(isoDate: string) {
     const data = new Date(isoDate);
@@ -17,7 +18,6 @@ export default function PainelAdminPedido() {
   useEffect(() => {
     const getPedidos = async () => {
       try {
-        setCarregando(true);
         const response = await api.get("/carts");
         setPedidos(response.data);
       } catch (error) {
@@ -33,12 +33,20 @@ export default function PainelAdminPedido() {
     toast.success(`Pedido com id: ${id} deletado com sucesso!`);
 
   const deletarPedido = async (id: number) => {
-    try {
-      const response = await api.delete(`/carts/${id}`);
-      setPedidoDeletado(id);
-      notifyDeletePedido(response.data);
-    } catch (error) {
-      alert("Erro na requisição");
+    const confirmaDeletar = window.confirm(
+      `Tem certeza que deseja deletar o pedido de id: ${id}?`
+    );
+    if (confirmaDeletar) {
+      setCarregando(true);
+      try {
+        const response = await api.delete(`/carts/${id}`);
+        setPedidoDeletado(id);
+        notifyDeletePedido(response.data);
+      } catch (error) {
+        alert("Erro na requisição");
+      } finally {
+        setCarregando(false);
+      }
     }
   };
 
@@ -47,9 +55,12 @@ export default function PainelAdminPedido() {
       <CabecalhoListaProdutos
         titulo="Gerenciamento de Pedidos"
         subtitulo="Visualize e delete os pedidos"
-      />{" "}
+      />
       {carregando ? (
-        <h1> Carregando pedidos... </h1>
+        <>
+          <div className={styles.containerPaginaSucesso}></div>
+          <CarregandoPagina visibilidade={carregando} />
+        </>
       ) : (
         <div className={styles.containerPaginaSucesso}>
           <div className={styles.containerPedido}>

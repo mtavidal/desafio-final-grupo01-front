@@ -6,10 +6,12 @@ import { useState } from "react";
 import ListarCategorias from "componentes/ListarCategorias";
 import { toast } from "react-hot-toast";
 import { api } from "lib/axios";
+import CarregandoPagina from "componentes/CarregandoPagina";
 
 export default function PainelAdminCategoria() {
   const [categoria, setCategoria] = useState("");
   const [atualizaLista, setAtualizaLista] = useState(0);
+  const [adicionandoCategorias, setAdicionandoCategorias] = useState(false);
 
   const notifyAdicionarCategoria = () =>
     toast.success(`Categoria adicionada com sucesso`);
@@ -17,6 +19,7 @@ export default function PainelAdminCategoria() {
   const cadastrarCategoria = (evento: React.FormEvent<HTMLFormElement>) => {
     evento.preventDefault();
     const adicionarCategoria = async () => {
+      setAdicionandoCategorias(true);
       try {
         const response = await api.post(`/categoria`, {
           nome: categoria,
@@ -27,6 +30,8 @@ export default function PainelAdminCategoria() {
       } catch (error) {
         alert("Erro na requisição");
         console.log(error);
+      } finally {
+        setAdicionandoCategorias(false);
       }
     };
     adicionarCategoria();
@@ -39,23 +44,30 @@ export default function PainelAdminCategoria() {
         titulo="Gerenciamento de Categorias"
         subtitulo="Adicione, edite e delete as categorias"
       />
-      <div className={styles.containerPainelCategoria}>
-        <div className={styles.containerFormCategoria}>
-          <form onSubmit={cadastrarCategoria}>
-            <h3>Adicionar Categoria</h3>
-            <CampoInput
-              obrigatorio={true}
-              label="Categoria"
-              placeholder="Nome da categoria"
-              valor={categoria}
-              aoAlterado={(valor) => setCategoria(valor)}
-            />
-            <br />
-            <Botao primario={false}>Adicionar Categoria</Botao>
-          </form>
-          <ListarCategorias atualizaLista={atualizaLista} />
+      {adicionandoCategorias ? (
+        <>
+          <div className={styles.containerPainelCategoria}></div>
+          <CarregandoPagina visibilidade={adicionandoCategorias} />
+        </>
+      ) : (
+        <div className={styles.containerPainelCategoria}>
+          <div className={styles.containerFormCategoria}>
+            <form onSubmit={cadastrarCategoria}>
+              <h3>Adicionar Categoria</h3>
+              <CampoInput
+                obrigatorio={true}
+                label="Categoria"
+                placeholder="Nome da categoria"
+                valor={categoria}
+                aoAlterado={(valor) => setCategoria(valor)}
+              />
+              <br />
+              <Botao primario={false}>Adicionar Categoria</Botao>
+            </form>
+            <ListarCategorias atualizaLista={atualizaLista} />
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }

@@ -7,6 +7,7 @@ import CampoInput from "componentes/CampoInput";
 import { api } from "lib/axios";
 import CabecalhoListaProdutos from "componentes/CabecalhoListaProdutos";
 import { useAppSelector } from "hooks";
+import CarregandoPagina from "componentes/CarregandoPagina";
 
 export default function PainelClienteEditar() {
   const selector = useAppSelector((store) => store.authReducer);
@@ -48,47 +49,54 @@ export default function PainelClienteEditar() {
         titulo="Editar dados do usuário"
         subtitulo="Digite para atualizar seus dados"
       />
-      <div className={styles.containerPainel}>
-        <div className={styles.containerFormCliente}>
-          <form onSubmit={editarCadastroCliente}>
-            <h3>Edite o seu cadastro</h3>
-            <CampoInput
-              obrigatorio={true}
-              label="Nome"
-              placeholder="Nome do Cliente"
-              valor={nome}
-              aoAlterado={(valor) => setNome(valor)}
-            />
-            <CampoInput
-              obrigatorio={true}
-              label="Email"
-              placeholder="Email do Cliente"
-              valor={email}
-              aoAlterado={(valor) => setEmail(valor)}
-              tipo="email"
-            />
+      {editando ? (
+        <>
+          <div className={styles.containerPainel}></div>
+          <CarregandoPagina visibilidade={editando} />
+        </>
+      ) : (
+        <div className={styles.containerPainel}>
+          <div className={styles.containerFormCliente}>
+            <form onSubmit={editarCadastroCliente}>
+              <h3>Edite o seu cadastro</h3>
+              <CampoInput
+                obrigatorio={true}
+                label="Nome"
+                placeholder="Nome do Cliente"
+                valor={nome}
+                aoAlterado={(valor) => setNome(valor)}
+              />
+              <CampoInput
+                obrigatorio={true}
+                label="Email"
+                placeholder="Email do Cliente"
+                valor={email}
+                aoAlterado={(valor) => setEmail(valor)}
+                tipo="email"
+              />
 
-            <CampoInput
-              obrigatorio={true}
-              label="Senha"
-              placeholder="Senha do Cliente"
-              valor={senha}
-              aoAlterado={(valor) => setSenha(valor)}
-              tipo="password"
-            />
+              <CampoInput
+                obrigatorio={true}
+                label="Senha"
+                placeholder="Senha do Cliente"
+                valor={senha}
+                aoAlterado={(valor) => setSenha(valor)}
+                tipo="password"
+              />
 
-            <br />
-            <div className={styles.botoes}>
-              <Botao primario={false} disabled={editando}>
-                Atualizar seus dados
-              </Botao>
-              <Botao primario={false} onClick={() => navigate("/produtos")}>
-                Continuar comprando
-              </Botao>
-            </div>
-          </form>
+              <br />
+              <div className={styles.botoes}>
+                <Botao primario={false} disabled={editando}>
+                  Atualizar seus dados
+                </Botao>
+                <Botao primario={false} onClick={() => navigate("/produtos")}>
+                  Continuar comprando
+                </Botao>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
