@@ -1,6 +1,7 @@
 import Cabecalho from "componentes/Cabecalho";
 import CabecalhoAdmin from "componentes/CabecalhoAdmin";
 import CabecalhoCliente from "componentes/CabecalhoCliente";
+import CarregandoPagina from "componentes/CarregandoPagina";
 import Rodape from "componentes/Rodape";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { api } from "lib/axios";
@@ -39,10 +40,16 @@ function App() {
   return (
     <>
       <Toaster toastOptions={{ duration: 2000 }} />
-      <Cabecalho />
-      {usuario ? ehAdmin ? <CabecalhoAdmin /> : <CabecalhoCliente /> : ""}
-      {!carregando ? <Router /> : <h1>carregando</h1>}
-      <Rodape />
+      {carregando ? (
+        <CarregandoPagina visibilidade={carregando} />
+      ) : (
+        <>
+          <Cabecalho />
+          {usuario ? ehAdmin ? <CabecalhoAdmin /> : <CabecalhoCliente /> : ""}
+          <Router />
+          <Rodape />
+        </>
+      )}
     </>
   );
 }

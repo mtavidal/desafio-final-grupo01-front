@@ -5,6 +5,7 @@ import Botao from "componentes/Botao";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Categoria } from "shared/interfaces/ICategoria";
+import CarregandoPagina from "componentes/CarregandoPagina";
 
 interface ListarCategoriasProps {
   atualizaLista?: number;
@@ -13,13 +14,12 @@ interface ListarCategoriasProps {
 export default function ListarCategorias({
   atualizaLista = 0,
 }: ListarCategoriasProps) {
-  const [carregandoCategoria, setCarregandoCategoria] = useState(false);
+  const [carregandoCategoria, setCarregandoCategoria] = useState(true);
   const [categorias, setCategorias] = useState<Categoria[]>([]);
   const [categoriaDeletada, setCategoriaDeletada] = useState(0);
   useEffect(() => {
     const getCategorias = async () => {
       try {
-        setCarregandoCategoria(true);
         const response = await api.get("/categoria", {
           params: {
             sort: "desc",
@@ -39,12 +39,20 @@ export default function ListarCategorias({
     toast.success(`Categoria com id: ${id} deletada com sucesso!`);
 
   const deletarCategoria = async (id: number) => {
-    try {
-      const response = await api.delete(`/categoria/${id}`);
-      setCategoriaDeletada(id);
-      notifyDeleteCategoria(response.data);
-    } catch (error) {
-      alert("Erro na requisição");
+    const confirmaDeletar = window.confirm(
+      `Tem certeza que deseja deletar a categoria de id: ${id}?`
+    );
+    if (confirmaDeletar) {
+      setCarregandoCategoria(true);
+      try {
+        const response = await api.delete(`/categoria/${id}`);
+        setCategoriaDeletada(id);
+        notifyDeleteCategoria(response.data);
+      } catch (error) {
+        alert("Erro na requisição");
+      } finally {
+        setCarregandoCategoria(false);
+      }
     }
   };
 
@@ -58,7 +66,7 @@ export default function ListarCategorias({
   return (
     <div className={styles.containerCategorias}>
       {carregandoCategoria ? (
-        <p>Carregando categorias</p>
+        <CarregandoPagina visibilidade={carregandoCategoria} />
       ) : (
         <div className={styles.listarCategorias}>
           <h3 className={styles.listarCategoriasCabecalhoMobile}>

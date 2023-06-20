@@ -5,6 +5,7 @@ import { Usuario } from "shared/interfaces/IUsuarios";
 import Botao from "componentes/Botao";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import CarregandoPagina from "componentes/CarregandoPagina";
 
 interface ListarUsuariosProps {
   atualizaLista?: number;
@@ -13,13 +14,13 @@ interface ListarUsuariosProps {
 export default function ListarUsuarios({
   atualizaLista = 0,
 }: ListarUsuariosProps) {
-  const [carregandoUsuario, setCarregandoUsuario] = useState(false);
+  const [carregandoUsuario, setCarregandoUsuario] = useState(true);
   const [usuarios, setUsuarios] = useState<Usuario[]>([]);
   const [usuarioDeletado, setUsuarioDeletado] = useState(0);
+
   useEffect(() => {
     const getUsuarios = async () => {
       try {
-        setCarregandoUsuario(true);
         const response = await api.get("/users", {
           params: {
             sort: "desc",
@@ -39,12 +40,20 @@ export default function ListarUsuarios({
     toast.success(`Produto com id: ${id} deletado com sucesso!`);
 
   const deletarUsuario = async (id: number) => {
-    try {
-      const response = await api.delete(`/users/${id}`);
-      setUsuarioDeletado(id);
-      notifyDeleteUsuario(response.data);
-    } catch (error) {
-      alert("Erro na requisição");
+    const confirmaDeletar = window.confirm(
+      `Tem certeza que deseja deletar o usuário de id: ${id}?`
+    );
+    if (confirmaDeletar) {
+      setCarregandoUsuario(true);
+      try {
+        const response = await api.delete(`/users/${id}`);
+        setUsuarioDeletado(id);
+        notifyDeleteUsuario(response.data);
+      } catch (error) {
+        alert("Erro na requisição");
+      } finally {
+        setCarregandoUsuario(false);
+      }
     }
   };
 
@@ -58,7 +67,7 @@ export default function ListarUsuarios({
   return (
     <div className={styles.containerUsuarios}>
       {carregandoUsuario ? (
-        <p>Carregando usuários</p>
+        <CarregandoPagina visibilidade={carregandoUsuario} />
       ) : (
         <div className={styles.listarUsuarios}>
           <h3 className={styles.listarUsuariosCabecalhoMobile}>

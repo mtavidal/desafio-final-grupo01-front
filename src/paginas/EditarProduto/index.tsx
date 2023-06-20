@@ -4,7 +4,7 @@ import { ProdutoResponse } from "shared/interfaces/IProdutos";
 import CampoInput from "componentes/CampoInput";
 import { toast } from "react-hot-toast";
 import Botao from "componentes/Botao";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { api } from "lib/axios";
 import CabecalhoListaProdutos from "componentes/CabecalhoListaProdutos";
 import { Categoria } from "shared/interfaces/ICategoria";
@@ -49,20 +49,20 @@ export default function EditarProduto() {
     };
     atualizarProduto();
   };
+  useEffect(() => {
+    const listarCategorias = async () => {
+      try {
+        const response = await api.get(`/categoria`);
+        const data = await response.data;
+        setListaCategorias(data);
+      } catch (error) {
+        alert("Erro na requisição");
+        console.log(error);
+      }
+    };
 
-  const listarCategorias = async () => {
-    try {
-      const response = await api.get(`/categoria`);
-      const data = await response.data;
-      setListaCategorias(data);
-    } catch (error) {
-      alert("Erro na requisição");
-      console.log(error);
-    }
-  };
-
-  listarCategorias();
-
+    listarCategorias();
+  }, []);
   return (
     <div>
       <CabecalhoListaProdutos

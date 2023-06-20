@@ -3,7 +3,7 @@ import { ListarProdutos } from "componentes/ListarProdutos";
 import Botao from "componentes/Botao";
 import CabecalhoListaProdutos from "componentes/CabecalhoListaProdutos";
 import CampoInput from "componentes/CampoInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { api } from "lib/axios";
 import toast from "react-hot-toast";
 import { Categoria } from "shared/interfaces/ICategoria";
@@ -47,19 +47,19 @@ export default function PainelAdminProduto() {
     setPreco("");
     setImagem("");
   };
-
-  const listarCategorias = async () => {
-    try {
-      const response = await api.get(`/categoria`);
-      const data = await response.data;
-      setListaCategorias(data);
-    } catch (error) {
-      alert("Erro na requisição");
-      console.log(error);
-    }
-  };
-  listarCategorias();
-
+  useEffect(() => {
+    const listarCategorias = async () => {
+      try {
+        const response = await api.get(`/categoria`);
+        const data = await response.data;
+        setListaCategorias(data);
+      } catch (error) {
+        alert("Erro na requisição");
+        console.log(error);
+      }
+    };
+    listarCategorias();
+  }, []);
   return (
     <>
       <CabecalhoListaProdutos

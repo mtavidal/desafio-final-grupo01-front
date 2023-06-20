@@ -5,6 +5,7 @@ import { api } from "lib/axios";
 import { ProdutoResponse } from "shared/interfaces/IProdutos";
 import Botao from "componentes/Botao";
 import { CardProdutoEditar } from "componentes/CardProdutoEditar";
+import CarregandoPagina from "componentes/CarregandoPagina";
 
 interface ListarProdutosProps {
   ehPaginaHome?: boolean;
@@ -27,8 +28,8 @@ export function ListarProdutos({
   const [estaCarregandoMais, setEstaCarregandoMais] = useState(false);
 
   const getMaisProdutos = async () => {
+    setEstaCarregandoMais(true);
     try {
-      setEstaCarregandoMais(true);
       const response = await api.get("/products", {
         params: {
           limit,
@@ -97,7 +98,9 @@ export function ListarProdutos({
 
   return (
     <div className={styles.containerProdutos}>
-      {ehCarregamentoInicial && <p>Carregando produtos</p>}
+      {ehCarregamentoInicial && (
+        <CarregandoPagina visibilidade={ehCarregamentoInicial} />
+      )}
       <div className={styles.listarProdutos}>
         {produtos.map((produto) => {
           return ehPaginaAdmin ? (
