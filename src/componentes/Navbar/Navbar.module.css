@@ -48,6 +48,7 @@
 .shoppingCartIcon {
   color: var(--azulclaro);
   margin-left: 20px;
+  font-size: 1.9rem;
 }
 
 .menuIcon {

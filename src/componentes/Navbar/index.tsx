@@ -71,7 +71,10 @@ export default function Navbar({ ehAdmin, temUsuario }: NavbarProps) {
               }}
             >
               <Badge color="error" badgeContent={quantidadeProduto}>
-                <IconeCarrinho className={styles.shoppingCartIcon} />
+                <IconeCarrinho
+                  className={styles.shoppingCartIcon}
+                  style={{ fontSize: 33 }}
+                />
               </Badge>
             </IconeBotao>
             {!toggleMenu ? (
