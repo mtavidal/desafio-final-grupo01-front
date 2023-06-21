@@ -17,6 +17,9 @@ export default function CarrosselBanner() {
       wrapAround={true}
       animation={"fade"}
       speed={1000}
+      cellAlign="center"
+      vertical={true}
+      style={{ width: "100%", padding: 0 }}
     >
       <div>
         <img src={imagem1} alt="oculos" />

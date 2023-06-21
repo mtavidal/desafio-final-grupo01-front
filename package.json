@@ -19,7 +19,6 @@
     "link": "^1.5.1",
     "nuka-carousel": "^6.0.3",
     "react": "^18.2.0",
-    "react-burger-menu": "^3.0.9",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-native": "^0.71.10",
@@ -54,7 +53,6 @@
     ]
   },
   "devDependencies": {
-    "@types/react-burger-menu": "^2.8.3",
     "@types/react-numeric-input": "^2.2.4"
   }
 }

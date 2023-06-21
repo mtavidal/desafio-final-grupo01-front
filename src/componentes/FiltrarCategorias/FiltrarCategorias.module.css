@@ -9,10 +9,11 @@
   flex-direction: column;
   width: 200px;
   padding: 10px;
+  margin: 0 10px;
   gap: 20px;
   background-color: var(--azulmedioclaro);
   border-radius: 7px;
-  width: 300px;
+  width: 230px;
   height: 263px;
 }
 .containerCategorias form h3 {

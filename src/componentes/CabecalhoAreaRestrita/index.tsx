@@ -1,5 +1,6 @@
 import LinkEstilizado from "componentes/LinkEstilizado";
 import styles from "./CabecalhoAreaRestrita.module.css";
+import { useState, useEffect } from "react";
 
 interface CabecalhoAreaRestritaProps {
   tituloArea: "Painel do Administrador" | "Painel do Cliente";
@@ -24,29 +25,46 @@ export default function CabecalhoAreaRestrita({
   link4,
   titulo4,
 }: CabecalhoAreaRestritaProps) {
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    const changeWidth = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", changeWidth);
+
+    return () => {
+      window.removeEventListener("resize", changeWidth);
+    };
+  }, []);
+
   return (
-    <nav className={styles.cabecalhoPainel}>
-      <div>
-        <LinkEstilizado style={styles.link} url={link1}>
-          {titulo1}
-        </LinkEstilizado>
-        <LinkEstilizado style={styles.link} url={link2}>
-          {titulo2}
-        </LinkEstilizado>
-        {tituloArea === "Painel do Administrador" && (
-          <>
-            <LinkEstilizado style={styles.link} url={link3}>
-              {titulo3}
+    <>
+      {screenWidth > 680 && (
+        <nav className={styles.cabecalhoPainel}>
+          <div>
+            <LinkEstilizado style={styles.link} url={link1}>
+              {titulo1}
             </LinkEstilizado>
-            <LinkEstilizado style={styles.link} url={link4}>
-              {titulo4}
+            <LinkEstilizado style={styles.link} url={link2}>
+              {titulo2}
             </LinkEstilizado>
-          </>
-        )}
-      </div>
-      <div>
-        <p>{tituloArea}</p>
-      </div>
-    </nav>
+            {tituloArea === "Painel do Administrador" && (
+              <>
+                <LinkEstilizado style={styles.link} url={link3}>
+                  {titulo3}
+                </LinkEstilizado>
+                <LinkEstilizado style={styles.link} url={link4}>
+                  {titulo4}
+                </LinkEstilizado>
+              </>
+            )}
+          </div>
+          <div>
+            <p>{tituloArea}</p>
+          </div>
+        </nav>
+      )}
+    </>
   );
 }

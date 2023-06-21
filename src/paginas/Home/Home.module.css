@@ -11,7 +11,7 @@
   width: 90%;
   align-self: center;
   margin: 0px;
-  padding-bottom: 15px;
+  padding-bottom: 40px;
   color: var(--azulescuro);
   font-size: 50px;
   line-height: 50px;
@@ -33,10 +33,26 @@
   margin: 20px;
 }
 
+@media screen and (max-width: 680px) {
+  .containerHome {
+    padding: 20px;
+    padding-top: 105px;
+  }
+  .titulo {
+    font-size: 30px;
+    line-height: 40px;
+  }
+}
+
 @media only screen and (max-width: 500px) {
   .titulo {
     width: 100%;
     font-size: 20px;
-    line-height: 20px;
+    line-height: 22px;
+  }
+
+  .containerMarcas img {
+    width: 90px;
+    margin: 15px;
   }
 }

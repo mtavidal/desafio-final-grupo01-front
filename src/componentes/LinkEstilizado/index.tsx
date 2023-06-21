@@ -6,6 +6,7 @@ interface LinksProps {
   children: ReactElement | string;
   style: string;
   target?: string;
+  recolherMenu?: () => void;
 }
 
 export default function LinkEstilizado({
@@ -13,9 +14,10 @@ export default function LinkEstilizado({
   children,
   style,
   target,
+  recolherMenu,
 }: LinksProps) {
   return (
-    <NavLink to={url} className={style} target={target}>
+    <NavLink onClick={recolherMenu} to={url} className={style} target={target}>
       {children}
     </NavLink>
   );

@@ -59,9 +59,18 @@
   }
 }
 
+@media screen and (max-width: 680px) {
+  .containerPainel {
+    padding-top: 20%;
+  }
+  .containerPainel form {
+    width: 80%;
+  }
+}
+
 @media only screen and (max-width: 500px) {
   .containerPainel {
-    padding: 15% 0;
+    padding-top: 100px;
   }
   .containerPainel form {
     width: 85%;

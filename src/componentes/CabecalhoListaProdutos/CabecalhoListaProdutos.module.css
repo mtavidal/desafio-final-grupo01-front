@@ -34,9 +34,19 @@
   }
 }
 
+@media screen and (max-width: 680px) {
+  .containerCabProdutos {
+    padding-top: 70px;
+    height: 260px;
+  }
+}
+
 @media only screen and (max-width: 500px) {
+  .containerCabProdutos {
+    height: 270px;
+  }
   .containerCabProdutos h1 {
-    font-size: 35px;
+    font-size: 34px;
     text-align: center;
     line-height: 35px;
   }

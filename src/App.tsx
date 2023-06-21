@@ -2,6 +2,7 @@ import Cabecalho from "componentes/Cabecalho";
 import CabecalhoAdmin from "componentes/CabecalhoAdmin";
 import CabecalhoCliente from "componentes/CabecalhoCliente";
 import CarregandoPagina from "componentes/CarregandoPagina";
+import Navbar from "componentes/Navbar";
 import Rodape from "componentes/Rodape";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { api } from "lib/axios";
@@ -15,6 +16,7 @@ function App() {
     (state) => state.authReducer
   );
   const dispatch = useAppDispatch();
+  const temUsuario = usuario ? true : false;
   const ehAdmin = usuario?.type === "Administrador" ? true : false;
 
   useEffect(() => {
@@ -45,6 +47,7 @@ function App() {
       ) : (
         <>
           <Cabecalho />
+          <Navbar ehAdmin={ehAdmin} temUsuario={temUsuario} />
           {usuario ? ehAdmin ? <CabecalhoAdmin /> : <CabecalhoCliente /> : ""}
           <Router />
           <Rodape />
