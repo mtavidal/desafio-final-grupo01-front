@@ -18,6 +18,7 @@ export default function PainelAdminProduto() {
   const [listaCategorias, setListaCategorias] = useState<Categoria[]>([]);
   const [atualizaLista, setAtualizaLista] = useState(0);
   const [adicionandoProduto, setAdicionandoProduto] = useState(false);
+  const [listandoCategoria, setListandoCategoria] = useState(true);
 
   const notifyAdicionarProduto = () =>
     toast.success(`Produto adicionado com sucesso`);
@@ -61,6 +62,8 @@ export default function PainelAdminProduto() {
       } catch (error) {
         alert("Erro na requisição");
         console.log(error);
+      } finally {
+        setListandoCategoria(false);
       }
     };
     listarCategorias();
@@ -107,14 +110,20 @@ export default function PainelAdminProduto() {
                   setCategoria(evento.target.value)
                 }
               >
-                <option value="">Selecione a categoria</option>
-                {listaCategorias.map((categoria) => {
-                  return (
-                    <option key={categoria.id} value={categoria.id}>
-                      {categoria.nome}
-                    </option>
-                  );
-                })}
+                {listandoCategoria ? (
+                  <option value="">Carregando Categorias</option>
+                ) : (
+                  <>
+                    <option value="">Selecione a categoria</option>
+                    {listaCategorias.map((categoria) => {
+                      return (
+                        <option key={categoria.id} value={categoria.id}>
+                          {categoria.nome}
+                        </option>
+                      );
+                    })}
+                  </>
+                )}
               </select>
               <CampoInput
                 obrigatorio={true}

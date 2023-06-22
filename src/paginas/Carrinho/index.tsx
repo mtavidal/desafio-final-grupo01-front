@@ -100,7 +100,7 @@ export default function Carrinho() {
               <>
                 {produtos}
                 <div className={styles.total}>
-                  <h2>Total da compra:</h2>
+                  <h2>Total do pedido:</h2>
                   <h2>
                     {new Intl.NumberFormat("PT-BR", {
                       style: "currency",
