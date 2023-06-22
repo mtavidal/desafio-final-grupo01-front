@@ -5,6 +5,12 @@
 }
 
 .carrossel img {
-  width: 100%;
+  width: 80%;
   box-shadow: 0 0 10px var(--azulmedioclaro);
+}
+
+@media screen and (max-width: 680px) {
+  .carrossel img {
+    width: 100%;
+  }
 }

@@ -6,6 +6,15 @@
   padding: 40px 0;
   min-height: 38vh;
 }
+.carrinhovazio {
+  width: 15%;
+}
+.carrinhovazioTexto {
+  color: var(--azulmedioescuro2);
+  padding-bottom: 35px;
+  text-align: center;
+  width: 50%;
+}
 
 .botoes {
   width: 95%;
@@ -40,5 +49,12 @@
   }
   .total {
     font-size: 13px;
+  }
+  .carrinhovazio {
+    width: 40%;
+  }
+  .carrinhovazioTexto {
+    font-size: 18px;
+    width: 80%;
   }
 }

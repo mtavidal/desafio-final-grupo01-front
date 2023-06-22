@@ -9,6 +9,7 @@ import { api } from "lib/axios";
 import { toast } from "react-hot-toast";
 import { useState } from "react";
 import CarregandoPagina from "componentes/CarregandoPagina";
+import carrinhoVazio from "./carrinhoVazio.svg";
 
 export default function Carrinho() {
   const cartState = useAppSelector((store) => store.cartReducer);
@@ -83,8 +84,17 @@ export default function Carrinho() {
           <div className={styles.carrinho}>
             {cartState.cart.length === 0 ? (
               <>
-                <h2 style={{ paddingBottom: 30 }}>O carrinho está vazio. </h2>
-                <Botao onClick={irParaProdutos}>Continuar comprando</Botao>
+                <img
+                  className={styles.carrinhovazio}
+                  src={carrinhoVazio}
+                  alt="carrinho vazio"
+                />
+                <h2 className={styles.carrinhovazioTexto}>
+                  Carrinho vazio, adicione seus produtos aqui!{" "}
+                </h2>
+                <Botao primario={false} onClick={irParaProdutos}>
+                  Continuar comprando
+                </Botao>
               </>
             ) : (
               <>

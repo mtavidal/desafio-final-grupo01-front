@@ -20,8 +20,8 @@ export function RotaLogin({ children }: RotaLoginProps) {
   }
 
   if (ehAdmin) {
-    return <Navigate to="/paineladmin/pedidos" />;
+    return <Navigate to="/" />;
   } else {
-    return <Navigate to="/painelcliente/pedidos" />;
+    return <Navigate to="/" />;
   }
 }
