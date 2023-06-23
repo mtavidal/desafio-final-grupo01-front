@@ -12,6 +12,7 @@ interface ListarProdutosProps {
   ehPaginaAdmin?: boolean;
   limitPaginas: number;
   atualizaLista?: number;
+  categoria?: number | null;
 }
 
 export function ListarProdutos({
@@ -19,6 +20,7 @@ export function ListarProdutos({
   limitPaginas,
   ehPaginaAdmin = false,
   atualizaLista = 0,
+  categoria = null,
 }: ListarProdutosProps) {
   const [produtos, setProdutos] = useState<ProdutoResponse[]>([]);
   const limit = limitPaginas;
@@ -35,6 +37,7 @@ export function ListarProdutos({
           limit,
           sort: "desc",
           skip,
+          categoria: categoria,
         },
       });
       const responseProdutos = response.data.produtos.map(
@@ -65,6 +68,7 @@ export function ListarProdutos({
           params: {
             limit: limitPaginas,
             sort: "desc",
+            categoria: categoria,
           },
         });
         const responseProdutos = response.data.produtos.map(
@@ -89,7 +93,7 @@ export function ListarProdutos({
     };
 
     getProdutos();
-  }, [limitPaginas, atualizaLista]);
+  }, [limitPaginas, atualizaLista, categoria]);
 
   function removeProdutos(id: number) {
     const novaListaProdutos = produtos.filter((produto) => produto.id !== id);
