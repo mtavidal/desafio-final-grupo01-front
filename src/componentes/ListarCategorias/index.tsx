@@ -20,7 +20,7 @@ export default function ListarCategorias({
   useEffect(() => {
     const getCategorias = async () => {
       try {
-        const response = await api.get("/categoria", {
+        const response = await api.get("/categorias", {
           params: {
             sort: "desc",
           },
@@ -45,7 +45,7 @@ export default function ListarCategorias({
     if (confirmaDeletar) {
       setCarregandoCategoria(true);
       try {
-        const response = await api.delete(`/categoria/${id}`);
+        const response = await api.delete(`/categorias/${id}`);
         setCategoriaDeletada(id);
         notifyDeleteCategoria(response.data);
       } catch (error) {
@@ -83,18 +83,23 @@ export default function ListarCategorias({
           </div>
           {categorias.map((categoria) => {
             return (
-              <div key={categoria.id} className={styles.cardCategorias}>
+              <div
+                key={categoria.idcategoria}
+                className={styles.cardCategorias}
+              >
                 <div className={styles.cardCategoriasTextos}>
                   <h4 className={styles.cardCategoriasTexto}>
                     {categoria.nome}
                   </h4>
-                  <h4 className={styles.cardCategoriasTexto}>{categoria.id}</h4>
+                  <h4 className={styles.cardCategoriasTexto}>
+                    {categoria.idcategoria}
+                  </h4>
                 </div>
                 <div className={styles.cardCategoriasBotoes}>
                   <Botao
                     onClick={() =>
                       editarCategoria({
-                        id: categoria.id,
+                        idcategoria: categoria.idcategoria,
                         nome: categoria.nome,
                       })
                     }
@@ -103,7 +108,7 @@ export default function ListarCategorias({
                   </Botao>
                   <Botao
                     primario={false}
-                    onClick={() => deletarCategoria(categoria.id)}
+                    onClick={() => deletarCategoria(categoria.idcategoria)}
                   >
                     Deletar
                   </Botao>

@@ -2,7 +2,7 @@ import styles from "./ListarProdutos.module.css";
 import { useEffect, useState } from "react";
 import { CardProduto } from "componentes/CardProduto";
 import { api } from "lib/axios";
-import { ProdutoResponse } from "shared/interfaces/IProdutos";
+import { Produto, ProdutoResponse } from "shared/interfaces/IProdutos";
 import Botao from "componentes/Botao";
 import { CardProdutoEditar } from "componentes/CardProdutoEditar";
 import CarregandoPagina from "componentes/CarregandoPagina";
@@ -32,26 +32,24 @@ export function ListarProdutos({
   const getMaisProdutos = async () => {
     setEstaCarregandoMais(true);
     try {
-      const response = await api.get("/products", {
-        params: {
-          limit,
-          sort: "desc",
-          skip,
-          categoria: categoria,
-        },
+      const response = await api.get("/produtos", {
+        // params: {
+        //   limit,
+        //   sort: "desc",
+        //   skip,
+        //   categoria: categoria,
+        // },
       });
-      const responseProdutos = response.data.produtos.map(
-        (produto: ProdutoResponse) => {
-          return {
-            id: produto.id,
-            title: produto.title,
-            image: produto.image,
-            price: produto.price,
-            description: produto.description,
-            category: produto.category,
-          };
-        }
-      );
+      const responseProdutos = response.data.map((produto: Produto) => {
+        return {
+          id: produto.idproduto,
+          title: produto.nome,
+          image: produto.foto,
+          price: produto.preco,
+          description: produto.descricao,
+          category: produto.idcategoria,
+        };
+      });
       setProdutos([...produtos, ...responseProdutos]);
       setSkip(skip + 10);
     } catch (error) {
@@ -64,28 +62,27 @@ export function ListarProdutos({
   useEffect(() => {
     const getProdutos = async () => {
       try {
-        const response = await api.get("/products", {
-          params: {
-            limit: limitPaginas,
-            sort: "desc",
-            categoria: categoria,
-          },
+        const response = await api.get("/produtos", {
+          // params: {
+          //   limit: limitPaginas,
+          //   sort: "desc",
+          //   categoria: categoria,
+          // },
         });
-        const responseProdutos = response.data.produtos.map(
-          (produto: ProdutoResponse) => {
-            return {
-              id: produto.id,
-              title: produto.title,
-              image: produto.image,
-              price: produto.price,
-              description: produto.description,
-              category: produto.category,
-            };
-          }
-        );
+        const responseProdutos = response.data.map((produto: Produto) => {
+          return {
+            id: produto.idproduto,
+            title: produto.nome,
+            image: produto.foto,
+            price: produto.preco,
+            description: produto.descricao,
+            category: produto.idcategoria,
+          };
+        });
         setProdutos(responseProdutos);
         setTotalProdutoBanco(response.data.total);
       } catch (error) {
+        console.log(error);
         alert("Erro na requisição");
       } finally {
         setEhCarregamentoInicial(false);

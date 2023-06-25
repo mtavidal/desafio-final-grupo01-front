@@ -12,8 +12,8 @@ interface ProdutoProps {
   title: string;
   image: string;
   price: number;
-  description: string;
-  category: Categoria;
+  description?: string;
+  category?: Categoria;
   atualizaLista?: (id: number) => void;
 }
 

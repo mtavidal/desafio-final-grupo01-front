@@ -6,8 +6,8 @@ interface CardProdutoPedidoProps {
   title: string;
   image: string;
   price: number;
-  description: string;
-  category: Categoria;
+  description?: string;
+  category?: Categoria;
   quantidade: number;
 }
 

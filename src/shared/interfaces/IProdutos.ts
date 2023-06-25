@@ -1,17 +1,13 @@
 import { Categoria } from "./ICategoria";
 
 export interface Produto {
-  id: number;
-  // nome: string
-  // foto: string
-  // preco: number
-  // descricao: string
-  // categoria: string
-  title: string;
-  image: string;
-  price: number;
-  description: string;
-  category: string;
+  idproduto: number;
+  nome: string;
+  foto: string;
+  preco: number;
+  descricao: string;
+  idcategoria: number;
+  categorias?: Categoria;
 }
 
 export interface ProdutoNoCarrinho extends ProdutoResponse {
@@ -22,6 +18,6 @@ export interface ProdutoResponse {
   title: string;
   image: string;
   price: number;
-  description: string;
-  category: Categoria;
+  description?: string;
+  category?: Categoria;
 }

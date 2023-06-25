@@ -21,7 +21,7 @@ export default function PainelAdminCategoria() {
     const adicionarCategoria = async () => {
       setAdicionandoCategorias(true);
       try {
-        const response = await api.post(`/categoria`, {
+        const response = await api.post(`/categorias`, {
           nome: categoria,
         });
         const data = await response.data;

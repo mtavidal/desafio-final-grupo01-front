@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./EditarProduto.module.css";
-import { ProdutoResponse } from "shared/interfaces/IProdutos";
+import { Produto, ProdutoResponse } from "shared/interfaces/IProdutos";
 import CampoInput from "componentes/CampoInput";
 import { toast } from "react-hot-toast";
 import Botao from "componentes/Botao";
@@ -13,13 +13,17 @@ import CarregandoPagina from "componentes/CarregandoPagina";
 export default function EditarProduto() {
   const location = useLocation();
   const dadosProduto = location.state as ProdutoResponse;
-  const [nome, setNome] = useState(`${dadosProduto.title}`);
-  const [descricao, setDescricao] = useState(`${dadosProduto.description}`);
-  const [categoria, setCategoria] = useState(`${dadosProduto.category.id}`);
-  const [preco, setPreco] = useState(`${dadosProduto.price}`);
-  const [imagem, setImagem] = useState(`${dadosProduto.image}`);
+  const [produto, setProduto] = useState<Produto>();
+  const [nome, setNome] = useState(`${produto?.nome}`);
+  const [descricao, setDescricao] = useState(`${produto?.descricao}`);
+  const [categoria, setCategoria] = useState<string | undefined>(
+    `${produto?.categorias ? produto?.categorias.idcategoria : null}`
+  );
+  const [preco, setPreco] = useState(`${produto?.preco}`);
+  const [imagem, setImagem] = useState(`${produto?.foto}`);
   const [listaCategorias, setListaCategorias] = useState<Categoria[]>([]);
   const [editando, setEditando] = useState(false);
+  const [carregandoProduto, setCarregandoProduto] = useState(true);
 
   const navigate = useNavigate();
   const notifyEditarProduto = (id: number) =>
@@ -50,9 +54,23 @@ export default function EditarProduto() {
     atualizarProduto();
   };
   useEffect(() => {
+    const getProdutoId = async () => {
+      try {
+        const response = await api.get(`/produtos/${dadosProduto.id}`);
+        const data = await response.data;
+        setProduto(data);
+      } catch (error) {
+        alert("Erro na requisição");
+        console.log(error);
+      } finally {
+        setCarregandoProduto(false);
+      }
+    };
+    getProdutoId();
+
     const listarCategorias = async () => {
       try {
-        const response = await api.get(`/categoria`);
+        const response = await api.get(`/categorias`);
         const data = await response.data;
         setListaCategorias(data);
       } catch (error) {
@@ -62,17 +80,17 @@ export default function EditarProduto() {
     };
 
     listarCategorias();
-  }, []);
+  }, [dadosProduto.id]);
   return (
     <div>
       <CabecalhoListaProdutos
         titulo="Gerenciamento de Produtos"
         subtitulo="Adicione, edite e delete os produtos"
       />
-      {editando ? (
+      {editando || carregandoProduto ? (
         <>
           <div className={styles.containerPainel}></div>
-          <CarregandoPagina visibilidade={editando} />
+          <CarregandoPagina visibilidade={editando || carregandoProduto} />
         </>
       ) : (
         <div className={styles.containerPainel}>
@@ -105,12 +123,15 @@ export default function EditarProduto() {
                   setCategoria(evento.target.value)
                 }
               >
-                <option value={dadosProduto.category.id}>
-                  {dadosProduto.category.nome}
+                <option value={produto?.categorias?.idcategoria}>
+                  {produto?.categorias?.nome}
                 </option>
                 {listaCategorias.map((categoria) => {
                   return (
-                    <option key={categoria.id} value={categoria.id}>
+                    <option
+                      key={categoria.idcategoria}
+                      value={categoria.idcategoria}
+                    >
                       {categoria.nome}
                     </option>
                   );

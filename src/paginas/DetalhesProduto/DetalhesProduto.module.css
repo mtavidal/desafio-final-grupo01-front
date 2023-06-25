@@ -3,6 +3,9 @@
   flex-direction: column;
   padding: 40px;
 }
+.containerPainel {
+  min-height: 38vh;
+}
 
 .cardDetalhes {
   display: flex;

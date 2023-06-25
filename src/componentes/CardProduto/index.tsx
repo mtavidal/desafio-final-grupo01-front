@@ -7,8 +7,8 @@ interface ProdutoProps {
   title: string;
   image: string;
   price: number;
-  description: string;
-  category: Categoria;
+  description?: string;
+  category?: Categoria;
 }
 
 export function CardProduto({

@@ -24,9 +24,12 @@ export default function EditarCategoria() {
     const atualizarCategoria = async () => {
       setEditando(true);
       try {
-        const response = await api.put(`/categoria/${dadosCategoria.id}`, {
-          nome: nome,
-        });
+        const response = await api.put(
+          `/categorias/${dadosCategoria.idcategoria}`,
+          {
+            nome: nome,
+          }
+        );
         const data = await response.data;
         notifyEditarCategoria(data.id);
       } catch (error) {

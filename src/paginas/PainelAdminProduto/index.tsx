@@ -56,7 +56,7 @@ export default function PainelAdminProduto() {
   useEffect(() => {
     const listarCategorias = async () => {
       try {
-        const response = await api.get(`/categoria`);
+        const response = await api.get(`/categorias`);
         const data = await response.data;
         setListaCategorias(data);
       } catch (error) {
@@ -117,7 +117,10 @@ export default function PainelAdminProduto() {
                     <option value="">Selecione a categoria</option>
                     {listaCategorias.map((categoria) => {
                       return (
-                        <option key={categoria.id} value={categoria.id}>
+                        <option
+                          key={categoria.idcategoria}
+                          value={categoria.idcategoria}
+                        >
                           {categoria.nome}
                         </option>
                       );
