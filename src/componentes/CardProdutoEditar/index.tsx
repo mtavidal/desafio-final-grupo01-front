@@ -43,7 +43,7 @@ export function CardProdutoEditar({
     if (confirmaDeletar) {
       setDeletandoProduto(true);
       try {
-        const response = await api.delete(`/products/${id}`);
+        const response = await api.delete(`/produtos/${id}`);
         atualizaLista?.(id);
         notifyDelete(response.data);
       } catch (error) {

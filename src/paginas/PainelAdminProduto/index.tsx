@@ -28,13 +28,22 @@ export default function PainelAdminProduto() {
     const adicionarProduto = async () => {
       setAdicionandoProduto(true);
       try {
-        const response = await api.post(`/products`, {
-          title: nome,
-          price: preco,
-          description: descricao,
-          image: imagem,
-          category: categoria,
-        });
+        api.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
+        const response = await api.post(
+          `/produtos`,
+          {
+            nome: nome,
+            preco: preco,
+            descricao: descricao,
+            foto: imagem,
+            idcategoria: categoria,
+          },
+          {
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+            },
+          }
+        );
         const data = await response.data;
         setAtualizaLista(data.id);
         notifyAdicionarProduto();

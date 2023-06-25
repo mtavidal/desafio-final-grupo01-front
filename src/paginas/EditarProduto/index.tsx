@@ -14,13 +14,13 @@ export default function EditarProduto() {
   const location = useLocation();
   const dadosProduto = location.state as ProdutoResponse;
   const [produto, setProduto] = useState<Produto>();
-  const [nome, setNome] = useState(`${produto?.nome}`);
-  const [descricao, setDescricao] = useState(`${produto?.descricao}`);
+  const [nome, setNome] = useState("");
+  const [descricao, setDescricao] = useState("");
   const [categoria, setCategoria] = useState<string | undefined>(
     `${produto?.categorias ? produto?.categorias.idcategoria : null}`
   );
-  const [preco, setPreco] = useState(`${produto?.preco}`);
-  const [imagem, setImagem] = useState(`${produto?.foto}`);
+  const [preco, setPreco] = useState("");
+  const [imagem, setImagem] = useState("");
   const [listaCategorias, setListaCategorias] = useState<Categoria[]>([]);
   const [editando, setEditando] = useState(false);
   const [carregandoProduto, setCarregandoProduto] = useState(true);
@@ -34,7 +34,7 @@ export default function EditarProduto() {
     const atualizarProduto = async () => {
       setEditando(true);
       try {
-        const response = await api.put(`/products/${dadosProduto.id}`, {
+        const response = await api.put(`/produtos/${dadosProduto.id}`, {
           id: dadosProduto.id,
           title: nome,
           price: preco,
@@ -59,6 +59,10 @@ export default function EditarProduto() {
         const response = await api.get(`/produtos/${dadosProduto.id}`);
         const data = await response.data;
         setProduto(data);
+        setNome(data.nome);
+        setPreco(data.preco);
+        setDescricao(data.descricao);
+        setImagem(data.foto);
       } catch (error) {
         alert("Erro na requisição");
         console.log(error);

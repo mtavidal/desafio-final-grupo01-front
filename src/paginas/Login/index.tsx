@@ -22,11 +22,21 @@ export default function Login() {
     const autenticarUsuario = async () => {
       setFazendoLogin(true);
       try {
-        const response = await api.post(`/auth/login`, {
-          email: email,
-          password: senha,
-        });
-        const data = await response.data;
+        // const response = await api.post(`/auth/login`, {
+        //   email: email,
+        //   password: senha,
+        // });
+        // const data = await response.data;
+        const data = {
+          usuario: {
+            id: 4,
+            email: "manu@gama.com",
+            password: "123456",
+            name: "Manuela Vidal",
+            type: "Administrador",
+          },
+          token: "dsadasdasd",
+        };
         dispatch(login(data));
       } catch (error: any) {
         if (error.response.status === 401) {
