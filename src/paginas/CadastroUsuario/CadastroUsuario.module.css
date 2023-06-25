@@ -1,48 +1,24 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  text-decoration: none;
+.containerPainel {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 6%;
+  min-height: 58vh;
 }
-
-.container {
-  margin-bottom: 250px;
-
-  box-sizing: border-box;
-
-  position: relative;
+.containerPainel form {
+  align-items: center;
+  display: flex;
   width: 483px;
-  height: 463px;
-  left: 458px;
-  top: 250px;
-
-  /* Colors / Grey / White  */
-
-  background: #ffffff;
-  border: 3px solid #526d82;
-}
-
-.container .header {
-  display: flex;
+  padding: 30px;
   flex-direction: column;
-  align-items: center;
-  margin-bottom: 40px;
+  background-color: var(--branco);
+  border: 2px solid var(--azulmedioescuro2);
+  border-radius: 7px;
+  gap: 10px;
 }
 
-.cotainer .header span {
-  padding-top: 15px;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 24px;
-}
-
-.container form {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.container form .inputContainer input {
+.containerFormUsuarios form input {
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -62,78 +38,72 @@
   border: 0.5px solid #000000;
 }
 
-.container form .button {
-  color: #ffffff;
-  width: 275px;
-  height: 50px;
-  line-height: 22px;
-  margin-top: 44px;
-
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
-
-  background: #526d82;
-  /* Primary */
-
-  border: 1px solid #0d0d0d;
-}
-
-.container form .button:hover {
-  cursor: pointer;
-  opacity: 0.8;
-}
-
-.container h1 {
+.containerFormUsuarios form h3 {
+  color: var(--azulmedioescuro2);
+  text-align: center;
+  font-size: 25px;
+  margin: 0;
   font-family: var(--fonte2);
-  margin-top: 30px;
-  width: 161px;
   height: 30px;
-  left: 550px;
   top: 30px;
-  color: #111111;
-
-  font-style: normal;
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 30px;
-  /* identical to box height, or 136% */
-
-  letter-spacing: -0.55px;
-
-  /* Colors / Base / Color 6 */
-
-  color: #111111;
 }
 
-.container p {
+.containerFormUsuarios form p {
   width: 424px;
   height: 26px;
   left: 30px;
   top: 80px;
   margin-top: 20px;
 
-  /* Paragraph 03 */
-
+  margin-bottom: 26px;
   font-family: var(--fonte);
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 26px;
-  /* identical to box height, or 162% */
 
   letter-spacing: -0.2px;
-
-  /* Colors / Grey / Grey 2 */
 
   color: #a9abbd;
 }
 
-.container footer {
-  margin-top: 286px;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 2.5rem; /* altura do rodapé */
+.containerFormUsuarios {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.estiloLink {
+  color: var(--azulmedioescuro);
+  text-decoration: underline;
+}
+
+.estiloLink:hover {
+  color: var(--azulescuro);
+  text-decoration: underline;
+}
+
+@media only screen and (max-width: 1400px) {
+  .containerPainel form {
+    width: 55%;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .containerPainel {
+    padding-top: 20%;
+  }
+  .containerPainel form {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .containerPainel {
+    padding-top: 100px;
+    height: 95vh;
+  }
+  .containerPainel form {
+    width: 85%;
+  }
 }

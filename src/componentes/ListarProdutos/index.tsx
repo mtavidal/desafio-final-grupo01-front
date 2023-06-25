@@ -94,6 +94,7 @@ export function ListarProdutos({
 
   function removeProdutos(id: number) {
     const novaListaProdutos = produtos.filter((produto) => produto.id !== id);
+    setSkip(skip - 1);
     setProdutos([...novaListaProdutos]);
   }
 

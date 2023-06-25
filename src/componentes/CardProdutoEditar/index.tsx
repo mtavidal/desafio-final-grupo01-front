@@ -47,7 +47,7 @@ export function CardProdutoEditar({
         atualizaLista?.(id);
         notifyDelete(response.data);
       } catch (error) {
-        alert("Erro na requisição");
+        console.log(error);
       } finally {
         setDeletandoProduto(false);
       }
