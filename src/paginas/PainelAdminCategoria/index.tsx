@@ -28,7 +28,6 @@ export default function PainelAdminCategoria() {
         setAtualizaLista(data.id);
         notifyAdicionarCategoria();
       } catch (error) {
-        alert("Erro na requisição");
         console.log(error);
       } finally {
         setAdicionandoCategorias(false);
