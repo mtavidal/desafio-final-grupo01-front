@@ -3,10 +3,9 @@ import styles from "./CadastroUsuario.module.css";
 import Botao from "componentes/Botao";
 import { useState } from "react";
 import { api } from "lib/axios";
-import { Link } from "react-router-dom";
-import { useAppDispatch } from "hooks";
+import { useNavigate } from "react-router-dom";
 import CarregandoPagina from "componentes/CarregandoPagina";
-import { AxiosError } from "axios";
+import { toast } from "react-hot-toast";
 
 const CadastroUsuario = () => {
   const [nomeCompleto, setNomeCompleto] = useState("");
@@ -14,41 +13,31 @@ const CadastroUsuario = () => {
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
   const [fazendoCadastro, setFazendoCadastro] = useState(false);
-  const [senhaEmailErrado, setSenhaEmailErrado] = useState(false);
+  const [senhaErrada, setSenhaErrada] = useState(false);
+  const navigate = useNavigate();
+  const notifyCadastroSucesso = (nome: string) =>
+    toast.success(`${nome}, seu cadastro foi realizado com sucesso`);
 
   const cadastrarUsuario = async (evento: React.FormEvent<HTMLFormElement>) => {
     evento.preventDefault();
-    setSenhaEmailErrado(false);
-
     if (senha !== confirmarSenha) {
-      alert("A senha e a confirmação de senha devem ser iguais.");
+      setSenhaErrada(true);
       return;
     }
-
     const autenticarUsuario = async () => {
       setFazendoCadastro(true);
-
       try {
-        const response = await api.post(`/auth/cadastro`, {
-          nome: nomeCompleto,
+        const response = await api.post(`/users`, {
+          name: nomeCompleto,
           email: email,
           password: senha,
+          type: "Cliente",
         });
-
         const data = await response.data;
-        // Lógica adicional de tratamento de sucesso, se necessário
+        notifyCadastroSucesso(data.name);
+        navigate("/login");
       } catch (error: any) {
-        if (
-          (error as AxiosError).response &&
-          (error as AxiosError).response?.status === 401
-        ) {
-          setSenhaEmailErrado(true);
-        } else {
-          alert("Erro na requisição");
-        }
-
-        console.log((error as AxiosError).response?.data);
-        console.log(error);
+        alert("Erro na requisição");
       } finally {
         setFazendoCadastro(false);
       }
@@ -74,34 +63,44 @@ const CadastroUsuario = () => {
             <form onSubmit={cadastrarUsuario}>
               <h3>Criar uma conta</h3>
               <p>Compre rápido e acompanhe seus pedidos em um só lugar!</p>
-              <input
-                type="text"
-                value={nomeCompleto}
-                onChange={(e) => setNomeCompleto(e.target.value)}
+              <CampoInput
+                obrigatorio={true}
+                label="Nome Completo"
                 placeholder="Nome completo"
+                valor={nomeCompleto}
+                aoAlterado={(valor) => setNomeCompleto(valor)}
+                tipo="text"
+                comBorda={true}
               />
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
+              <CampoInput
+                obrigatorio={true}
+                label="Email"
+                placeholder="Email do usuário"
+                valor={email}
+                aoAlterado={(valor) => setEmail(valor)}
+                tipo="email"
+                comBorda={true}
               />
-              <input
-                type="password"
-                value={senha}
-                onChange={(e) => setSenha(e.target.value)}
+              <CampoInput
+                obrigatorio={true}
+                label="Senha"
                 placeholder="Senha"
+                valor={senha}
+                aoAlterado={(valor) => setSenha(valor)}
+                tipo="password"
+                comBorda={true}
               />
-              <input
-                type="password"
-                value={confirmarSenha}
-                onChange={(e) => setConfirmarSenha(e.target.value)}
+              <CampoInput
+                obrigatorio={true}
+                label="Confirme sua senha"
                 placeholder="Confirmar Senha"
+                valor={confirmarSenha}
+                aoAlterado={(valor) => setConfirmarSenha(valor)}
+                tipo="password"
+                comBorda={true}
               />
+              {senhaErrada ? <h4>Senhas diferentes.</h4> : <h4> </h4>}
               <Botao primario={false}>Cadastrar</Botao>
-              <Link className={styles.estiloLink} to="/login">
-                Faça seu login
-              </Link>
             </form>
           </div>
         </div>
