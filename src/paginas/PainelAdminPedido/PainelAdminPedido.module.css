@@ -31,6 +31,12 @@
   color: var(--azulescuro);
   font-size: 14px;
 }
+.tituloSemPedido {
+  font-family: var(--fonte2);
+  text-align: center;
+  color: var(--azulescuro);
+  font-size: 26px;
+}
 
 .detalhesProdutoPedido {
   display: flex;

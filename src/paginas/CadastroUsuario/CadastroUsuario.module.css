@@ -6,81 +6,54 @@
   padding: 6%;
   min-height: 58vh;
 }
-.containerPainel form {
-  align-items: center;
-  display: flex;
-  width: 483px;
-  padding: 30px;
-  flex-direction: column;
-  background-color: var(--branco);
-  border: 2px solid var(--azulmedioescuro2);
-  border-radius: 7px;
-  gap: 10px;
-}
-
-.containerFormUsuarios form input {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 12px;
-
-  width: 398px;
-  height: 40px;
-
-  margin-bottom: 10px;
-
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
-
-  border: 0.5px solid #000000;
-}
-
-.containerFormUsuarios form h3 {
-  color: var(--azulmedioescuro2);
-  text-align: center;
-  font-size: 25px;
-  margin: 0;
-  font-family: var(--fonte2);
-  height: 30px;
-  top: 30px;
-}
-
-.containerFormUsuarios form p {
-  width: 424px;
-  height: 26px;
-  left: 30px;
-  top: 80px;
-  margin-top: 20px;
-
-  margin-bottom: 26px;
-  font-family: var(--fonte);
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 26px;
-
-  letter-spacing: -0.2px;
-
-  color: #a9abbd;
-}
-
 .containerFormUsuarios {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
 
+.containerPainel form {
+  display: flex;
+  width: 30%;
+  padding: 30px;
+  flex-direction: column;
+  background-color: var(--branco);
+  border: 2px solid var(--azulmedioescuro2);
+  border-radius: 7px;
+}
+
+.containerFormUsuarios form h3 {
+  color: var(--azulmedioescuro2);
+  text-align: center;
+  font-size: 25px;
+  font-family: var(--fonte2);
+}
+
+.containerFormUsuarios form p {
+  margin-top: 10px;
+  font-family: var(--fonte);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: var(--cinza);
+}
+
 .estiloLink {
+  padding-top: 10px;
   color: var(--azulmedioescuro);
   text-decoration: underline;
+  text-align: center;
 }
 
 .estiloLink:hover {
   color: var(--azulescuro);
   text-decoration: underline;
+}
+.containerPainel form h4 {
+  color: red;
+  font-size: 14px;
+  padding: 10px 0;
 }
 
 @media only screen and (max-width: 1400px) {

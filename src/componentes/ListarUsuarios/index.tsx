@@ -37,7 +37,7 @@ export default function ListarUsuarios({
   }, [atualizaLista, usuarioDeletado]);
 
   const notifyDeleteUsuario = (id: any) =>
-    toast.success(`Produto com id: ${id} deletado com sucesso!`);
+    toast.success(`Usuário com id: ${id} deletado com sucesso!`);
 
   const deletarUsuario = async (id: number) => {
     const confirmaDeletar = window.confirm(
