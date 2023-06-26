@@ -24,11 +24,20 @@ function App() {
       try {
         if (token) {
           api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-          // if (!usuario) {
-          //   const response = await api.get(`/auth/check`);
-          //   const data = await response.data;
-          //   dispatch(setUser(data.usuario));
-          // }
+          if (!usuario) {
+            // const response = await api.get(`/auth/check`);
+            //const data = await response.data;
+            const data = {
+              usuario: {
+                id: 4,
+                email: "manu@gmail.com",
+                password: "senhateste",
+                name: "Manuela Vidal",
+                type: "Administrador",
+              },
+            };
+            dispatch(setUser(data.usuario));
+          }
         }
       } catch (error) {
         alert("Erro na requisição");

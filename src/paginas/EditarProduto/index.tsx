@@ -35,15 +35,15 @@ export default function EditarProduto() {
       setEditando(true);
       try {
         const response = await api.put(`/produtos/${dadosProduto.id}`, {
-          id: dadosProduto.id,
-          title: nome,
-          price: preco,
-          description: descricao,
-          image: imagem,
-          category: categoria,
+          idproduto: dadosProduto.id,
+          nome: nome,
+          preco: preco,
+          descricao: descricao,
+          foto: imagem,
+          categoria: categoria,
         });
         const data = await response.data;
-        notifyEditarProduto(data.id);
+        notifyEditarProduto(data.idproduto);
       } catch (error) {
         console.log(error);
       } finally {

@@ -24,20 +24,21 @@ export default function EditarCategoria() {
     const atualizarCategoria = async () => {
       setEditando(true);
       try {
-        api.defaults.headers.put["Access-Control-Allow-Origin"] = "*";
+        api.defaults.headers.put["access-control-allow-origin"] = "*";
         const response = await api.put(
           `/categorias/${dadosCategoria.idcategoria}`,
           {
             nome: nome,
+            idcategoria: dadosCategoria.idcategoria,
           },
           {
             headers: {
-              "Access-Control-Allow-Origin": "*",
+              "access-control-allow-origin": "*",
             },
           }
         );
         const data = await response.data;
-        notifyEditarCategoria(data.id);
+        notifyEditarCategoria(data.idcategoria);
       } catch (error) {
         alert("Erro na requisição");
         console.log(error);

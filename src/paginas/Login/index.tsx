@@ -30,8 +30,8 @@ export default function Login() {
         const data = {
           usuario: {
             id: 4,
-            email: "manu@gama.com",
-            password: "123456",
+            email: "manu@gmail.com",
+            password: "senhateste",
             name: "Manuela Vidal",
             type: "Administrador",
           },
