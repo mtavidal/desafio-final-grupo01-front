@@ -36,7 +36,6 @@ export default function EditarUsuario() {
         const data = await response.data;
         notifyEditarUsuario(data.id);
       } catch (error) {
-        alert("Erro na requisição");
         console.log(error);
       } finally {
         setEditando(false);

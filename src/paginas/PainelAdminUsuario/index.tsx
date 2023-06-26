@@ -35,7 +35,6 @@ export default function PainelAdminUsuario() {
         setAtualizaLista(data.id);
         notifyAdicionarUsuario();
       } catch (error) {
-        alert("Erro na requisição");
         console.log(error);
       } finally {
         setAdicionandoUsuario(false);
