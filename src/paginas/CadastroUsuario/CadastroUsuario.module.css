@@ -50,15 +50,19 @@
   color: var(--azulescuro);
   text-decoration: underline;
 }
-.containerPainel form h4 {
-  color: red;
-  font-size: 14px;
-  padding: 10px 0;
+
+.validacao {
+  font-size: 15px;
+}
+.validacao li {
+  padding: 1px;
+  margin: 10px 0;
+  align-items: center;
 }
 
 @media only screen and (max-width: 1400px) {
   .containerPainel form {
-    width: 55%;
+    width: 70%;
   }
 }
 
@@ -67,14 +71,14 @@
     padding-top: 20%;
   }
   .containerPainel form {
-    width: 80%;
+    width: 90%;
   }
 }
 
 @media only screen and (max-width: 500px) {
   .containerPainel {
-    padding-top: 100px;
-    height: 95vh;
+    padding-top: 150px;
+    height: 110vh;
   }
   .containerPainel form {
     width: 85%;

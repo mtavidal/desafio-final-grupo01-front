@@ -6,6 +6,7 @@ import { api } from "lib/axios";
 import { useNavigate } from "react-router-dom";
 import CarregandoPagina from "componentes/CarregandoPagina";
 import { toast } from "react-hot-toast";
+import PasswordChecklist from "react-password-checklist";
 
 const CadastroUsuario = () => {
   const [nomeCompleto, setNomeCompleto] = useState("");
@@ -13,17 +14,14 @@ const CadastroUsuario = () => {
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
   const [fazendoCadastro, setFazendoCadastro] = useState(false);
-  const [senhaErrada, setSenhaErrada] = useState(false);
+  const [hiddenBotao, setHiddenBotao] = useState(true);
   const navigate = useNavigate();
   const notifyCadastroSucesso = (nome: string) =>
     toast.success(`${nome}, seu cadastro foi realizado com sucesso`);
+  console.log(hiddenBotao);
 
   const cadastrarUsuario = async (evento: React.FormEvent<HTMLFormElement>) => {
     evento.preventDefault();
-    if (senha !== confirmarSenha) {
-      setSenhaErrada(true);
-      return;
-    }
     const autenticarUsuario = async () => {
       setFazendoCadastro(true);
       try {
@@ -37,7 +35,7 @@ const CadastroUsuario = () => {
         notifyCadastroSucesso(data.name);
         navigate("/login");
       } catch (error: any) {
-        alert("Erro na requisição");
+        console.log(error);
       } finally {
         setFazendoCadastro(false);
       }
@@ -99,8 +97,37 @@ const CadastroUsuario = () => {
                 tipo="password"
                 comBorda={true}
               />
-              {senhaErrada ? <h4>Senhas diferentes.</h4> : <h4> </h4>}
-              <Botao primario={false}>Cadastrar</Botao>
+              <PasswordChecklist
+                rules={[
+                  "minLength",
+                  "specialChar",
+                  "number",
+                  "capital",
+                  "match",
+                ]}
+                minLength={5}
+                value={senha}
+                valueAgain={confirmarSenha}
+                messages={{
+                  minLength: "A senha tem no mínimo 5 caracteres.",
+                  specialChar: "A senha tem pelo menos 1 caractere especial.",
+                  number: "A senha tem pelo menos 1 número.",
+                  capital: "A senha tem pelo menos 1 letra maiúscula.",
+                  match: "As senhas coincidem.",
+                }}
+                iconSize={12}
+                className={styles.validacao}
+                onChange={(isValid) => {
+                  if (isValid) {
+                    setHiddenBotao(false);
+                  } else {
+                    setHiddenBotao(true);
+                  }
+                }}
+              />
+              <Botao disabled={hiddenBotao} primario={false}>
+                Cadastrar
+              </Botao>
             </form>
           </div>
         </div>
