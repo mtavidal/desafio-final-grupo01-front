@@ -32,9 +32,27 @@
   margin-top: 25px;
   color: var(--azulescuro);
 }
+.total {
+  display: flex;
+  justify-content: space-around;
+  border-top: 2px solid var(--azulescuro);
+  width: 60%;
+  padding: 0 20px;
+  margin-top: -4px;
+  background-color: var(--azulmedioclaro);
+  color: var(--azulescuro);
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+.total h2 {
+  padding: 17px 0;
+}
 
 @media only screen and (max-width: 800px) {
   .containerPedido {
+    width: 90%;
+  }
+  .total {
     width: 90%;
   }
 }

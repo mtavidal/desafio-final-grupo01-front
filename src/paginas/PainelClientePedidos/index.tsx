@@ -104,6 +104,15 @@ export default function PainelClientePedidos() {
                               );
                             })}
                           </>
+                          <div className={styles.totalPedido}>
+                            <h4>Total:</h4>
+                            <h4>
+                              {new Intl.NumberFormat("PT-BR", {
+                                style: "currency",
+                                currency: "BRL",
+                              }).format(pedido.totalPedido)}
+                            </h4>
+                          </div>
                         </div>
                         <div className={styles.detalhesProdutoPedidoBotao}>
                           <Botao

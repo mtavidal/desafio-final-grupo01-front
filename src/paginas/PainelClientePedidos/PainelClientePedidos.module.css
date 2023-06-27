@@ -60,6 +60,22 @@
   display: flex;
 }
 
+.totalPedido {
+  display: flex;
+  justify-content: space-between;
+  border-top: 2px solid var(--azulescuro);
+  margin-top: 10px;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.totalPedido h4 {
+  border-bottom: none;
+  text-align: center;
+  padding: 0;
+}
+
 @media only screen and (max-width: 800px) {
   .containerPedido {
     width: 100%;

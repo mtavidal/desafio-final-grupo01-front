@@ -28,6 +28,15 @@ export default function SucessoDoPedido() {
             return <CardProdutoPedido key={produto.id} {...produto} />;
           })}
         </div>
+        <div className={styles.total}>
+          <h2>Total do pedido:</h2>
+          <h2>
+            {new Intl.NumberFormat("PT-BR", {
+              style: "currency",
+              currency: "BRL",
+            }).format(pedidoRetorno.totalPedido)}
+          </h2>
+        </div>
       </div>
     </div>
   );

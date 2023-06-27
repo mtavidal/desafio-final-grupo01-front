@@ -55,6 +55,7 @@ export function ListarProdutos({
       });
       setProdutos([...produtos, ...responseProdutos]);
       setSkip(skip + 10);
+      setTotalProdutoBanco(response.data.total);
     } catch (error) {
       alert("Erro na requisição");
     } finally {
@@ -84,6 +85,7 @@ export function ListarProdutos({
         });
         setProdutos(responseProdutos);
         setTotalProdutoBanco(response.data.total);
+        setSkip(10);
       } catch (error) {
         console.log(error);
         alert("Erro na requisição");

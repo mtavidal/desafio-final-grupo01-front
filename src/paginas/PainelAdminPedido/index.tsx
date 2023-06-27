@@ -6,7 +6,6 @@ import { api } from "lib/axios";
 import Botao from "componentes/Botao";
 import { toast } from "react-hot-toast";
 import CarregandoPagina from "componentes/CarregandoPagina";
-import { padding } from "@mui/system";
 
 export default function PainelAdminPedido() {
   const [pedidos, setPedidos] = useState<Pedido[]>([]);
@@ -54,7 +53,6 @@ export default function PainelAdminPedido() {
         });
         setPedidos(response.data.carts);
         setTotalPedidoBanco(response.data.total);
-        console.log(response.data.carts);
       } catch (error) {
         alert("Erro na requisição");
       } finally {
@@ -135,6 +133,15 @@ export default function PainelAdminPedido() {
                               );
                             })}
                           </>
+                          <div className={styles.totalPedido}>
+                            <h4>Total:</h4>
+                            <h4>
+                              {new Intl.NumberFormat("PT-BR", {
+                                style: "currency",
+                                currency: "BRL",
+                              }).format(pedido.totalPedido)}
+                            </h4>
+                          </div>
                         </div>
                         <div className={styles.detalhesProdutoPedidoBotao}>
                           <Botao
