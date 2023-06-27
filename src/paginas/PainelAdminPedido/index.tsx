@@ -6,6 +6,7 @@ import { api } from "lib/axios";
 import Botao from "componentes/Botao";
 import { toast } from "react-hot-toast";
 import CarregandoPagina from "componentes/CarregandoPagina";
+import { padding } from "@mui/system";
 
 export default function PainelAdminPedido() {
   const [pedidos, setPedidos] = useState<Pedido[]>([]);
@@ -151,13 +152,15 @@ export default function PainelAdminPedido() {
             )}
 
             {!carregando && pedidos.length > 0 && (
-              <Botao
-                disabled={estaCarregandoMais}
-                hidden={totalPedidoBanco <= skip}
-                onClick={getMaisPedidos}
-              >
-                {estaCarregandoMais ? "Carregando" : "Carregar mais pedidos"}
-              </Botao>
+              <div style={{ paddingTop: 25 }}>
+                <Botao
+                  disabled={estaCarregandoMais}
+                  hidden={totalPedidoBanco <= skip}
+                  onClick={getMaisPedidos}
+                >
+                  {estaCarregandoMais ? "Carregando" : "Carregar mais pedidos"}
+                </Botao>
+              </div>
             )}
           </div>
         </div>
