@@ -5,4 +5,5 @@ export interface Pedido {
   data: string;
   userId: number;
   produtos: ProdutoNoCarrinho[];
+  totalPedido: number;
 }

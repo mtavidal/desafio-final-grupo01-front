@@ -52,6 +52,7 @@ export default function Carrinho() {
             userId: usuario.id,
             date: date.toLocaleDateString(),
             products: cartState.cart,
+            totalPedido: totalPedido,
           });
 
           navigate("/sucesso", {
