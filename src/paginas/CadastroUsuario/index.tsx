@@ -18,7 +18,6 @@ const CadastroUsuario = () => {
   const navigate = useNavigate();
   const notifyCadastroSucesso = (nome: string) =>
     toast.success(`${nome}, seu cadastro foi realizado com sucesso`);
-  console.log(hiddenBotao);
 
   const cadastrarUsuario = async (evento: React.FormEvent<HTMLFormElement>) => {
     evento.preventDefault();
