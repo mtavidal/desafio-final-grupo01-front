@@ -24,11 +24,11 @@ export default function PainelAdminUsuario() {
     const adicionarUsuario = async () => {
       setAdicionandoUsuario(true);
       try {
-        const response = await api.post(`/users`, {
+        const response = await api.post(`/pessoas`, {
           email: email,
-          password: senha,
-          name: nome,
-          type: tipoUsuario,
+          senha: senha,
+          nome: nome,
+          tipoUsuario: tipoUsuario,
         });
         const data = await response.data;
         console.log(data);
@@ -99,7 +99,7 @@ export default function PainelAdminUsuario() {
                 }
               >
                 <option value="">Selecione o tipo do usuário</option>
-                <option value="Administrador">Administrador</option>
+                <option value="Admin">Administrador</option>
                 <option value="Cliente">Cliente</option>
               </select>
               <br />

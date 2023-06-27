@@ -6,12 +6,12 @@ import Botao from "componentes/Botao";
 import { useState } from "react";
 import { api } from "lib/axios";
 import CabecalhoListaProdutos from "componentes/CabecalhoListaProdutos";
-import { Usuario } from "shared/interfaces/IUsuarios";
+import { UsuarioResponse } from "shared/interfaces/IUsuarios";
 import CarregandoPagina from "componentes/CarregandoPagina";
 
 export default function EditarUsuario() {
   const location = useLocation();
-  const dadosUsuario = location.state as Usuario;
+  const dadosUsuario = location.state as UsuarioResponse;
   const [nome, setNome] = useState(`${dadosUsuario.name}`);
   const [email, setEmail] = useState(`${dadosUsuario.email}`);
   const [senha, setSenha] = useState(`${dadosUsuario.password}`);
@@ -27,14 +27,15 @@ export default function EditarUsuario() {
     const atualizarUsuario = async () => {
       setEditando(true);
       try {
-        const response = await api.put(`/users/${dadosUsuario.id}`, {
-          name: nome,
+        const response = await api.put(`/pessoas/${dadosUsuario.id}`, {
+          idpessoa: dadosUsuario.id,
+          nome: nome,
           email: email,
-          password: senha,
-          type: tipoUsuario,
+          senha: senha,
+          tipoUsuario: tipoUsuario,
         });
         const data = await response.data;
-        notifyEditarUsuario(data.id);
+        notifyEditarUsuario(data.idpessoa);
       } catch (error) {
         console.log(error);
       } finally {
@@ -95,7 +96,7 @@ export default function EditarUsuario() {
                 }
               >
                 <option value="">Selecione o tipo do usuário</option>
-                <option value="Administrador">Administrador</option>
+                <option value="Admin">Administrador</option>
                 <option value="Cliente">Cliente</option>
               </select>
               <br />

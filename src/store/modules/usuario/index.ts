@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { Usuario } from "shared/interfaces/IUsuarios";
+import { UsuarioResponse } from "shared/interfaces/IUsuarios";
 
 interface LoginResponse {
   token: string;
-  usuario: Usuario;
+  usuario: UsuarioResponse;
 }
 
 interface UserState {
-  usuario: Usuario | null;
+  usuario: UsuarioResponse | null;
   token: string | null;
   carregando: boolean;
 }
@@ -41,7 +41,7 @@ export const authSlice = createSlice({
       state.token = null;
       state.usuario = null;
     },
-    setUser: (state, action: PayloadAction<Usuario>) => {
+    setUser: (state, action: PayloadAction<UsuarioResponse>) => {
       state.usuario = action.payload;
     },
     finalizandoCarregamento: (state) => {

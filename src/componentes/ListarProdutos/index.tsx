@@ -32,14 +32,17 @@ export function ListarProdutos({
   const getMaisProdutos = async () => {
     setEstaCarregandoMais(true);
     try {
-      const response = await api.get("/produtos", {
-        // params: {
-        //   limit,
-        //   sort: "desc",
-        //   skip,
-        //   categoria: categoria,
-        // },
-      });
+      const response = await api.get(
+        `/produtos/?limit=${limit}/?offset=${skip}`,
+        {
+          // params: {
+          //   limit,
+          //   sort: "desc",
+          //   skip,
+          //   categoria: categoria,
+          // },
+        }
+      );
       const responseProdutos = response.data.map((produto: Produto) => {
         return {
           id: produto.idproduto,
@@ -62,7 +65,7 @@ export function ListarProdutos({
   useEffect(() => {
     const getProdutos = async () => {
       try {
-        const response = await api.get("/produtos", {
+        const response = await api.get(`/produtos?limit=${limitPaginas}`, {
           // params: {
           //   limit: limitPaginas,
           //   sort: "desc",

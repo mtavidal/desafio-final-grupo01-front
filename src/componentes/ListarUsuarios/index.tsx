@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./ListarUsuarios.module.css";
 import { api } from "lib/axios";
-import { Usuario } from "shared/interfaces/IUsuarios";
+import { Usuario, UsuarioResponse } from "shared/interfaces/IUsuarios";
 import Botao from "componentes/Botao";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -15,18 +15,28 @@ export default function ListarUsuarios({
   atualizaLista = 0,
 }: ListarUsuariosProps) {
   const [carregandoUsuario, setCarregandoUsuario] = useState(true);
-  const [usuarios, setUsuarios] = useState<Usuario[]>([]);
+  const [usuarios, setUsuarios] = useState<UsuarioResponse[]>([]);
   const [usuarioDeletado, setUsuarioDeletado] = useState(0);
 
   useEffect(() => {
     const getUsuarios = async () => {
       try {
-        const response = await api.get("/users", {
-          params: {
-            sort: "desc",
-          },
+        const response = await api.get("/pessoas", {
+          // params: {
+          //   sort: "desc",
+          // },
         });
-        setUsuarios(response.data);
+        const responseUsuarios = response.data.map((usuario: Usuario) => {
+          return {
+            id: usuario.idpessoa,
+            email: usuario.email,
+            password: usuario.senha,
+            name: usuario.nome,
+            type: usuario.tipoUsuario,
+          };
+        });
+
+        setUsuarios(responseUsuarios);
       } catch (error) {
         alert("Erro na requisição");
       } finally {
@@ -46,9 +56,9 @@ export default function ListarUsuarios({
     if (confirmaDeletar) {
       setCarregandoUsuario(true);
       try {
-        const response = await api.delete(`/users/${id}`);
+        await api.delete(`/pessoas/${id}`);
         setUsuarioDeletado(id);
-        notifyDeleteUsuario(response.data);
+        notifyDeleteUsuario(id);
       } catch (error) {
         alert("Erro na requisição");
       } finally {
@@ -58,7 +68,7 @@ export default function ListarUsuarios({
   };
 
   const navigate = useNavigate();
-  function editarUsuario(usuario: Usuario) {
+  function editarUsuario(usuario: UsuarioResponse) {
     navigate("/paineladmin/usuarios/editar", {
       state: usuario,
     });
