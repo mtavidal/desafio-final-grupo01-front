@@ -1,6 +1,10 @@
 import styles from "./PainelAdminPedido.module.css";
 import CabecalhoListaProdutos from "componentes/CabecalhoListaProdutos";
-import { Pedido } from "shared/interfaces/IPedido";
+import {
+  Pedido,
+  PedidoProduto,
+  PedidoResponse,
+} from "shared/interfaces/IPedido";
 import { useEffect, useState } from "react";
 import { api } from "lib/axios";
 import Botao from "componentes/Botao";
@@ -8,51 +12,72 @@ import { toast } from "react-hot-toast";
 import CarregandoPagina from "componentes/CarregandoPagina";
 
 export default function PainelAdminPedido() {
-  const [pedidos, setPedidos] = useState<Pedido[]>([]);
+  const [pedidos, setPedidos] = useState<PedidoResponse[]>([]);
   const [carregando, setCarregando] = useState(true);
   const [pedidoDeletado, setPedidoDeletado] = useState(0);
 
-  const limit = 10;
-  const [skip, setSkip] = useState(10);
-  const [totalPedidoBanco, setTotalPedidoBanco] = useState(0);
-  const [estaCarregandoMais, setEstaCarregandoMais] = useState(false);
+  // const limit = 10;
+  // const [skip, setSkip] = useState(10);
+  // const [totalPedidoBanco, setTotalPedidoBanco] = useState(0);
+  // const [estaCarregandoMais, setEstaCarregandoMais] = useState(false);
 
-  function formataData(isoDate: string) {
-    const data = new Date(isoDate);
-    return data.toLocaleDateString("pt-BR");
-  }
+  // function formataData(isoDate: string) {
+  //   const data = new Date(isoDate);
+  //   return data.toLocaleDateString("pt-BR");
+  // }
 
-  const getMaisPedidos = async () => {
-    setEstaCarregandoMais(true);
-    try {
-      const response = await api.get("/carts", {
-        params: {
-          limit,
-          sort: "desc",
-          skip,
-        },
-      });
+  // const getMaisPedidos = async () => {
+  //   setEstaCarregandoMais(true);
+  //   try {
+  //     const response = await api.get("/pedidos", {
+  //       params: {
+  //         limit,
+  //         sort: "desc",
+  //         skip,
+  //       },
+  //     });
 
-      setPedidos([...pedidos, ...response.data.carts]);
-      setSkip(skip + 10);
-    } catch (error) {
-      alert("Erro na requisição");
-    } finally {
-      setEstaCarregandoMais(false);
-    }
-  };
+  //     setPedidos([...pedidos, ...response.data.carts]);
+  //     setSkip(skip + 10);
+  //   } catch (error) {
+  //     alert("Erro na requisição");
+  //   } finally {
+  //     setEstaCarregandoMais(false);
+  //   }
+  // };
 
   useEffect(() => {
     const getPedidos = async () => {
       try {
-        const response = await api.get("/carts", {
-          params: {
-            limit,
-            sort: "desc",
-          },
+        const response = await api.get("/pedidos", {
+          // params: {
+          //   limit,
+          //   sort: "desc",
+          // },
         });
-        setPedidos(response.data.carts);
-        setTotalPedidoBanco(response.data.total);
+        const responsePedidos = response.data.map((pedido: Pedido) => {
+          const produtos_pedido = pedido.pedido_produtos.map(
+            (produto_pedido: PedidoProduto) => {
+              return {
+                id: produto_pedido.idproduto,
+                title: produto_pedido.produto.nome,
+                image: produto_pedido.produto.foto,
+                price: produto_pedido.produto.preco,
+                description: produto_pedido.produto.descricao,
+                category: produto_pedido.produto.idcategoria,
+                quantidade: produto_pedido.quantidade,
+              };
+            }
+          );
+          return {
+            id: pedido.idpedido,
+            userId: pedido.idpessoa,
+            produtos: produtos_pedido,
+            totalPedido: pedido.valor,
+          };
+        });
+        setPedidos(responsePedidos);
+        // setTotalPedidoBanco(response.data.total);
       } catch (error) {
         alert("Erro na requisição");
       } finally {
@@ -72,9 +97,9 @@ export default function PainelAdminPedido() {
     if (confirmaDeletar) {
       setCarregando(true);
       try {
-        const response = await api.delete(`/carts/${id}`);
+        await api.delete(`/pedidos/${id}`);
         setPedidoDeletado(id);
-        notifyDeletePedido(response.data);
+        notifyDeletePedido(id);
       } catch (error) {
         alert("Erro na requisição");
       } finally {
@@ -109,7 +134,7 @@ export default function PainelAdminPedido() {
                       <div className={styles.paginaSucessoTitulo}>
                         <h2>Id do pedido: {pedido.id}</h2>
                         <h2>Id do cliente: {pedido.userId}</h2>
-                        <h2>Data do pedido: {formataData(pedido.data)}</h2>
+                        {/* <h2>Data do pedido: {formataData(pedido.data)}</h2> */}
                       </div>
                       <h4>Itens do pedido: </h4>
                       <div className={styles.detalhesProdutoPedido}>
@@ -158,7 +183,7 @@ export default function PainelAdminPedido() {
               </>
             )}
 
-            {!carregando && pedidos.length > 0 && (
+            {/* {!carregando && pedidos.length > 0 && (
               <div style={{ paddingTop: 25 }}>
                 <Botao
                   disabled={estaCarregandoMais}
@@ -168,7 +193,7 @@ export default function PainelAdminPedido() {
                   {estaCarregandoMais ? "Carregando" : "Carregar mais pedidos"}
                 </Botao>
               </div>
-            )}
+            )} */}
           </div>
         </div>
       )}

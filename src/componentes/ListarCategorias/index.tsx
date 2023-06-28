@@ -45,9 +45,9 @@ export default function ListarCategorias({
     if (confirmaDeletar) {
       setCarregandoCategoria(true);
       try {
-        const response = await api.delete(`/categorias/${id}`);
+        await api.delete(`/categorias/${id}`);
         setCategoriaDeletada(id);
-        notifyDeleteCategoria(response.data);
+        notifyDeleteCategoria(id);
       } catch (error) {
         alert("Erro na requisição");
       } finally {

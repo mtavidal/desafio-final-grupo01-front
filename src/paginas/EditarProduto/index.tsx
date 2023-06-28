@@ -40,7 +40,7 @@ export default function EditarProduto() {
           preco: preco,
           descricao: descricao,
           foto: imagem,
-          categoria: categoria,
+          idcategoria: categoria,
         });
         const data = await response.data;
         notifyEditarProduto(data.idproduto);
@@ -62,6 +62,7 @@ export default function EditarProduto() {
         setPreco(data.preco);
         setDescricao(data.descricao);
         setImagem(data.foto);
+        setCategoria(data.idcategoria);
       } catch (error) {
         alert("Erro na requisição");
         console.log(error);
@@ -126,9 +127,9 @@ export default function EditarProduto() {
                   setCategoria(evento.target.value)
                 }
               >
-                <option value={produto?.categorias?.idcategoria}>
+                {/* <option value={produto?.categorias?.idcategoria}>
                   {produto?.categorias?.nome}
-                </option>
+                </option> */}
                 {listaCategorias.map((categoria) => {
                   return (
                     <option

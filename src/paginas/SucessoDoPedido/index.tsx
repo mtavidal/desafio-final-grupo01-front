@@ -1,16 +1,16 @@
 import CabecalhoListaProdutos from "componentes/CabecalhoListaProdutos";
 import styles from "./SucessoDoPedido.module.css";
 import { useLocation } from "react-router-dom";
-import { Pedido } from "shared/interfaces/IPedido";
+import { PedidoResponse } from "shared/interfaces/IPedido";
 import CardProdutoPedido from "componentes/CardProdutoPedido";
 
 export default function SucessoDoPedido() {
   const location = useLocation();
-  const pedidoRetorno = location.state as Pedido;
-  function formataData(isoDate: string) {
-    const data = new Date(isoDate);
-    return data.toLocaleDateString("pt-BR");
-  }
+  const pedidoRetorno = location.state as PedidoResponse;
+  // function formataData(isoDate: string) {
+  //   const data = new Date(isoDate);
+  //   return data.toLocaleDateString("pt-BR");
+  // }
   return (
     <div>
       <CabecalhoListaProdutos
@@ -21,7 +21,7 @@ export default function SucessoDoPedido() {
         <div className={styles.containerPedido}>
           <div className={styles.paginaSucessoTitulo}>
             <h2>Id do pedido: {pedidoRetorno.id}</h2>
-            <h2>Data do pedido: {formataData(pedidoRetorno.data)}</h2>
+            {/* <h2>Data do pedido: {formataData(pedidoRetorno.data)}</h2> */}
           </div>
           <h4>Itens do pedido: </h4>
           {pedidoRetorno.produtos.map((produto) => {

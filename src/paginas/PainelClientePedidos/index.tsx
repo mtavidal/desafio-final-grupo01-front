@@ -1,7 +1,11 @@
 import CabecalhoListaProdutos from "componentes/CabecalhoListaProdutos";
 import styles from "./PainelClientePedidos.module.css";
 import { useEffect, useState } from "react";
-import { Pedido } from "shared/interfaces/IPedido";
+import {
+  Pedido,
+  PedidoProduto,
+  PedidoResponse,
+} from "shared/interfaces/IPedido";
 import { api } from "lib/axios";
 import { toast } from "react-hot-toast";
 import CarregandoPagina from "componentes/CarregandoPagina";
@@ -9,22 +13,43 @@ import Botao from "componentes/Botao";
 import { useAppSelector } from "hooks";
 
 export default function PainelClientePedidos() {
-  const [pedidos, setPedidos] = useState<Pedido[]>([]);
+  const [pedidos, setPedidos] = useState<PedidoResponse[]>([]);
   const [carregando, setCarregando] = useState(true);
   const [pedidoDeletado, setPedidoDeletado] = useState(0);
 
   const usuario = useAppSelector((state) => state.authReducer.usuario);
 
-  function formataData(isoDate: string) {
-    const data = new Date(isoDate);
-    return data.toLocaleDateString("pt-BR");
-  }
+  // function formataData(isoDate: string) {
+  //   const data = new Date(isoDate);
+  //   return data.toLocaleDateString("pt-BR");
+  // }
 
   useEffect(() => {
     const getPedidos = async () => {
       try {
-        const response = await api.get(`/carts/user/${usuario?.id}`);
-        setPedidos(response.data);
+        const response = await api.get(`/pedidos/${usuario?.id}`);
+        const responsePedidos = response.data.map((pedido: Pedido) => {
+          const produtos_pedido = pedido.pedido_produtos.map(
+            (produto_pedido: PedidoProduto) => {
+              return {
+                id: produto_pedido.idproduto,
+                title: produto_pedido.produto.nome,
+                image: produto_pedido.produto.foto,
+                price: produto_pedido.produto.preco,
+                description: produto_pedido.produto.descricao,
+                category: produto_pedido.produto.idcategoria,
+                quantidade: produto_pedido.quantidade,
+              };
+            }
+          );
+          return {
+            id: pedido.idpedido,
+            userId: pedido.idpessoa,
+            produtos: produtos_pedido,
+            totalPedido: pedido.valor,
+          };
+        });
+        setPedidos(responsePedidos);
       } catch (error) {
         alert("Erro na requisição");
       } finally {
@@ -80,7 +105,7 @@ export default function PainelClientePedidos() {
                     <div className={styles.espacoPedidos} key={pedido.id}>
                       <div className={styles.paginaSucessoTitulo}>
                         <h2>Id do pedido: {pedido.id}</h2>
-                        <h2>Data do pedido: {formataData(pedido.data)}</h2>
+                        {/* <h2>Data do pedido: {formataData(pedido.data)}</h2> */}
                       </div>
                       <h4>Itens do pedido: </h4>
                       <div className={styles.detalhesProdutoPedido}>

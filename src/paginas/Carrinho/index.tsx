@@ -16,7 +16,7 @@ export default function Carrinho() {
   const usuario = useAppSelector((store) => store.authReducer.usuario);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const date = new Date();
+  // const date = new Date();
   const [carregandoPedido, setCarregandoPedido] = useState(false);
 
   const produtos =
@@ -48,11 +48,11 @@ export default function Carrinho() {
       const enviarPedido = async () => {
         setCarregandoPedido(true);
         try {
-          const response = await api.post("/carts", {
-            userId: usuario.id,
-            date: date.toLocaleDateString(),
-            products: cartState.cart,
-            totalPedido: totalPedido,
+          const response = await api.post("/pedidos", {
+            idpessoa: usuario.id,
+            // date: date.toLocaleDateString(),
+            pedido_produtos: cartState.cart,
+            valor: totalPedido,
           });
 
           navigate("/sucesso", {
