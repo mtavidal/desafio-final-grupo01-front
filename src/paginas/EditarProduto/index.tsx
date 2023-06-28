@@ -104,9 +104,9 @@ export default function EditarProduto() {
                   setCategoria(evento.target.value)
                 }
               >
-                <option value={dadosProduto.category.id}>
+                {/* <option value={dadosProduto.category.id}>
                   {dadosProduto.category.nome}
-                </option>
+                </option> */}
                 {listaCategorias.map((categoria) => {
                   return (
                     <option key={categoria.id} value={categoria.id}>
