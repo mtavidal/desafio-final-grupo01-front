@@ -35,6 +35,7 @@ export default function PainelAdminPedido() {
 
       setPedidos([...pedidos, ...response.data.carts]);
       setSkip(skip + 10);
+      setTotalPedidoBanco(response.data.total);
     } catch (error) {
       alert("Erro na requisição");
     } finally {
@@ -53,6 +54,7 @@ export default function PainelAdminPedido() {
         });
         setPedidos(response.data.carts);
         setTotalPedidoBanco(response.data.total);
+        setSkip(10);
       } catch (error) {
         alert("Erro na requisição");
       } finally {
@@ -75,6 +77,7 @@ export default function PainelAdminPedido() {
         const response = await api.delete(`/carts/${id}`);
         setPedidoDeletado(id);
         notifyDeletePedido(response.data);
+        setSkip(skip - 1);
       } catch (error) {
         alert("Erro na requisição");
       } finally {
