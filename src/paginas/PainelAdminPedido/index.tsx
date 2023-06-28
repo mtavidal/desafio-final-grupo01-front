@@ -36,9 +36,9 @@ export default function PainelAdminPedido() {
   //         skip,
   //       },
   //     });
-
   //     setPedidos([...pedidos, ...response.data.carts]);
   //     setSkip(skip + 10);
+  //     setTotalPedidoBanco(response.data.total);
   //   } catch (error) {
   //     alert("Erro na requisição");
   //   } finally {
@@ -78,6 +78,8 @@ export default function PainelAdminPedido() {
         });
         setPedidos(responsePedidos);
         // setTotalPedidoBanco(response.data.total);
+        // setTotalPedidoBanco(response.data.total);
+        // setSkip(10);
       } catch (error) {
         alert("Erro na requisição");
       } finally {
@@ -100,6 +102,7 @@ export default function PainelAdminPedido() {
         await api.delete(`/pedidos/${id}`);
         setPedidoDeletado(id);
         notifyDeletePedido(id);
+        // setSkip(skip - 1);
       } catch (error) {
         alert("Erro na requisição");
       } finally {
