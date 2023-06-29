@@ -12,9 +12,9 @@ O objetivo principal do desafio é desenvolver uma loja virtual. O tema escolhid
 
 Usamos a Vercel para hospedar a aplicação.
 
-[Acessar site Good EyeWear - api do grupo](https://desafio-final-grupo01-front.vercel.app/) - Versão utilizando a Api desenvolvida pelos integrantes de Back-End do grupo ([Repositório no GitHub](https://github.com/rodrigoduartesilva-hub/desafio-final-back) e [URL Railway](https://desafio-final-back-production-87a1.up.railway.app)).
+[Acessar site Good EyeWear - api do grupo](https://desafio-final-grupo01-front.vercel.app/) - Versão da branch `migrar-api-back`, utilizando a Api desenvolvida pelos integrantes do Back-End do grupo ([Repositório no GitHub](https://github.com/rodrigoduartesilva-hub/desafio-final-back) e [URL Railway](https://desafio-final-back-production-87a1.up.railway.app)).
 
-[Acessar site Good EyeWear - api secundária](https://desafio-final-grupo01-front-api-secundaria.vercel.app/) - Versão utilizando a Api desenvolvida pelo front para testar as funcionalidades propostas ([Repositório no GitHub](https://github.com/mtavidal/fake-store-api-atualizada) e [URL Railway](https://fake-store-api-atualizada-production.up.railway.app)).
+[Acessar site Good EyeWear - api secundária](https://desafio-final-grupo01-front-api-secundaria.vercel.app/) - Versão da branch `main`, utilizando a Api desenvolvida pelo Front-End para testar as funcionalidades propostas ([Repositório no GitHub](https://github.com/mtavidal/fake-store-api-atualizada) e [URL Railway](https://fake-store-api-atualizada-production.up.railway.app)).
 
 ##### Login de Usuário Administrador para testes:
 
