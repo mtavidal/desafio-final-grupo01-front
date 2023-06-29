@@ -64,6 +64,7 @@ export function ListarProdutos({
 
   useEffect(() => {
     const getProdutos = async () => {
+      setEhCarregamentoInicial(true);
       try {
         const response = await api.get("/products", {
           params: {
