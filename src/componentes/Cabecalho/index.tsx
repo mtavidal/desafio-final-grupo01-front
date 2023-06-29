@@ -59,7 +59,14 @@ export default function Cabecalho() {
             {usuario ? (
               <div className={styles.logado}>
                 <h5>Olá, {usuario.name.split(" ")[0]}</h5>
-                <button onClick={() => dispatch(logout())}>sair</button>
+                <button
+                  onClick={() => {
+                    dispatch(logout());
+                    navigate("/");
+                  }}
+                >
+                  sair
+                </button>
               </div>
             ) : (
               <LinkEstilizado style={styles.link} url="/login">
