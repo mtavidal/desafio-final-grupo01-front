@@ -2,7 +2,7 @@ import CampoInput from "componentes/CampoInput";
 import styles from "./Login.module.css";
 import Botao from "componentes/Botao";
 import { useState } from "react";
-import { api } from "lib/axios";
+// import { api } from "lib/axios";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "hooks";
 import { login } from "store/modules/usuario";
