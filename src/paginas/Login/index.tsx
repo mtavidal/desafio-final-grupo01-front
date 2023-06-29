@@ -77,7 +77,7 @@ export default function Login() {
                 comBorda={true}
               />
               {senhaEmailerrado ? (
-                <h4>Usuário ou Senha inválidos</h4>
+                <h4>Email ou Senha inválidos</h4>
               ) : (
                 <h4> </h4>
               )}
