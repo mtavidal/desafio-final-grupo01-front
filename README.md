@@ -1,46 +1,88 @@
-# Getting Started with Create React App
+# Desafio Final Gama Academy | XP49
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+## <img src="./public/favicon.ico" /> Good Eyewear | MVP de Ecommerce
 
-In the project directory, you can run:
+O objetivo preincipal do desafio é desenvolver uma loja virtual. O tema escolhido pelo grupo foi venda de óculos. O nome escolhido foi Good Eyewear. O site possui funcionalidades de listar produtos, listar produtos por categoria, adicionar e remover itens do carrinho, realizar pedido, fazer login, além das funcionalidades das áreas restritas de Cliente (listar pedidos e editar cadastro) e de Administrador (gerenciar produtos, categorias, usuários e pedidos).
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 🔗 Links para o site
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Usamos a Vercel para hospedar a aplicação.
 
-### `npm test`
+[Acessar site Good EyeWear - api do grupo](https://desafio-final-grupo01-front.vercel.app/) - Versão utilizando a Api desenvolvida pelos intregantes de Back-End do grupo ([repositório no GitHub](https://github.com/rodrigoduartesilva-hub/desafio-final-back)).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[Acessar site Good EyeWear - api secudária](https://desafio-final-grupo01-front-api-secundaria.vercel.app/) - Versão utilizando a Api desenvolvida pelo front para testar as funcionalidades propostas ([repositório no GitHub](https://github.com/mtavidal/fake-store-api-atualizada)).
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🧑‍💼 Gerenciamento do projeto
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Usamos o notion para gerenciar o projeto. Centralizando todas as informações necessárias e utilizando Kanban para divisão e controle do andamento das tarefas.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[Acessar notion](https://www.notion.so/Desafio-Final-GRUPO-01-776bef6a3dfb4fb685ddb6863e03b85f)
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 🎨 Design do projeto
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Usamos o figma para realizar um esboço das interfaces do projeto. Utilizamos como base o [wireframe](https://www.figma.com/file/GXs05SIY7mVoEnlsdFByzg/Ecommerce-Wireframe?type=design&node-id=0-1&mode=design) disponibilizado pela Gama.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+[Acessar o figma do projeto](https://www.figma.com/file/2rCP2pxc14cP5cVBMBfo4V/Projeto-final?type=design&node-id=3-632&mode=design)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Para escolher a paleta de cores do projeto, utilizamos o Color Hunt.
+[Acessar a paleta de cores do projeto](https://colorhunt.co/palette/27374d526d829db2bfdde6ed)
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 📁 Executar o projeto
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1.  Renomei o arquivo na raiz do projeto `.env.example` para `.env`;
+2.  Preenchas as informações do arquivo `.env`;
+3.  No terminal, use o comando abaixo para instalar as dependências:
+
+```
+npm install
+```
+
+4.  No terminal, use o comando abaixo para iniciar o projeto:
+
+```
+npm start
+```
+
+## 💻 Tecnologias utilizadas
+
+- React
+  - react-router-dom
+  - react-redux
+  - axios
+  - link
+  - nuka-carousel
+  - react-hot-toast
+  - react-password-checklist
+- HTML
+- CSS
+  - Flex-box
+  - Media queries
+  - module.css
+- TypeScript
+
+---
+
+## ✒️ Autores
+
+### Grupo 01
+
+#### Front:
+
+- [Manuela Torres](https://github.com/mtavidal)
+- [Patrícia Gheller](https://github.com/PatriciaGheller)
+
+#### Back:
+
+- [Rodrigo Duarte](https://github.com/rodrigoduartesilva-hub)
+- [Eduardo Contar](https://github.com/econtar)
+- [Patrick Reis](https://github.com/)
