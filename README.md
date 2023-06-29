@@ -12,7 +12,7 @@ O objetivo preincipal do desafio é desenvolver uma loja virtual. O tema escolhi
 
 Usamos a Vercel para hospedar a aplicação.
 
-[Acessar site Good EyeWear - api do grupo](https://desafio-final-grupo01-front.vercel.app/) - Versão utilizando a Api desenvolvida pelos intregantes de Back-End do grupo ([repositório no GitHub](https://github.com/rodrigoduartesilva-hub/desafio-final-back)).
+[Acessar site Good EyeWear - api do grupo](https://desafio-final-grupo01-front.vercel.app/) - Versão utilizando a Api desenvolvida pelos integrantes de Back-End do grupo ([repositório no GitHub](https://github.com/rodrigoduartesilva-hub/desafio-final-back)).
 
 [Acessar site Good EyeWear - api secudária](https://desafio-final-grupo01-front-api-secundaria.vercel.app/) - Versão utilizando a Api desenvolvida pelo front para testar as funcionalidades propostas ([repositório no GitHub](https://github.com/mtavidal/fake-store-api-atualizada)).
 
