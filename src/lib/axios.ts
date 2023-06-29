@@ -1,8 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "https://fake-store-api-atualizada-production.up.railway.app",
-  // baseURL: "http://localhost:8765",
+  baseURL: process.env.REACT_APP_API_BASE_URL,
 });
 
 api.interceptors.response.use(
