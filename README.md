@@ -16,13 +16,29 @@ Usamos a Vercel para hospedar a aplicação.
 
 [Acessar site Good EyeWear - api secudária](https://desafio-final-grupo01-front-api-secundaria.vercel.app/) - Versão utilizando a Api desenvolvida pelo front para testar as funcionalidades propostas ([repositório no GitHub](https://github.com/mtavidal/fake-store-api-atualizada)).
 
+##### Login de Usuário Administrador para testes:
+
+```
+email: manuela@gama.com
+senha: Gama@1234
+```
+
+##### Login de Usuário Cliente para testes:
+
+```
+email: pedro@gama.com
+senha: Gama@1234
+```
+
+##### Ou faça seu cadastro de cliente: [Fazer cadastro](https://desafio-final-grupo01-front-api-secundaria.vercel.app/cadastrousuario)
+
 ---
 
 ## 🧑‍💼 Gerenciamento do projeto
 
 Usamos o notion para gerenciar o projeto. Centralizando todas as informações necessárias e utilizando Kanban para divisão e controle do andamento das tarefas.
 
-[Acessar notion](https://www.notion.so/Desafio-Final-GRUPO-01-776bef6a3dfb4fb685ddb6863e03b85f)
+-> [Acessar notion do projeto](https://www.notion.so/Desafio-Final-GRUPO-01-776bef6a3dfb4fb685ddb6863e03b85f)
 
 ---
 
@@ -30,10 +46,11 @@ Usamos o notion para gerenciar o projeto. Centralizando todas as informações n
 
 Usamos o figma para realizar um esboço das interfaces do projeto. Utilizamos como base o [wireframe](https://www.figma.com/file/GXs05SIY7mVoEnlsdFByzg/Ecommerce-Wireframe?type=design&node-id=0-1&mode=design) disponibilizado pela Gama.
 
-[Acessar o figma do projeto](https://www.figma.com/file/2rCP2pxc14cP5cVBMBfo4V/Projeto-final?type=design&node-id=3-632&mode=design)
+-> [Acessar o figma do projeto](https://www.figma.com/file/2rCP2pxc14cP5cVBMBfo4V/Projeto-final?type=design&node-id=3-632&mode=design)
 
 Para escolher a paleta de cores do projeto, utilizamos o Color Hunt.
-[Acessar a paleta de cores do projeto](https://colorhunt.co/palette/27374d526d829db2bfdde6ed)
+
+-> [Acessar a paleta de cores do projeto](https://colorhunt.co/palette/27374d526d829db2bfdde6ed)
 
 ---
 
