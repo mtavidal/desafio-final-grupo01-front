@@ -10,7 +10,7 @@ api.interceptors.response.use(
   },
   (error) => {
     if (error.response.status === 401) {
-      alert("Usuário não autorizado!");
+      console.log("Usuário não autorizado!");
     } else if (error.response.status === 409) {
       alert(error.response.data.mensagem);
     } else {
