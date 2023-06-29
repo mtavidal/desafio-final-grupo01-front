@@ -15,7 +15,7 @@ export default function ListagemProdutos() {
     <div className={styles.containerListagem}>
       <CabecalhoListaProdutos
         titulo="Os melhores óculos para você!"
-        subtitulo="As melhores marcas e os melhores óculos de grau, de sol e infatis em um
+        subtitulo="As melhores marcas e os melhores óculos de grau, de sol e infantis em um
             só lugar!"
       />
       <div className={styles.catElistagem}>
