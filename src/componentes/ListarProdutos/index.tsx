@@ -109,17 +109,25 @@ export function ListarProdutos({
         <CarregandoPagina visibilidade={ehCarregamentoInicial} />
       )}
       <div className={styles.listarProdutos}>
-        {produtos.map((produto) => {
-          return ehPaginaAdmin ? (
-            <CardProdutoEditar
-              key={produto.id}
-              {...produto}
-              atualizaLista={() => removeProdutos(produto.id)}
-            />
-          ) : (
-            <CardProduto key={produto.id} {...produto} />
-          );
-        })}
+        {produtos.length === 0 ? (
+          <div className={styles.semProdutos}>
+            <h1>Categoria sem produtos disponíveis</h1>
+          </div>
+        ) : (
+          <>
+            {produtos.map((produto) => {
+              return ehPaginaAdmin ? (
+                <CardProdutoEditar
+                  key={produto.id}
+                  {...produto}
+                  atualizaLista={() => removeProdutos(produto.id)}
+                />
+              ) : (
+                <CardProduto key={produto.id} {...produto} />
+              );
+            })}
+          </>
+        )}
       </div>
       {!ehCarregamentoInicial && produtos.length > 0 && (
         <Botao
