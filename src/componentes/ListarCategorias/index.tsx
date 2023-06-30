@@ -49,7 +49,7 @@ export default function ListarCategorias({
         setCategoriaDeletada(id);
         notifyDeleteCategoria(response.data);
       } catch (error) {
-        alert("Erro na requisição");
+        console.log(error);
       } finally {
         setCarregandoCategoria(false);
       }
