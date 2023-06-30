@@ -40,7 +40,6 @@ export default function EditarCategoria() {
         const data = await response.data;
         notifyEditarCategoria(data.idcategoria);
       } catch (error) {
-        alert("Erro na requisição");
         console.log(error);
       } finally {
         setEditando(false);
