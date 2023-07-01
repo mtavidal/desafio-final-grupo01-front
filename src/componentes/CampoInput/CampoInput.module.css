@@ -6,6 +6,7 @@
 .campo label {
   padding-top: 10px;
   padding-bottom: 5px;
+  font-size: 18px;
 }
 .inputPadrao {
   border: none;
@@ -14,6 +15,7 @@
   padding: 7px;
   font-family: var(--fonte1);
   color: var(--azulmedioescuro);
+  font-size: 16px;
 }
 
 .comBorda {
@@ -22,4 +24,5 @@
   border-radius: 7px;
   padding: 7px;
   font-family: var(--fonte1);
+  font-size: 16px;
 }

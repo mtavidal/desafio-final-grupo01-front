@@ -111,7 +111,12 @@ export default function Carrinho() {
                 </div>
                 <div className={styles.botoes}>
                   <div>
-                    <Botao onClick={() => dispatch(esvaziarCarrinho())}>
+                    <Botao
+                      onClick={() => {
+                        dispatch(esvaziarCarrinho());
+                        window.scrollTo(0, 0);
+                      }}
+                    >
                       Esvaziar carrinho
                     </Botao>
                     <Botao onClick={irParaProdutos}>Continuar comprando</Botao>
