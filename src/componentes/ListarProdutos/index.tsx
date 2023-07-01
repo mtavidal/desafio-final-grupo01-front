@@ -112,7 +112,7 @@ export function ListarProdutos({
       <div className={styles.listarProdutos}>
         {produtos.length === 0 ? (
           <div className={styles.semProdutos}>
-            <h1>Categoria sem produtos disponíveis</h1>
+            <h1>Sem produtos disponíveis</h1>
           </div>
         ) : (
           <>
