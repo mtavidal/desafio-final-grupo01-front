@@ -26,6 +26,7 @@
 .ajusteLabel {
   padding-top: 10px;
   padding-bottom: 5px;
+  font-size: 16px;
 }
 .ajusteSelect {
   border: none;
@@ -34,6 +35,7 @@
   padding: 7px;
   font-family: var(--fonte1);
   color: var(--azulmedioescuro2);
+  font-size: 16px;
 }
 
 .containerFormProdutos {
