@@ -14,7 +14,7 @@ export default function DetalhesProduto() {
       localStorage.getItem("carrinho") || "[]"
     );
     if (carrinhoLocalStorage.filter((e) => e.id === produto.id).length > 0) {
-      alert("Produto já adicionado no carrinho.");
+      notifyJaNoCarrinho();
     } else {
       produto.quantidade = 1;
       dispatch(addProduto(produto));
@@ -30,6 +30,8 @@ export default function DetalhesProduto() {
     navigate("/produtos");
   }
   const notify = () => toast.success("Item adicionado no carrinho.");
+  const notifyJaNoCarrinho = () =>
+    toast.success("Este produto já está no carrinho", { icon: "⚠️" });
   return (
     <div className={styles.containerDetalhes}>
       <div className={styles.cardDetalhes}>

@@ -14,8 +14,7 @@
 }
 .cabecalho div {
   display: flex;
-  justify-content: flex-end;
-  gap: 0.5rem;
+  gap: 15%;
 }
 
 .cabecalho img {
@@ -28,7 +27,7 @@
 }
 
 .shoppingCartIcon {
-  color: var(--azulclaro);
+  color: var(--azulmedioclaro);
 }
 .link {
   text-decoration: none;
@@ -79,7 +78,7 @@
 }
 
 .userIcon:hover {
-  color: var(--azulescuro)
+  color: var(--azulescuro);
 }
 
 /* @media only screen and (max-width: 500px) {
