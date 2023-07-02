@@ -21,6 +21,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
+    "react-modal": "^3.16.1",
     "react-native": "^0.71.10",
     "react-password-checklist": "^1.4.3",
     "react-redux": "^8.0.5",
@@ -54,6 +55,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-modal": "^3.16.0",
     "@types/react-numeric-input": "^2.2.4"
   }
 }
