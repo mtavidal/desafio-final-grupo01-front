@@ -97,6 +97,7 @@ npm start
 
 - [Manuela Torres](https://github.com/mtavidal)
 - [Patrícia Gheller](https://github.com/PatriciaGheller)
+- [Eduardo Andrade](https://github.com/Eduardo-Andradee)
 
 #### Back:
 
