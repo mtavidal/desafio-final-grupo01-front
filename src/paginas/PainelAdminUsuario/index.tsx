@@ -7,6 +7,8 @@ import Botao from "componentes/Botao";
 import { api } from "lib/axios";
 import ListarUsuarios from "componentes/ListarUsuarios";
 import CarregandoPagina from "componentes/CarregandoPagina";
+import ModalComp from "componentes/ModalComp";
+import { AxiosError } from "axios";
 
 export default function PainelAdminUsuario() {
   const [nome, setNome] = useState("");
@@ -15,6 +17,9 @@ export default function PainelAdminUsuario() {
   const [tipoUsuario, setTipoUsuario] = useState("");
   const [atualizaLista, setAtualizaLista] = useState(0);
   const [adicionandoUsuario, setAdicionandoUsuario] = useState(false);
+
+  const [abrirModal, setAbrirModal] = useState(false);
+  const [mensagemErro, setMensagemErro] = useState("");
 
   const notifyAdicionarUsuario = () =>
     toast.success(`Usuario adicionado com sucesso`);
@@ -35,6 +40,11 @@ export default function PainelAdminUsuario() {
         setAtualizaLista(data.id);
         notifyAdicionarUsuario();
       } catch (error) {
+        const err = error as AxiosError<any | string>;
+        if (err.response?.status === 409) {
+          setAbrirModal(true);
+          setMensagemErro(err.response.data.mensagem);
+        }
         console.log(error);
       } finally {
         setAdicionandoUsuario(false);
@@ -109,6 +119,13 @@ export default function PainelAdminUsuario() {
           </div>
         </div>
       )}
+      <ModalComp
+        contentLabel="Modal erro email já existe"
+        mostrarModal={abrirModal}
+        handleFecharModal={() => setAbrirModal(false)}
+      >
+        {mensagemErro}
+      </ModalComp>
     </>
   );
 }

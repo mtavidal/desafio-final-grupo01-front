@@ -8,12 +8,17 @@ import { api } from "lib/axios";
 import CabecalhoListaProdutos from "componentes/CabecalhoListaProdutos";
 import { Categoria } from "shared/interfaces/ICategoria";
 import CarregandoPagina from "componentes/CarregandoPagina";
+import { AxiosError } from "axios";
+import ModalComp from "componentes/ModalComp";
 
 export default function EditarCategoria() {
   const location = useLocation();
   const dadosCategoria = location.state as Categoria;
   const [nome, setNome] = useState(`${dadosCategoria.nome}`);
   const [editando, setEditando] = useState(false);
+
+  const [abrirModal, setAbrirModal] = useState(false);
+  const [mensagemErro, setMensagemErro] = useState("");
 
   const navigate = useNavigate();
   const notifyEditarCategoria = (id: number) =>
@@ -30,6 +35,11 @@ export default function EditarCategoria() {
         const data = await response.data;
         notifyEditarCategoria(data.id);
       } catch (error) {
+        const err = error as AxiosError<any | string>;
+        if (err.response?.status === 409) {
+          setAbrirModal(true);
+          setMensagemErro(err.response.data.mensagem);
+        }
         console.log(error);
       } finally {
         setEditando(false);
@@ -76,6 +86,13 @@ export default function EditarCategoria() {
           </div>
         </div>
       )}
+      <ModalComp
+        contentLabel="Modal erro categoria já existe"
+        mostrarModal={abrirModal}
+        handleFecharModal={() => setAbrirModal(false)}
+      >
+        {mensagemErro}
+      </ModalComp>
     </>
   );
 }

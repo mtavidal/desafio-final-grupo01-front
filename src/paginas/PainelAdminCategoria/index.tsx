@@ -7,11 +7,16 @@ import ListarCategorias from "componentes/ListarCategorias";
 import { toast } from "react-hot-toast";
 import { api } from "lib/axios";
 import CarregandoPagina from "componentes/CarregandoPagina";
+import ModalComp from "componentes/ModalComp";
+import { AxiosError } from "axios";
 
 export default function PainelAdminCategoria() {
   const [categoria, setCategoria] = useState("");
   const [atualizaLista, setAtualizaLista] = useState(0);
   const [adicionandoCategorias, setAdicionandoCategorias] = useState(false);
+
+  const [abrirModal, setAbrirModal] = useState(false);
+  const [mensagemErro, setMensagemErro] = useState("");
 
   const notifyAdicionarCategoria = () =>
     toast.success(`Categoria adicionada com sucesso`);
@@ -28,6 +33,11 @@ export default function PainelAdminCategoria() {
         setAtualizaLista(data.id);
         notifyAdicionarCategoria();
       } catch (error) {
+        const err = error as AxiosError<any | string>;
+        if (err.response?.status === 409) {
+          setAbrirModal(true);
+          setMensagemErro(err.response.data.mensagem);
+        }
         console.log(error);
       } finally {
         setAdicionandoCategorias(false);
@@ -67,6 +77,13 @@ export default function PainelAdminCategoria() {
           </div>
         </div>
       )}
+      <ModalComp
+        contentLabel="Modal erro categoria já existe"
+        mostrarModal={abrirModal}
+        handleFecharModal={() => setAbrirModal(false)}
+      >
+        {mensagemErro}
+      </ModalComp>
     </>
   );
 }

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Categoria } from "shared/interfaces/ICategoria";
 import CarregandoPagina from "componentes/CarregandoPagina";
 import ModalComp from "componentes/ModalComp";
+import { AxiosError } from "axios";
 
 interface ListarCategoriasProps {
   atualizaLista?: number;
@@ -21,6 +22,9 @@ export default function ListarCategorias({
 
   const [abrirModal, setAbrirModal] = useState(false);
   const [idDelete, setIdDelete] = useState<number | null>(null);
+
+  const [abrirModalErro, setAbrirModalErro] = useState(false);
+  const [mensagemErro, setMensagemErro] = useState("");
 
   useEffect(() => {
     const getCategorias = async () => {
@@ -59,6 +63,11 @@ export default function ListarCategorias({
       setCategoriaDeletada(id);
       notifyDeleteCategoria(response.data);
     } catch (error) {
+      const err = error as AxiosError<any | string>;
+      if (err.response?.status === 409) {
+        setAbrirModalErro(true);
+        setMensagemErro(err.response.data.mensagem);
+      }
       console.log(error);
     } finally {
       setCarregandoCategoria(false);
@@ -134,6 +143,13 @@ export default function ListarCategorias({
         }}
       >
         {`Deseja realmente deletar a categoria de id: ${idDelete}?`}
+      </ModalComp>
+      <ModalComp
+        contentLabel="Modal erro categoria com produto cadastrado"
+        mostrarModal={abrirModalErro}
+        handleFecharModal={() => setAbrirModalErro(false)}
+      >
+        {mensagemErro}
       </ModalComp>
     </div>
   );
