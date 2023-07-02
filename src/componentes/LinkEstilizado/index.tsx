@@ -1,9 +1,8 @@
 import { NavLink } from "react-router-dom";
-import { ReactElement } from "react";
 
 interface LinksProps {
   url: string;
-  children: ReactElement | string;
+  children: React.ReactNode | string;
   style: string;
   target?: string;
   recolherMenu?: () => void;
