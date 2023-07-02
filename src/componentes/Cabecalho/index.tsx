@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { logout } from "store/modules/usuario";
 import { useState, useEffect } from "react";
+import PersonIcon from '@mui/icons-material/Person';
 
 export default function Cabecalho() {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -70,6 +71,7 @@ export default function Cabecalho() {
               </div>
             ) : (
               <LinkEstilizado style={styles.link} url="/login">
+                <PersonIcon />
                 Login
               </LinkEstilizado>
             )}
