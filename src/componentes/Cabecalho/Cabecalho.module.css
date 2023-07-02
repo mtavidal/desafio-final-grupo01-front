@@ -27,11 +27,14 @@
 }
 
 .shoppingCartIcon {
-  color: var(--azulclaro);
+  color: var(--azulmedioclaro);
 }
 .link {
   text-decoration: none;
   color: var(--azulmedioclaro);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 }
 
 .link:hover {
@@ -67,6 +70,15 @@
 .logado button:hover {
   color: var(--azulmedioescuro);
   cursor: pointer;
+}
+
+.userIcon {
+  color: var(--azulclaro);
+  max-width: 100%;
+}
+
+.userIcon:hover {
+  color: var(--azulescuro);
 }
 
 /* @media only screen and (max-width: 500px) {
