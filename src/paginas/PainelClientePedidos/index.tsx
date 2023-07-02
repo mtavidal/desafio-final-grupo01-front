@@ -7,11 +7,15 @@ import { toast } from "react-hot-toast";
 import CarregandoPagina from "componentes/CarregandoPagina";
 import Botao from "componentes/Botao";
 import { useAppSelector } from "hooks";
+import ModalComp from "componentes/ModalComp";
 
 export default function PainelClientePedidos() {
   const [pedidos, setPedidos] = useState<Pedido[]>([]);
   const [carregando, setCarregando] = useState(true);
   const [pedidoDeletado, setPedidoDeletado] = useState(0);
+
+  const [abrirModal, setAbrirModal] = useState(false);
+  const [idDelete, setIdDelete] = useState<number | null>(null);
 
   const usuario = useAppSelector((state) => state.authReducer.usuario);
 
@@ -34,24 +38,30 @@ export default function PainelClientePedidos() {
     getPedidos();
   }, [pedidoDeletado, usuario]);
 
+  useEffect(() => {
+    if (idDelete) {
+      setAbrirModal(true);
+    }
+  }, [idDelete]);
+
   const notifyDeletePedido = (id: any) =>
     toast.success(`Pedido com id: ${id} deletado com sucesso!`);
 
-  const deletarPedido = async (id: number) => {
-    const confirmaDeletar = window.confirm(
-      `Tem certeza que deseja deletar o pedido de id: ${id}?`
-    );
-    if (confirmaDeletar) {
-      setCarregando(true);
-      try {
-        const response = await api.delete(`/carts/${id}`);
-        setPedidoDeletado(id);
-        notifyDeletePedido(response.data);
-      } catch (error) {
-        alert("Erro na requisição");
-      } finally {
-        setCarregando(false);
-      }
+  const deletarPedido = async (id: number | null) => {
+    if (!id) {
+      return;
+    }
+    setCarregando(true);
+    try {
+      const response = await api.delete(`/carts/${id}`);
+      setPedidoDeletado(id);
+      notifyDeletePedido(response.data);
+    } catch (error) {
+      alert("Erro na requisição");
+    } finally {
+      setCarregando(false);
+      setAbrirModal(false);
+      setIdDelete(null);
     }
   };
 
@@ -117,7 +127,7 @@ export default function PainelClientePedidos() {
                         <div className={styles.detalhesProdutoPedidoBotao}>
                           <Botao
                             primario={false}
-                            onClick={() => deletarPedido(pedido.id)}
+                            onClick={() => setIdDelete(pedido.id)}
                           >
                             Deletar
                           </Botao>
@@ -131,6 +141,17 @@ export default function PainelClientePedidos() {
           </div>
         </div>
       )}
+      <ModalComp
+        contentLabel="Modal confirma deletar"
+        mostrarModal={abrirModal}
+        handleConfirmarModal={() => deletarPedido(idDelete)}
+        handleFecharModal={() => {
+          setAbrirModal(false);
+          setTimeout(() => setIdDelete(null), 500);
+        }}
+      >
+        {`Deseja realmente deletar o seu pedido de id: ${idDelete}?`}
+      </ModalComp>
     </>
   );
 }

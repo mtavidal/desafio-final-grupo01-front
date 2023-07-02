@@ -6,6 +6,7 @@ import { api } from "lib/axios";
 import Botao from "componentes/Botao";
 import { toast } from "react-hot-toast";
 import CarregandoPagina from "componentes/CarregandoPagina";
+import ModalComp from "componentes/ModalComp";
 
 export default function PainelAdminPedido() {
   const [pedidos, setPedidos] = useState<Pedido[]>([]);
@@ -16,6 +17,9 @@ export default function PainelAdminPedido() {
   const [skip, setSkip] = useState(10);
   const [totalPedidoBanco, setTotalPedidoBanco] = useState(0);
   const [estaCarregandoMais, setEstaCarregandoMais] = useState(false);
+
+  const [abrirModal, setAbrirModal] = useState(false);
+  const [idDelete, setIdDelete] = useState<number | null>(null);
 
   function formataData(isoDate: string) {
     const data = new Date(isoDate);
@@ -44,6 +48,7 @@ export default function PainelAdminPedido() {
   };
 
   useEffect(() => {
+    console.log("UseEffect");
     const getPedidos = async () => {
       try {
         const response = await api.get("/carts", {
@@ -52,8 +57,10 @@ export default function PainelAdminPedido() {
             sort: "desc",
           },
         });
-        setPedidos(response.data.carts);
-        setTotalPedidoBanco(response.data.total);
+        const data = await response.data;
+        console.log("Retorno api", data);
+        setPedidos(data.carts);
+        setTotalPedidoBanco(data.total);
         setSkip(10);
       } catch (error) {
         alert("Erro na requisição");
@@ -64,25 +71,32 @@ export default function PainelAdminPedido() {
     getPedidos();
   }, [pedidoDeletado]);
 
+  useEffect(() => {
+    if (idDelete) {
+      setAbrirModal(true);
+    }
+  }, [idDelete]);
+
   const notifyDeletePedido = (id: any) =>
     toast.success(`Pedido com id: ${id} deletado com sucesso!`);
 
-  const deletarPedido = async (id: number) => {
-    const confirmaDeletar = window.confirm(
-      `Tem certeza que deseja deletar o pedido de id: ${id}?`
-    );
-    if (confirmaDeletar) {
-      setCarregando(true);
-      try {
-        const response = await api.delete(`/carts/${id}`);
-        setPedidoDeletado(id);
-        notifyDeletePedido(response.data);
-        setSkip(skip - 1);
-      } catch (error) {
-        alert("Erro na requisição");
-      } finally {
-        setCarregando(false);
-      }
+  const deletarPedido = async (id: number | null) => {
+    if (!id) {
+      return;
+    }
+    setCarregando(true);
+    try {
+      const response = await api.delete(`/carts/${id}`);
+      const data = await response.data;
+      setPedidoDeletado(id);
+      notifyDeletePedido(data);
+      setSkip(skip - 1);
+    } catch (error) {
+      alert("Erro na requisição");
+    } finally {
+      setCarregando(false);
+      setAbrirModal(false);
+      setIdDelete(null);
     }
   };
 
@@ -149,7 +163,7 @@ export default function PainelAdminPedido() {
                         <div className={styles.detalhesProdutoPedidoBotao}>
                           <Botao
                             primario={false}
-                            onClick={() => deletarPedido(pedido.id)}
+                            onClick={() => setIdDelete(pedido.id)}
                           >
                             Deletar
                           </Botao>
@@ -175,6 +189,17 @@ export default function PainelAdminPedido() {
           </div>
         </div>
       )}
+      <ModalComp
+        contentLabel="Modal confirma deletar"
+        mostrarModal={abrirModal}
+        handleConfirmarModal={() => deletarPedido(idDelete)}
+        handleFecharModal={() => {
+          setAbrirModal(false);
+          setTimeout(() => setIdDelete(null), 500);
+        }}
+      >
+        {`Deseja realmente deletar o pedido de id: ${idDelete}?`}
+      </ModalComp>
     </>
   );
 }

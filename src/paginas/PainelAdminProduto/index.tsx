@@ -136,7 +136,7 @@ export default function PainelAdminProduto() {
               <CampoInput
                 obrigatorio={true}
                 label="URL da Imagem"
-                placeholder="Endereço da imagem do produto"
+                placeholder="URL da imagem do produto"
                 valor={imagem}
                 aoAlterado={(valor) => setImagem(valor)}
               />

@@ -26,6 +26,7 @@ export function ListarProdutos({
   const limit = limitPaginas;
   const [skip, setSkip] = useState(10);
   const [totalProdutoBanco, setTotalProdutoBanco] = useState(0);
+  const [atualizaListaDelete, setAtualizaListaDelete] = useState(0);
   const [ehCarregamentoInicial, setEhCarregamentoInicial] = useState(true);
   const [estaCarregandoMais, setEstaCarregandoMais] = useState(false);
 
@@ -96,11 +97,12 @@ export function ListarProdutos({
     };
 
     getProdutos();
-  }, [limitPaginas, atualizaLista, categoria]);
+  }, [limitPaginas, atualizaLista, categoria, atualizaListaDelete]);
 
   function removeProdutos(id: number) {
     const novaListaProdutos = produtos.filter((produto) => produto.id !== id);
     setSkip(skip - 1);
+    setAtualizaListaDelete(id);
     setProdutos([...novaListaProdutos]);
   }
 

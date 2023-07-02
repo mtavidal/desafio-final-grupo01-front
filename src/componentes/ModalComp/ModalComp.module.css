@@ -1,12 +1,114 @@
-.ReactModal__Overlay {
-  opacity: 0;
-  transition: opacity 200ms ease-in-out;
+.modal {
+  position: absolute;
+  top: 25%;
+  left: 30%;
+  right: 30%;
+  bottom: 25%;
+  border: 3px solid var(--azulescuro);
+  background-color: var(--azulclaro);
+  border-radius: 7px;
+  padding: 20px;
+  font-size: 16px;
+  height: 185px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.ReactModal__Overlay--after-open {
-  opacity: 1;
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--azulescurotrasparente);
 }
 
-.ReactModal__Overlay--before-close {
-  opacity: 0;
+.modalContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tituloModal {
+  font-size: 20px;
+  padding-bottom: 15px;
+  font-family: var(--fonte2);
+  text-align: center;
+  color: var(--azulescuro);
+}
+.modalBotoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.botaoModal {
+  width: 180px;
+  border: 2px solid var(--azulmedioescuro);
+  padding: 10px;
+  background: none;
+  color: var(--azulmedioescuro);
+  font-weight: bolder;
+  border-radius: 5px;
+  align-self: center;
+  font-family: var(--fonte);
+  margin: 5px;
+}
+
+.botaoModal:hover {
+  border: 2px solid var(--azulescuro);
+  background: var(--azulmedioclaro);
+  color: var(--azulescuro);
+  cursor: pointer;
+}
+.botaoModal:disabled {
+  border: 2px solid var(--cinzaescuro);
+  background: var(--cinza);
+  color: var(--cinzaescuro);
+  cursor: pointer;
+}
+
+.botaoModal2 {
+  width: 180px;
+  border: 2px solid var(--azulmedioescuro);
+  padding: 10px;
+  font-weight: bolder;
+  border-radius: 5px;
+  align-self: center;
+  font-family: var(--fonte);
+  background: var(--azulmedioescuro);
+  color: var(--azulclaro);
+  margin: 5px;
+}
+
+.botaoModal2:hover {
+  background: var(--azulescuro);
+  color: var(--azulclaro);
+  cursor: pointer;
+}
+.botaoModal2:disabled {
+  border: 2px solid var(--cinzaescuro);
+  background: var(--cinza);
+  color: var(--cinzaescuro);
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 1175px) {
+  .modal {
+    left: 25%;
+    right: 25%;
+    height: 240px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .modal {
+    top: 26%;
+    left: 15%;
+    right: 15%;
+    bottom: 36%;
+    height: 240px;
+  }
 }

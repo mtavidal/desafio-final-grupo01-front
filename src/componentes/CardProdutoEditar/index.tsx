@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { Categoria } from "shared/interfaces/ICategoria";
 import { useState } from "react";
 import CarregandoPagina from "componentes/CarregandoPagina";
+import ModalComp from "componentes/ModalComp";
 
 interface ProdutoProps {
   id: number;
@@ -28,6 +29,8 @@ export function CardProdutoEditar({
 }: ProdutoProps) {
   const navigate = useNavigate();
   const [deletandoProduto, setDeletandoProduto] = useState(false);
+  const [abrirModal, setAbrirModal] = useState(false);
+
   function editarProduto(produto: ProdutoProps) {
     navigate("/paineladmin/produtos/editar", {
       state: produto,
@@ -37,20 +40,16 @@ export function CardProdutoEditar({
     toast.success(`Produto com id: ${id} deletado com sucesso!`);
 
   const deletarProduto = async (id: number) => {
-    const confirmaDeletar = window.confirm(
-      `Tem certeza que deseja deletar o produto de id: ${id}?`
-    );
-    if (confirmaDeletar) {
-      setDeletandoProduto(true);
-      try {
-        const response = await api.delete(`/products/${id}`);
-        atualizaLista?.(id);
-        notifyDelete(response.data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setDeletandoProduto(false);
-      }
+    setDeletandoProduto(true);
+    try {
+      const response = await api.delete(`/products/${id}`);
+      atualizaLista?.(id);
+      notifyDelete(response.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setDeletandoProduto(false);
+      setAbrirModal(false);
     }
   };
 
@@ -83,10 +82,18 @@ export function CardProdutoEditar({
             >
               Editar
             </Botao>
-            <Botao primario={false} onClick={() => deletarProduto(id)}>
+            <Botao primario={false} onClick={() => setAbrirModal(true)}>
               Deletar
             </Botao>
           </div>
+          <ModalComp
+            contentLabel="Modal confirma deletar"
+            mostrarModal={abrirModal}
+            handleConfirmarModal={() => deletarProduto(id)}
+            handleFecharModal={() => setAbrirModal(false)}
+          >
+            {`Deseja realmente deletar o produto de id: ${id}?`}
+          </ModalComp>
         </div>
       )}
     </>

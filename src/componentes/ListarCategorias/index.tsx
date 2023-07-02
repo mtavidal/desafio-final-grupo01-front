@@ -6,6 +6,7 @@ import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Categoria } from "shared/interfaces/ICategoria";
 import CarregandoPagina from "componentes/CarregandoPagina";
+import ModalComp from "componentes/ModalComp";
 
 interface ListarCategoriasProps {
   atualizaLista?: number;
@@ -17,6 +18,10 @@ export default function ListarCategorias({
   const [carregandoCategoria, setCarregandoCategoria] = useState(true);
   const [categorias, setCategorias] = useState<Categoria[]>([]);
   const [categoriaDeletada, setCategoriaDeletada] = useState(0);
+
+  const [abrirModal, setAbrirModal] = useState(false);
+  const [idDelete, setIdDelete] = useState<number | null>(null);
+
   useEffect(() => {
     const getCategorias = async () => {
       try {
@@ -35,24 +40,30 @@ export default function ListarCategorias({
     getCategorias();
   }, [atualizaLista, categoriaDeletada]);
 
+  useEffect(() => {
+    if (idDelete) {
+      setAbrirModal(true);
+    }
+  }, [idDelete]);
+
   const notifyDeleteCategoria = (id: any) =>
     toast.success(`Categoria com id: ${id} deletada com sucesso!`);
 
-  const deletarCategoria = async (id: number) => {
-    const confirmaDeletar = window.confirm(
-      `Tem certeza que deseja deletar a categoria de id: ${id}?`
-    );
-    if (confirmaDeletar) {
-      setCarregandoCategoria(true);
-      try {
-        const response = await api.delete(`/categoria/${id}`);
-        setCategoriaDeletada(id);
-        notifyDeleteCategoria(response.data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setCarregandoCategoria(false);
-      }
+  const deletarCategoria = async (id: number | null) => {
+    if (!id) {
+      return;
+    }
+    setCarregandoCategoria(true);
+    try {
+      const response = await api.delete(`/categoria/${id}`);
+      setCategoriaDeletada(id);
+      notifyDeleteCategoria(response.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setCarregandoCategoria(false);
+      setAbrirModal(false);
+      setIdDelete(null);
     }
   };
 
@@ -103,7 +114,7 @@ export default function ListarCategorias({
                   </Botao>
                   <Botao
                     primario={false}
-                    onClick={() => deletarCategoria(categoria.id)}
+                    onClick={() => setIdDelete(categoria.id)}
                   >
                     Deletar
                   </Botao>
@@ -113,6 +124,17 @@ export default function ListarCategorias({
           })}
         </div>
       )}
+      <ModalComp
+        contentLabel="Modal confirma deletar"
+        mostrarModal={abrirModal}
+        handleConfirmarModal={() => deletarCategoria(idDelete)}
+        handleFecharModal={() => {
+          setAbrirModal(false);
+          setTimeout(() => setIdDelete(null), 500);
+        }}
+      >
+        {`Deseja realmente deletar a categoria de id: ${idDelete}?`}
+      </ModalComp>
     </div>
   );
 }

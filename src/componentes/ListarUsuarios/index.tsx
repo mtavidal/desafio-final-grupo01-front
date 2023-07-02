@@ -6,6 +6,7 @@ import Botao from "componentes/Botao";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import CarregandoPagina from "componentes/CarregandoPagina";
+import ModalComp from "componentes/ModalComp";
 
 interface ListarUsuariosProps {
   atualizaLista?: number;
@@ -17,6 +18,9 @@ export default function ListarUsuarios({
   const [carregandoUsuario, setCarregandoUsuario] = useState(true);
   const [usuarios, setUsuarios] = useState<Usuario[]>([]);
   const [usuarioDeletado, setUsuarioDeletado] = useState(0);
+
+  const [abrirModal, setAbrirModal] = useState(false);
+  const [idDelete, setIdDelete] = useState<number | null>(null);
 
   useEffect(() => {
     const getUsuarios = async () => {
@@ -36,24 +40,30 @@ export default function ListarUsuarios({
     getUsuarios();
   }, [atualizaLista, usuarioDeletado]);
 
+  useEffect(() => {
+    if (idDelete) {
+      setAbrirModal(true);
+    }
+  }, [idDelete]);
+
   const notifyDeleteUsuario = (id: any) =>
     toast.success(`Usuário com id: ${id} deletado com sucesso!`);
 
-  const deletarUsuario = async (id: number) => {
-    const confirmaDeletar = window.confirm(
-      `Tem certeza que deseja deletar o usuário de id: ${id}?`
-    );
-    if (confirmaDeletar) {
-      setCarregandoUsuario(true);
-      try {
-        const response = await api.delete(`/users/${id}`);
-        setUsuarioDeletado(id);
-        notifyDeleteUsuario(response.data);
-      } catch (error) {
-        alert("Erro na requisição");
-      } finally {
-        setCarregandoUsuario(false);
-      }
+  const deletarUsuario = async (id: number | null) => {
+    if (!id) {
+      return;
+    }
+    setCarregandoUsuario(true);
+    try {
+      const response = await api.delete(`/users/${id}`);
+      setUsuarioDeletado(id);
+      notifyDeleteUsuario(response.data);
+    } catch (error) {
+      alert("Erro na requisição");
+    } finally {
+      setCarregandoUsuario(false);
+      setAbrirModal(false);
+      setIdDelete(null);
     }
   };
 
@@ -107,7 +117,7 @@ export default function ListarUsuarios({
                   </Botao>
                   <Botao
                     primario={false}
-                    onClick={() => deletarUsuario(usuario.id)}
+                    onClick={() => setIdDelete(usuario.id)}
                   >
                     Deletar
                   </Botao>
@@ -117,6 +127,17 @@ export default function ListarUsuarios({
           })}
         </div>
       )}
+      <ModalComp
+        contentLabel="Modal confirma deletar"
+        mostrarModal={abrirModal}
+        handleConfirmarModal={() => deletarUsuario(idDelete)}
+        handleFecharModal={() => {
+          setAbrirModal(false);
+          setTimeout(() => setIdDelete(null), 500);
+        }}
+      >
+        {`Deseja realmente deletar o usuário de id: ${idDelete}?`}
+      </ModalComp>
     </div>
   );
 }
