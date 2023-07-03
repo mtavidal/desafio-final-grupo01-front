@@ -50,7 +50,9 @@
     font-size: 20px;
     line-height: 22px;
   }
-
+  .containerHome {
+    padding-bottom: 50px;
+  }
   .containerMarcas img {
     width: 90px;
     margin: 15px;

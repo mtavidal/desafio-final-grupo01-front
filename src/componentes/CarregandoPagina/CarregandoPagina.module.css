@@ -45,3 +45,20 @@
     opacity: 0;
   }
 }
+@media only screen and (max-width: 900px) {
+  .conteudoCarregando img {
+    width: 30%;
+  }
+  .conteudoCarregando h1 {
+    width: 30%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .conteudoCarregando img {
+    width: 50%;
+  }
+  .conteudoCarregando h1 {
+    width: 50%;
+  }
+}
