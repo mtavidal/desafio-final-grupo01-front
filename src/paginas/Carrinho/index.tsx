@@ -110,7 +110,7 @@ export default function Carrinho() {
                   </h2>
                 </div>
                 <div className={styles.botoes}>
-                  <div>
+                  <div className={styles.botoesOpcoes}>
                     <Botao
                       onClick={() => {
                         dispatch(esvaziarCarrinho());

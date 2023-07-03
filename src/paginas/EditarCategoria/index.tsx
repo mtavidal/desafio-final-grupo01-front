@@ -50,8 +50,8 @@ export default function EditarCategoria() {
   return (
     <>
       <CabecalhoListaProdutos
-        titulo="Gerenciamento de Usuários"
-        subtitulo="Adicione, edite e delete os usuários"
+        titulo="Gerenciamento de Categorias"
+        subtitulo="Adicione, edite e delete as categorias"
       />
       {editando ? (
         <>
@@ -73,7 +73,7 @@ export default function EditarCategoria() {
               <br />
               <div className={styles.botoes}>
                 <Botao primario={false} disabled={editando}>
-                  Atualizar Categoria
+                  Atualizar
                 </Botao>
                 <Botao
                   primario={false}

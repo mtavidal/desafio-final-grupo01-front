@@ -71,7 +71,7 @@
 @media only screen and (max-width: 500px) {
   .containerPainel {
     padding-top: 100px;
-    height: 95vh;
+    height: 600px;
   }
   .containerPainel form {
     width: 90%;

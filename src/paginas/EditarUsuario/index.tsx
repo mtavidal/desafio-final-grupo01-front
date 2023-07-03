@@ -111,7 +111,7 @@ export default function EditarUsuario() {
               <br />
               <div className={styles.botoes}>
                 <Botao primario={false} disabled={editando}>
-                  Atualizar Usuário
+                  Atualizar
                 </Botao>
                 <Botao
                   primario={false}

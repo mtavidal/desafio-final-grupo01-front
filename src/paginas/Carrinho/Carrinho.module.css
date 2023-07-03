@@ -47,8 +47,15 @@
   .botoes button {
     margin: 10px;
   }
+
+  .botoesOpcoes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .total {
     font-size: 13px;
+    width: 90%;
   }
   .carrinhovazio {
     width: 40%;

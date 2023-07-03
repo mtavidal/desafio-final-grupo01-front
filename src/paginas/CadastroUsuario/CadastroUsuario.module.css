@@ -77,10 +77,13 @@
 
 @media only screen and (max-width: 500px) {
   .containerPainel {
-    padding-top: 150px;
-    height: 110vh;
+    padding-top: 100px;
+    height: 900px;
   }
   .containerPainel form {
-    width: 85%;
+    width: 100%;
+  }
+  .validacao {
+    font-size: 12px;
   }
 }

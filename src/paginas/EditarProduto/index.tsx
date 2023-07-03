@@ -133,7 +133,7 @@ export default function EditarProduto() {
               <br />
               <div className={styles.botoes}>
                 <Botao primario={false} disabled={editando}>
-                  Atualizar Produto
+                  Atualizar
                 </Botao>
                 <Botao
                   primario={false}
