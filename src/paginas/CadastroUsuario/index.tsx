@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import CarregandoPagina from "componentes/CarregandoPagina";
 import { toast } from "react-hot-toast";
 import PasswordChecklist from "react-password-checklist";
+import { AxiosError } from "axios";
+import ModalComp from "componentes/ModalComp";
 
 const CadastroUsuario = () => {
   const [nomeCompleto, setNomeCompleto] = useState("");
@@ -16,6 +18,10 @@ const CadastroUsuario = () => {
   const [fazendoCadastro, setFazendoCadastro] = useState(false);
   const [hiddenBotao, setHiddenBotao] = useState(true);
   const navigate = useNavigate();
+
+  const [abrirModal, setAbrirModal] = useState(false);
+  const [mensagemErro, setMensagemErro] = useState("");
+
   const notifyCadastroSucesso = (nome: string) =>
     toast.success(`${nome}, seu cadastro foi realizado com sucesso`);
 
@@ -34,6 +40,11 @@ const CadastroUsuario = () => {
         notifyCadastroSucesso(data.name);
         navigate("/login");
       } catch (error: any) {
+        const err = error as AxiosError<any | string>;
+        if (err.response?.status === 409) {
+          setAbrirModal(true);
+          setMensagemErro(err.response.data.mensagem);
+        }
         console.log(error);
       } finally {
         setFazendoCadastro(false);
@@ -131,6 +142,13 @@ const CadastroUsuario = () => {
           </div>
         </div>
       )}
+      <ModalComp
+        contentLabel="Modal erro email já existe"
+        mostrarModal={abrirModal}
+        handleFecharModal={() => setAbrirModal(false)}
+      >
+        {mensagemErro}
+      </ModalComp>
     </>
   );
 };

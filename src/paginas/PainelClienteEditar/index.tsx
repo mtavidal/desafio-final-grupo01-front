@@ -9,6 +9,8 @@ import CabecalhoListaProdutos from "componentes/CabecalhoListaProdutos";
 import { useAppSelector } from "hooks";
 import CarregandoPagina from "componentes/CarregandoPagina";
 import PasswordChecklist from "react-password-checklist";
+import { AxiosError } from "axios";
+import ModalComp from "componentes/ModalComp";
 
 export default function PainelClienteEditar() {
   const selector = useAppSelector((store) => store.authReducer);
@@ -20,6 +22,9 @@ export default function PainelClienteEditar() {
   const [editando, setEditando] = useState(false);
 
   const [hiddenBotao, setHiddenBotao] = useState(true);
+
+  const [abrirModal, setAbrirModal] = useState(false);
+  const [mensagemErro, setMensagemErro] = useState("");
 
   const navigate = useNavigate();
   const notifyCadastroEditado = (id: number) =>
@@ -38,6 +43,11 @@ export default function PainelClienteEditar() {
         const data = await response.data;
         notifyCadastroEditado(data.id);
       } catch (error) {
+        const err = error as AxiosError<any | string>;
+        if (err.response?.status === 409) {
+          setAbrirModal(true);
+          setMensagemErro(err.response.data.mensagem);
+        }
         console.log(error);
       } finally {
         setEditando(false);
@@ -137,6 +147,13 @@ export default function PainelClienteEditar() {
           </div>
         </div>
       )}
+      <ModalComp
+        contentLabel="Modal erro email já existe"
+        mostrarModal={abrirModal}
+        handleFecharModal={() => setAbrirModal(false)}
+      >
+        {mensagemErro}
+      </ModalComp>
     </>
   );
 }
